@@ -14,31 +14,26 @@ function Header() {
           <li className="menu-item">
             <a href="curation">CURATION</a>
             <ul className="submenu">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
+              <li>Curation</li>
+              <li>Director's Insight</li>
+              <li>Momentum</li>
             </ul>
           </li>
           <li className="menu-item">
             <a href="explore">EXPLORE</a>
             <ul className="submenu">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
+              <li>Special</li>
+              <li>Category</li>
+              <li>Dashboard</li>
+              <li>Search</li>
             </ul>
           </li>
           <li className="menu-item">
             <a href="funding">FUNDING</a>
             <ul className="submenu">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
+              <li>Now Funding</li>
+              <li>Reason of Funding</li>
+              <li>Funding Report</li>
             </ul>
           </li>
         </ul>
