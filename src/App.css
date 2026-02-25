@@ -1,0 +1,60 @@
+/* 1. 전체 기본 여백 제거 + 박스 계산 통일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. HTML, BODY 기본 설정 */
+body {
+  font-family: "Montserrat";
+  font-size: 16px;
+  line-height: 1.2;
+  color: #121212;
+}
+
+/* 3. 제목 태그 초기화 (h1 ~ h6 동일하게) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+/* 4. 리스트 스타일 제거 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 5. 링크 기본 스타일 제거 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 6. 이미지, 비디오 하단 공백 제거 */
+img,
+video {
+  vertical-align: top;
+}
+
+/* 7. 폼 요소 기본 스타일 정리 */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* 8. 테이블 태그 기본 설정 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
