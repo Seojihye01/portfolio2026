@@ -1,21 +1,145 @@
 .header-container {
-  display: flex;
-  justify-content: center;
   width: 100%;
+  border-bottom: 1px solid #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .header {
+  width: 100%;
+  max-width: 1200px;
+  height: 80px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
+.header-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  transition: all 0.3s ease; /* 색상 변경 시 부드러운 효과 */
+}
+
+/* 메인 페이지: 투명 배경 + 흰색 글자 */
+.main-header {
+  background-color: transparent;
+}
+.main-header .menu-item a {
+  color: #f9f9f9;
+}
+.main-header .icon img {
+  filter: brightness(0) invert(1); /* 아이콘을 흰색으로 강제 변경 */
+}
+
+/* 서브 페이지: 흰색 배경 + 검정 글자 */
+.sub-header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eeeeee;
+}
+.sub-header .menu-item a {
+  color: #121212;
+}
+.sub-header .icon img {
+  filter: none; /* 아이콘 원래 색상 유지 */
+}
+
+.logo {
+  width: 216px;
+  display: flex;
+  align-items: center;
+}
+
+/* --- 메인 메뉴 스타일 --- */
 .menubar {
   display: flex;
+  list-style: none;
+  height: 100%; /* 헤더 높이와 맞춤 */
+  margin: 0;
+  padding: 0;
+
+  justify-content: center;
 }
 
 .menu-item {
-  font-size: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  font-size: 16px;
   font-weight: 300;
+  cursor: pointer;
+  height: 100%;
   letter-spacing: 10%;
+  color: #f9f9f9;
+}
+
+/* --- 서브 메뉴 (아코디언/드롭다운) 스타일 --- */
+.submenu {
+  display: none; /* 평소에는 숨김 */
+  position: absolute;
+  top: 80px; /* 헤더 높이 바로 아래 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px; /* 서브메뉴 너비 */
+  background: rgba(255, 255, 255, 0.95);
+  list-style: none;
+  padding: 20px 0;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  z-index: 10;
+}
+
+.submenu li {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.submenu li:hover {
+  color: #121212;
+  font-weight: 500;
+}
+
+/* 마우스 올렸을 때 서브메뉴 노출 */
+.menu-item:hover .submenu {
+  display: block;
+}
+
+.icon-group {
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+/* --- 반응형 구간 보완 --- */
+@media (max-width: 1024px) {
+  .menu-item {
+    padding: 0 15px;
+    font-size: 14px;
+  }
+  .submenu {
+    width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 모바일에서는 드롭다운이 불편하므로 메뉴바를 숨기거나 
+       세로형 아코디언으로 별도 작업이 필요합니다. 
+       일단은 겹치지 않게 처리합니다. */
+  .menubar {
+    display: none;
+  }
+  .header {
+    height: 60px;
+  }
 }
