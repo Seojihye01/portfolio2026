@@ -1,0 +1,45 @@
+.main3_container {width: 100%; padding: 120px 0; background: #f9f9f9; 
+                  display: flex; justify-content: center;}
+
+.main3_inner {width: 1200px; /* 기존 헤더 inner와 동일하게 맞춰 일관성 유지 */
+              display: flex; flex-direction: column;}
+
+.main3_title {font-size: 65px; font-weight: 900; letter-spacing: 10%; margin-bottom: 80px;
+              position: relative; display: inline-block; padding-bottom: 70px;}
+
+.main3_title::after {content: ''; position: absolute; bottom: 0; left: 0; width: 35%; height: 1px; background: rgba(18,18,18,0.7);}
+
+.main3_content_grid {display: flex; justify-content: space-between; align-items: flex-start; gap: 100px;}
+
+.main3_left {flex: 1.2;}
+
+.main3_message {font-size: 20px; font-weight: 500; line-height: 2; margin-bottom: 70px;}
+
+.main3_description {font-size: 16px; font-weight: 400; line-height: 2; 
+                    margin-bottom: 50px;}
+
+.main3_discover_btn {display: inline-flex; align-items: center; gap: 10px;
+                     font-size: 16px; font-weight: 400; text-decoration: none;
+                     transition: gap 0.3s ease;}
+
+.main3_discover_btn:hover {gap: 20px; /* 화살표가 살짝 옆으로 밀리는 애니메이션 */}
+
+.main3_discover_btn img {width: 10px;}
+
+.main3_right {flex: 0.65;}
+
+.info_card {background: rgba(18,18,18,0.05); padding: 40px; 
+            display: flex; flex-direction: column; gap: 20px;
+            box-shadow: inset 1px 4px 10px rgba(18,18,18,0.3), inset -2px -2px 6px rgba(249,249,249,0.8); 
+           }
+
+.info_row {display: flex; justify-content: space-between; font-size: 14px;
+           padding-bottom: 10px;}
+
+.info_row .label {color: rgba(18,18,18,0.6); font-weight: 400;}
+
+.info_row .value {font-weight: 400; text-align: right;}
+
+.info_logo {margin-top: 60px; display: flex; justify-content: flex-end;}
+
+.info_logo img {height: 30px;}

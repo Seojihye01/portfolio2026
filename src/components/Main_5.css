@@ -1,0 +1,77 @@
+.main5_container {width: 100%; height: auto; background: #f9f9f9; padding: 120px 0;
+                  display: flex; align-items: center; justify-content: center; 
+                  overflow: hidden; position: relative;}
+
+.main5_inner {width: 1200px; display: flex; flex-direction: column;
+              position: relative; z-index: 10;}
+
+.main5_header h2 {font-size: 48px; letter-spacing: 5%; font-weight: 800;}
+
+.main5_header p {font-size: 30px; font-weight: 300; padding-top: 20px; margin-bottom: 160px;}
+
+.main5_content {display: flex; justify-content: space-between; align-items: flex-start; 
+                margin-top: 50px; flex: 1; cursor: none; position: relative;}
+
+/* 좌측 장르 리스트 */
+.genre_scroll_area {flex: 1; height: 400px; overflow: hidden;}
+
+.scroll_spacer {height: 140px;}
+
+.genre_item {height: 100px; display: flex; align-items: center; gap: 15px;
+             opacity: 0.2; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);}
+
+.genre_num {font-size: 18px; font-weight: 400;}
+
+.genre_name {font-size: 20px; font-weight: 500; transition: all 0.5s ease;}
+
+.genre_item.active {opacity: 1; transform: translateX(20px);}
+
+.genre_item.active .genre_name {font-size: 40px; font-weight: 700; letter-spacing: 0.05em;}
+
+/* 우측 영화 정보 */
+.movie_display_area {flex: 1.2; display: flex; flex-direction: column; align-items: flex-end;}
+
+.shutter_wrapper {width: 500px; height: 320px; position: relative; overflow: hidden;}
+
+.shutter_slide {position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 1;
+                transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;}
+
+.shutter_slide.show {opacity: 1; z-index: 10; transform: translateY(0) !important;}
+
+.movie_img {width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.05); transition: transform 0.8s ease;}
+
+.shutter_slide.show .movie_img {transform: scale(1);}
+
+.shutter_wrapper.up .shutter_slide {transform: translateY(100%);}
+
+.shutter_wrapper.down .shutter_slide {transform: translateY(-100%);}
+
+.movie_info_box {width: 500px; margin-top: 40px;}
+
+.info_row {display: flex; justify-content: space-between; padding: 16px 0; 
+           border-bottom: 1px solid #ddd; font-size: 14px;}
+
+.info_row .val {font-weight: 400;}
+
+/* CTA */
+.main5_footer {width: 100%; display: flex; justify-content: flex-end; margin-top: 50px;}
+
+.main5_explore_btn {align-self: flex-end; display: flex; align-items: center; gap: 15px;
+                    font-size: 38px; font-weight: 300; margin-top: 40px; cursor: pointer;}
+
+.main5_explore_btn img {width: 16px; transition: transform 0.3s ease;}
+
+.main5_explore_btn:hover img {transform: translateX(7px);}
+
+
+/* Custom Cursor */
+.custom_cursor {position: fixed; width: 50px; height: 50px; border-radius: 8px; 
+                display: flex; align-items: center; justify-content: center;
+                pointer-events: none; z-index: 9999; transform: translate(-50%, -50%) scale(0);
+                transition: transform 0.2s ease-out; background: rgba(249,249,249,0.3);
+                box-shadow: inset 1px 2px 5px rgba(18,18,18,0.2), inset -2px -2px 6px rgba(249,249,249,0.3);}
+
+.custom_cursor.active {transform: translate(-50%, -50%) scale(1);}
+
+.custom_cursor img {width: 35%; opacity: 0.8;}

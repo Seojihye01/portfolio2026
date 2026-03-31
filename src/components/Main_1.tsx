@@ -1,11 +1,20 @@
-import "./Main_1.css";
+import React from 'react';
+import './Main_1.css';
 
-function Main_1() {
+const Main_1 = () => {
   return (
-    <section id="main1">
-      <video src="/img/videoplayback.mp4" autoPlay loop muted></video>
-    </section>
+    <div className='hero_video_section'>
+      {/* 배경 영상 영역 */}
+      <div className="video_container">
+        <video autoPlay muted loop playsInline className="background_video">
+          <source src="/media/Dune.mp4" type="video/mp4" />
+          브라우저가 비디오를 지원하지 않습니다.
+        </video>
+        {/* 영상 위에 씌우는 어두운 막 (가독성/분위기용) */}
+        <div className='video_dimmer'></div>
+      </div>
+    </div>
   );
-}
+};
 
 export default Main_1;

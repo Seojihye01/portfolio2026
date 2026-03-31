@@ -12,6 +12,7 @@ body {
   line-height: 1.2;
   color: #121212;
   background-color: #f9f9f9;
+  letter-spacing: 10%;
 }
 
 /* 3. 제목 태그 초기화 (h1 ~ h6 동일하게) */
@@ -27,7 +28,8 @@ h6 {
 
 /* 4. 리스트 스타일 제거 */
 ul,
-ol {
+ol,
+li {
   list-style: none;
 }
 
@@ -59,3 +61,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* 가로 스크롤을 강제로 숨김 (방어 코드) */
+  overflow-x: hidden; 
+}
+
+#root {width: 100%; margin: 0; padding: 0;}
+
