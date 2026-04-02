@@ -1,0 +1,44 @@
+.signup_container {width: 100%; min-height: 100vh; background: #f9f9f9; display: flex;
+                   justify-content: center; align-items: center; padding: 0; margin-top: 50px;}
+
+.signup_inner {width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;}
+
+.signup_content {width: 100%; max-width: 650px; display: flex; flex-direction: column; 
+                 align-items: center; margin-top: 120px; margin-bottom: 70px;}
+
+.step {width: 100%; display: flex; justify-content: space-between; padding-bottom: 80px;
+       font-size: 16px; font-weight: 300; letter-spacing: 0.05em; color: #ababab;}
+
+.step p.st1 {font-weight: 600; color: #121212;}
+
+.input_step1 {width: 100%; display: flex; flex-direction: column; gap: 3px; padding-top: 40px;}
+
+.email, .password, .confirm {display: flex; justify-content: space-between; align-items: center;}
+
+.input_step1 p {font-size: 18px; font-weight: 300; letter-spacing: 0.05em;}
+
+.input_step1 input {width: 360px; height: 35px; background: rgba(217, 217, 217, 0.5); border-radius: 6px;
+                    padding: 0 15px;}
+
+.checkbox {width: 100%; display: flex; justify-content: center; padding-top: 70px; padding-bottom: 10px;}
+
+.legal {display: flex; align-items: center;}
+
+.legal input {width: 20px; height: 20px; margin-right: 13px; cursor: pointer;}
+
+.legal label {font-size: 14px; border-bottom: 1px solid #121212; padding-bottom: 2px;}
+
+.link_btn {width: 100%; display: flex; justify-content: space-between; align-items: center;}
+
+a.before, a.next {display: flex; align-items: center; justify-content: center; gap: 20px; cursor: pointer; 
+                  padding: 10px 0; transition: opacity 0.3s; text-decoration: none; font-size: 18px; 
+                  font-weight: 300; letter-spacing: 0.05em;}
+
+.before:hover, .next:hover {opacity: 0.6;}
+
+a.before p, a.next p {margin: 0; line-height: 1; font-size: inherit; font-weight: inherit;}
+
+.before .be, .next .ar {display: block; width: 22px; height: 22px; flex-shrink: 0; opacity: 0.7;}
+
+.be {transform: rotate(180deg);}
+
