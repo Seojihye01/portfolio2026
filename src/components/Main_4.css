@@ -7,7 +7,7 @@
 .main4_top {display: flex; justify-content: space-between; align-items: flex-start; 
             position: relative; margin-bottom: 100px; width: 100%;}
 
-.main4_images {display: flex; align-items: flex-start; gap: 15px;}
+.main4_images {display: flex; align-items: flex-start; gap: 15px; margin-bottom: 50px;}
 
 .img_tall {width: 290px; height: 360px; object-fit: cover;}
 
@@ -15,38 +15,13 @@
 
 .img_small {width: 210px; height: 180px; object-fit: cover;}
 
-.img_lock_wrapper {position: relative; width: 440px; height: 250px; margin-top: 110px; z-index: 1; 
-                   cursor: pointer; box-shadow: inset 0 0 30px 15px #f9f9f9; padding-left: 20px;}
+.curator {position: relative; width: 445px; height: 250px; margin-top: 110px; z-index: 1; 
+          cursor: pointer; box-shadow: inset 0 0 30px 15px #f9f9f9; padding-left: 20px;}
 
-.img_unlocked {width: 100%; height: 100%; object-fit: cover; animation: fadeIn 0.5s ease-in;}
+.background_video {width: 100%; height: 100%; position: relative; overflow: hidden;
+                     -webkit-mask-image: none; mask-image: none;
+                     animation: revealContent 0.8s cubic-bezier(0.4, 0, 0.2, 1);}
 
-.blur_container {width: 100%; height: 100%; position: relative;
-                 -webkit-mask-image: 
-                    linear-gradient(to right, transparent, black 5%, black 95%, transparent),
-                    linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-                 mask-image: 
-                    linear-gradient(to right, transparent, black 5%, black 95%, transparent),
-                    linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-    
-                 /* 두 마스크가 겹치는 영역(중앙)만 보여줌 */
-                 -webkit-mask-composite: source-in;
-                 mask-composite: intersect;
-                }
-
-.img_blurred {width: 100%; height: 100%; object-fit: cover; filter: blur(15px); transform: scale(1.05);}
-
-.lock_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-               display: flex; flex-direction: column; justify-content: center;
-               align-items: center; gap: 10px; z-index: 2;}
-
-.img_lock_wrapper:hover .lock_overlay {background: rgba(18, 18, 18, 0.3);}
-
-@keyframes fadeIn {from { opacity: 0; } to { opacity: 1; }}
-
-.lock_icon {width: 30px;}
-
-.member_text {color: #f9f9f9; font-size: 12px; font-weight: 400;}
-       
 .main4_cta {display: flex; align-items: center; gap: 10px; z-index: 10;
             white-space: nowrap; position: absolute; top: 0; right: 0;}
 
@@ -54,7 +29,7 @@
 
 .cta_arrow {width: 14px; transition: transform 0.3s ease;}
 
-.main4_cta:hover .cta_arrow {transform: translateX(5px);}
+.main4_cta:hover .cta_arrow, .main4_cta:hover .cta_text {opacity: 0.6;}
 
 .main4_bottom {margin-top: 50px;}
 

@@ -15,7 +15,12 @@ interface Options {
     [key: string]: string[];
 }
 
-const Signup_2 = () => {
+interface Signup2Props {
+    onNext: () => void;
+    onPrev: () => void;
+}
+
+const Signup_2: React.FC<Signup2Props> = ({ onNext, onPrev }) => {
     const navigate = useNavigate();
 
     // 2. 상태 관리 (타입 지정)
@@ -91,14 +96,14 @@ const Signup_2 = () => {
                     </div>
 
                     <div className="link_btn">
-                        <Link to='/signup_1' className="before">
+                        <div className="before" onClick={onPrev} style={{ cursor: 'pointer' }}>
                             <img src="/media/arrow_b.svg" className="be" alt="before" />
                             <p>Before</p>
-                        </Link>
-                        <Link to='/signup_3' className="next">
+                        </div>
+                        <div className="next" onClick={onNext} style={{ cursor: 'pointer' }}>
                             <p>Next</p>
                             <img src="/media/arrow_b.svg" className="ar" alt="next" />
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Signup_1.css';
 
-const Signup_1 = () => {
+const Signup_1 = ({ onNext }: { onNext: () => void }) => {
 
     return(
         <section className="signup_container">
@@ -38,10 +38,10 @@ const Signup_1 = () => {
                             <img src="/media/arrow_b.svg" className="be" />
                             <p>Before</p>
                         </Link>
-                        <Link to='/signup_2' className="next">
+                        <button onClick={onNext} className="next">
                             <p>Next</p>
                             <img src="/media/arrow_b.svg" className="ar" />
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>

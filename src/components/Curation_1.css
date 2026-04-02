@@ -1,0 +1,60 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding: 100px 0; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.issue {font-size: 40px; font-weight: 400; letter-spacing: 0.1em;
+        position: absolute; top: -60px; left: -30px;}
+
+.curation_main_visual {position: relative; width: 100%; margin-top: 60px;}
+
+.key_phrase {font-size: 110px; font-weight: 900; letter-spacing: -2%; position: absolute;
+             top: -58px; left: -35px; z-index: 2; margin: 0; pointer-events: none;}
+
+.cu_cont {display: flex; align-items: flex-start; gap: 80px;}
+
+.cu_left {width: 1000px; height: 710px; overflow: hidden; position: relative; z-index: 1;}
+
+.video_guide {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(249, 249, 249, 0.9);
+              display: flex; justify-content: center; align-items: center; z-index: 5; color: #121212;
+              font-size: 14px; letter-spacing: 0.2em; font-weight: 500; pointer-events: none;}
+
+.video_guide p {border: 1px solid rgba(18, 18, 18, 0.1); padding: 20px; border-radius: 30px;
+                box-shadow: 0 0 10px rgba(18, 18, 18, 0.15) inset 0 0 5px rgba(18, 18, 18, 0.1); 
+                animation: borderGlowSlight 3s ease-in-out infinite;
+                will-change: box-shadow;}
+
+@keyframes borderGlowSlight {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(18, 18, 18, 0.05);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(18, 18, 18, 0.2), 
+                    0 0 10px rgba(18, 18, 18, 0.1);
+    }}
+
+.curation_video {width: 100%; height: 100%; object-fit: cover;}
+
+.cu_right {width: 370px; height: 650px; box-sizing: border-box; padding-top: 150px; display: flex; flex-direction: column;}
+
+.cu1_header {border-top: 1px solid rgba(18, 18, 18, 0.5); padding-top: 30px; margin-bottom: 60px;}
+
+.cu1_title_row {display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;}
+
+.title1 {font-size: 28px; letter-spacing: 10%; font-weight: 700; margin: 0;}
+
+.cu1_director {font-size: 16px;}
+
+.cu1_info_row {display: flex; flex-direction: column; gap: 15px; margin-top: 20px;
+               font-size: 13px; color: rgba(18, 18, 18, 0.7); text-align: right;}
+
+.cu1_description {margin-bottom: 60px; font-weight: 400;}
+
+.cu1_sen1 {font-size: 20px; font-weight: 500; line-height: 1.8; margin-bottom: 30px;}
+
+.cu1_sen2 {font-size: 15px; font-weight: 300; line-height: 2;}
+
+.cu1_keyword {align-self: flex-end; text-align: right; margin-top: auto;}
+
+.cu1_keyword p {font-size: 13px; font-weight: 300; margin: 8px 0; text-decoration: underline;
+                text-underline-offset: 4px; text-decoration-color: rgba(0,0,0,0.2);}

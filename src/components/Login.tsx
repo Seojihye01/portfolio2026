@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import './Login.css';
 
-const Login = () => {
+interface LoginProps {
+    onLogin: () => void;
+}
+
+const Login = ({ onLogin }: LoginProps) => {
+
+    const navigate = useNavigate();
+    const handleLoginSubmit = () => {
+        onLogin();
+        navigate('/');
+    }
 
     return (
         <section className="login_container">
@@ -26,7 +36,7 @@ const Login = () => {
                                 <input type="password" name="password" />
                             </div>
                             <Link to="/" className="login_btn_anchor">
-                                <div className="login_btn_box">LOGIN</div>
+                                <div className="login_btn_box" onClick={handleLoginSubmit}>LOGIN</div>
                             </Link>
                         </div>
                         

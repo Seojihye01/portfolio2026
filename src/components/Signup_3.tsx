@@ -1,8 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import './Signup_3.css';
 
-const Signup_3 = () => {
+
+interface Signup3Props {
+    onLogin: () => void;
+    onPrev: () => void;
+}
+
+const Signup_3: React.FC<Signup3Props> = ({ onLogin, onPrev }) => {
+    const navigate = useNavigate();
+    const handleCreateAccount = () => {
+        // 1. 서버에 데이터 전송 로직 (생략)
+        // 2. 로그인 상태로 변경
+        onLogin();
+        // 3. 메인으로 이동
+        navigate('/');
+    };
 
     return(
         <section className="signup_container">
@@ -46,11 +60,11 @@ const Signup_3 = () => {
                     </div>
                             
                     <div className="link_btn">
-                        <Link to='/signup_2' className="before">
+                        <div className="before" onClick={onPrev} style={{ cursor: 'pointer' }}>
                             <img src="/media/arrow_b.svg" className="be" />
                             <p>Before</p>
-                        </Link>
-                        <Link to='/' className="next">
+                        </div>
+                        <Link to='/' className="next" onClick={handleCreateAccount} style={{ cursor: 'pointer' }}>
                             <p>Create Account</p>
                             <img src="/media/arrow_b.svg" className="ar" />
                         </Link>

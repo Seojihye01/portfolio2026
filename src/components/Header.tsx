@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
+interface HeaderProps {
+    isLoggedIn: boolean;
+    onLogout: () => void;
+}
+
+const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
     const location = useLocation();
 
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -25,11 +30,14 @@ const Header = () => {
     return (
         <div id='header' className={`${isMain ? 'is-main' : ''} ${isScrolled ? 'scrolled' : ''}`}>
             <div className='header_inner'>
-                <img src={isTransparent ? "/media/logo_w.png" : "/media/logo_b.png"}
-                 alt="logo" className='logo' />
+                <div>
+                    <a href='/'>
+                        <img src={isTransparent ? "/media/logo_w.png" : "/media/logo_b.png"}
+                            alt="logo" className='logo' /></a>
+                </div>
 
                 <ul className='gnb1'>
-                    <li className='gnbH'><a href='#'>CURATION</a>
+                    <li className='gnbH'><a href='/curation'>CURATION</a>
                         <div className='sub_gnb'>
                             <div className='sub'><a href='#'>Main</a></div>
                             <div className='sub'><a href='#'>Reason</a></div>
@@ -64,9 +72,17 @@ const Header = () => {
                             alt="user" />
                         </a>
                         <div className='sub_menu'>
-                            <div className='sub'><Link to='/login'>LOGIN</Link></div>
-                            <div className='sub'><Link to='/signup_1'>SIGN UP</Link></div>
-                            <div className='sub'><Link to='/mypage'>MYPAGE</Link></div>
+                            {isLoggedIn ? (
+                                <>
+                                    <div className='sub'><Link to='/' onClick={onLogout}>LOGOUT</Link></div>
+                                    <div className='sub'><Link to='/mypage'>MYPAGE</Link></div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className='sub'><Link to='/login'>LOGIN</Link></div>
+                                    <div className='sub'><Link to='/signup'>SIGN UP</Link></div>
+                                </>
+                            )}
                         </div>
                     </li>
                     <li className='menu_item'>

@@ -4,7 +4,7 @@
 .main6_inner {width: 1200px; display: flex; flex-direction: column; align-items: center;}
 
 /* Header */
-.main6_header {width: 100%; text-align: end; margin-bottom: 80px;}
+.main6_header {width: 100%; text-align: end; margin-bottom: 180px;}
 
 .main6_header h2 {font-size: 55px; letter-spacing: 0.05em; font-weight: 800;}
 
@@ -32,10 +32,19 @@
 
 .left_up_tag {display: flex; align-items: center; gap: 10px;}
 
-.rec_group {display: flex; align-items: center; gap: 8px; margin-right: 10px;}
+.rec_group a {display: flex; align-items: center; gap: 8px; margin-right: 10px; cursor: pointer;}
 
 .rec_dot {width: 10px; height: 10px; background: rgba(18,18,18,0.7); border-radius: 50%; 
-          flex-shrink: 0;}
+          flex-shrink: 0; animation: blink 1.5s infinite ease-in-out;}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.rec_group a:hover .rec_dot {background: rgba(16, 144, 191, 0.7); animation: none;}
+
+.rec_group a:hover .rec_tag {color: rgba(16, 144, 191, 0.7); font-weight: 700;}
 
 .rec_tag {margin: 0;}
 
@@ -49,68 +58,44 @@
 
 .right_down {bottom: 35px; right: 0; border-left: none; border-top: none;}
 
-.tag_up {position: absolute; right: 33px; top: 86.5%; font-size: 20px; font-weight: 200;}
+.tag_up {position: absolute; right: 33px; top: 82.5%; font-size: 20px; font-weight: 200;}
 
 .tag_2floor {display: flex; flex-direction: column; justify-content: center; align-items: flex-end; 
              gap: 4px; position: relative;}
 
 .tag_up, .tag_down {margin: 0; padding: 0; line-height: 1.1; display: block;}
 
-.cont_mid {width: 70%; height: 420px; margin: 0 auto; position: relative; border-radius: 40px; 
-           overflow: hidden; box-shadow: 0 20px 50px rgba(18,18,18,0.1);}
+.cont_mid {width: 100%; height: 320px; margin: 60px 0; overflow: hidden;
+           display: flex; justify-content: center; align-items: center; gap: 15px;}
 
-.main6_bg {width: 100%; height: 100%; object-fit: cover;}
+.mid_1, .mid_2, .mid_3 {width: 240px; height: 170px; position: relative; overflow: hidden;
+                        border-radius: 11px;}
 
-.mid_info_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-                   background: rgba(0,0,0,0.25); display: flex; justify-content: space-between; 
-                   align-items: flex-end; padding: 40px;}
+.mid_2::before, .mid_3::before {content: ''; position: absolute; top: 0; left: 0; height: 40%; width: 100%;
+                                background: linear-gradient(to bottom, rgba(249, 249, 249, 0.3), transparent);}
 
-.mid_left {color: #f9f9f9;}
+.mid_1 {background: rgba(18, 18, 18, 0.05); border: 1px solid rgba(249, 249, 249, 0.3);
+        box-shadow: inset 1px 4px 10px rgba(18, 18, 18, 0.2), 
+                inset -2px -2px 6px rgba(249, 249, 249, 0.8);}
 
-.graph_container {position: relative; display: flex; align-items: center; margin-bottom: 10px;}
+.mid_2, .mid_3 {background: 135deg, rgba(18,18,18,0.15), rgba(18,18,18,0.05); 
+                backdrop-filter: blur(25px); position: relative;
+                -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(249, 249, 249, 0.3);
+                box-shadow: inset 1px 4px 10px rgba(18,18,18,0.2), inset -2px -2px 6px rgba(249,249,249,0.8);}
 
-.graph_bar {width: 220px; height: 20px; background: rgba(249,249,249,0.6); border-radius: 10px; 
-            overflow: hidden; position: relative;}
+.mid1_video {width: 140%; height: 100%; object-fit: cover; display: block; position: absolute;
+                   filter: grayscale(0.6) opacity(0.22); z-index: 1;
+                   box-shadow: inset 1px 4px 10px rgba(18,18,18,0.2), inset -2px -2px 6px rgba(249,249,249,0.8);}
 
-.graph_fill {height: 100%; background: #1090BF; border-radius: 10px; transition: width 1s ease-in-out;}
+.glass_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+                background: linear-gradient(135deg, rgba(249, 249, 249, 0.1), rgba(249, 249, 249, 0.05));}
 
-.ratio {position: absolute; left: 115px; top: 50%; transform: translateY(-50%); font-size: 14px; font-weight: 400; z-index: 10;}
+.mid_title {position: absolute; bottom: 15px; left: 20px; color: #f9f9f9;
+            font-size: 15px; font-weight: 700;}
 
-.investment {font-size: 14px; margin-bottom: 20px; margin-top: 20px;}
+.total, .supporters {position: absolute; top: 20px; left: 20px; font-size: 15px; 
+                     font-weight: 700;}
 
-.d_day {font-size: 44px; font-weight: 600;}
+.total_output, .sup_output {position: absolute; bottom: 15px; right: 15px; 
+                            font-size: 20px; font-weight: 300;}
 
-.glass_box {width: 330px; height: 320px; background: rgba(249, 249, 249, 0.1); backdrop-filter: blur(3px); 
-            border: 1px solid rgba(249, 249, 249, 0.2); border-radius: 30px; padding: 35px; color: #f9f9f9;
-            box-shadow: inset 1px 4px 10px rgba(18,18,18,0.3), inset -2px -2px 6px rgba(249,249,249,0.8);
-            display: flex; flex-direction: column; justify-content: center;}
-
-.box_title {display: flex; justify-content: space-between;}
-
-.box_title h2 {font-size: 20px; letter-spacing: 10%; font-weight: 300; margin-bottom: 5px;}
-
-.box_title p {font-size: 15px; letter-spacing: 10%; margin-bottom: 35px; opacity: 0.8;}
-
-.cont1, .cont2 {line-height: 1.7; margin-bottom: 15px;}
-
-.cont1 {font-size: 16px; letter-spacing: -2%;}
-
-.cont2 {font-size: 14px; letter-spacing: -2%; padding-bottom: 10px;}
-
-.box_direc {display: flex; justify-content: end;}
-
-.box_direc span {font-size: 11px; font-style: italic; opacity: 0.7;}
-
-.box_direc p {font-size: 14px; font-weight: 300;}
-
-.main6_cta {width: 100%; display: flex; justify-content: center; margin: 30px 0;
-            font-size: 16px; font-weight: 500;}
-
-.main6_cta button {width: 600px; height: 55px; background: rgba(249,249,249,0.7); 
-                   border: 1px solid transparent; border-radius: 12px; display: flex; justify-content: center; 
-                   align-items: center; gap: 15px; font-size: 16px; cursor: pointer; transition: all 0.3s ease;
-                   box-shadow: inset 1px 2px 11px rgba(18,18,18,0.15), inset -2px -2px 6px rgba(249,249,249,0.8);}
-
-.main6_cta img {width: 12px; transition: transform 0.3s ease;}
-                         
-.main6_cta button:hover img {transform: translateX(7px);}

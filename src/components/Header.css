@@ -12,7 +12,7 @@
 .header_inner {width: 1200px; margin: 0 auto; display: flex; transition: height 0.4s;
                justify-content: space-between; align-items: center; height: 70px;}
 
-.header_inner .logo {width: 13%;}
+.header_inner .logo {width: 140px;}
 
 #header.scrolled {background: rgba(249, 249, 249, 0.9); border-bottom: none;
                   box-shadow: 0 2px 10px rgba(18, 18, 18, 0.05);}

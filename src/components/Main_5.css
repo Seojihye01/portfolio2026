@@ -62,7 +62,7 @@
 
 .main5_explore_btn img {width: 16px; transition: transform 0.3s ease;}
 
-.main5_explore_btn:hover img {transform: translateX(7px);}
+.main5_explore_btn:hover img, .main5_explore_btn:hover span {opacity: 0.6;}
 
 
 /* Custom Cursor */

@@ -31,18 +31,11 @@ const Main_4: React.FC = () => {
                             <img src="/media/dune1.png" className="img_small clickable"
                                  onClick={() => handleImageClick('')} />
                         </div>
-                        <div className="img_lock_wrapper" onClick={handleLockClick}>
-                            {isLoggedIn ? (
-                                <img src="/media/dune1.png" className="img_unlocked" />
-                            ) : (
-                                <div className="blur_container">
-                                    <img src="/media/dune1.png" className="img_blurred" />
-                                    <div className="lock_overlay">
-                                        <img src="/media/lock_w.svg" className="lock_icon" />
-                                        <p className="member_text">MEMBERS ONLY</p>
-                                    </div>
-                                </div>
-                            )}                           
+                        <div className="curator">
+                            <video autoPlay muted loop playsInline className="background_video">
+                                    <source src="/media/main6.mp4" type="video/mp4" />
+                                        브라우저가 비디오를 지원하지 않습니다.
+                            </video>             
                         </div>
                     </div>                   
                     <a href="#" className="main4_cta">
@@ -72,7 +65,7 @@ const Main_4: React.FC = () => {
                         </p>
                         <div className="modal_btns">
                             <button className="btn_login" onClick={() => navigate('/login')}>LOGIN</button>
-                            <button className="btn_signup" onClick={() => navigate('/signup')}>SIGN UP</button>
+                            <button className="btn_signup" onClick={() => navigate('/signup_1')}>SIGN UP</button>
                         </div>
                     </div>
                 </div>

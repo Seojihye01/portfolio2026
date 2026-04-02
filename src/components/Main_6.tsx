@@ -1,9 +1,56 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './Main_6.css';
 
-const Main_6 = () => {
+const Main_6: React.FC = () => {
+
+    // 1. 숫자를 관리할 state 선언
+    const [totalFunded, setTotalFunded] = useState<number>(0);
+    const [supporters, setSupporters] = useState<number>(0);
+    const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    // 2. 카운트업 함수 (목표값, 세터함수, 지속시간)
+    const countUp = (target: number, setter: React.Dispatch<React.SetStateAction<number>>, duration: number) => {
+        let start = 0;
+        const increment = target / (duration / 10); // 10ms마다 증가할 양
+
+        const counter = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                setter(target);
+                clearInterval(counter);
+            } else {
+                setter(Math.floor(start));
+            }
+        }, 10);
+    };
+
+    // 3. 컴포넌트 마운트 시 실행
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    countUp(124500000, setTotalFunded, 2000);
+                    countUp(5241, setSupporters, 1500);
+                    setHasAnimated(true); // 한 번만 실행되도록 설정
+                }
+            },
+            { threshold: 0.3 } // 섹션이 30% 이상 보일 때 시작
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, [hasAnimated]);
+
     return (
-        <section className="main6_container">
+        <section className="main6_container" ref={sectionRef}>
             <div className="main6_inner">
                 <div className="main6_header">
                     <h2>03 SUPPORT THE NEXT SCENE</h2>
@@ -15,8 +62,10 @@ const Main_6 = () => {
                     <div className="vf_top">
                         <div className="left_up_tag">
                             <div className="rec_group">
-                                <span className="rec_dot"></span>
-                                <p className="rec_tag">REC</p>
+                                <a href="/">
+                                    <span className="rec_dot"></span>
+                                    <p className="rec_tag">FUNDING</p>
+                                </a>
                             </div> 
                             <p>16:9</p>
                             <p>T 2.1</p>
@@ -29,45 +78,21 @@ const Main_6 = () => {
                     
                     {/* 메인 펀딩 카드 */}
                     <div className="cont_mid">
-                        <img src="/media/glass.jpg" className="main6_bg" alt="movie background" />
-                        <div className="mid_info_overlay">
-                            <div className="mid_left">
-                                <div className="graph_container">
-                                    <div className="graph_bar">
-                                        <div className="graph_fill" style={{ width: '70%' }}></div>
-                                    </div>
-                                    <span className="ratio">70%</span>
-                                </div>
-                                <p className="investment">₩12,417,500 raised</p>
-                                <h3 className="d_day">20 days left</h3>
-                            </div>
-
-                            <div className="mid_right">
-                                <div className="glass_box">
-                                    <div className="box_title">
-                                        <h2>겨울의 끝에서</h2>
-                                        <p>Documentary</p>
-                                    </div>
-                                    <div className="box_cont">
-                                        <p className="cont1">마지막 겨울을 기록하는 두 직장인의 밤.</p>
-                                        <p className="cont2">짧은 대화와 침묵 속에서 일과 삶의 시간이<br />
-                                           조용히 흐른다. 도시의 겨울이 끝나가는 ...
-                                        </p>
-                                    </div>
-                                    <div className="box_direc">
-                                        <p><span>Directed by</span> 서재윤</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="mid_1">
+                                <video autoPlay muted loop playsInline className="mid1_video">
+                                    <source src="/media/main6.mp4" type="video/mp4" />
+                                        브라우저가 비디오를 지원하지 않습니다.
+                                </video>
+                                <div className="glass_overlay"></div>
                         </div>
-                    </div>
-
-                    {/* 중앙 버튼 */}
-                    <div className="main6_cta">
-                        <button>
-                            View All Funding Projects
-                            <img src="/media/arrow_b.svg" alt="arrow" />
-                        </button>
+                        <div className="mid_2">
+                            <h3 className="total">TOTAL FUNDED</h3>
+                            <p className="total_output">₩{totalFunded.toLocaleString()}+</p>
+                        </div>
+                         <div className="mid_3">
+                            <h3 className="supporters">SUPPORTERS</h3>
+                            <p className="sup_output">{supporters.toLocaleString()}+</p>
+                        </div>
                     </div>
                     
                     {/* 중하단 태그 및 가이드 */}
