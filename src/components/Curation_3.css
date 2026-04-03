@@ -1,0 +1,123 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding-top: 100px; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.cu3_sec1, .cu3_sec2, .cu3_sec4, .cu3_sec5 
+    {display: flex; flex-direction: row; gap: 30px; padding-bottom: 100px;}
+
+.cu3_sec3 {width: 100%; padding-bottom: 100px; display: flex; justify-content: center;}
+
+.cu3_key {font-size: 92px; letter-spacing: 10%; font-weight: 900; color: rgba(18, 18, 18, 0.1);
+          width: 100%; text-align: justify; text-align-last: justify; margin: 0;}
+
+.cu3_sec5 {align-self: flex-end;}
+
+[class^="cu3_set"]  
+    {display: flex; flex-direction: column; gap: 20px; position: relative;}
+
+.cu3_set1, .cu3_set3, .cu3_set8 {width: 300px; height: auto;}
+
+.cu3_set2 {width: 540px; height: auto;}
+
+.cu3_set4, .cu3_set5 {width: 585px; height: auto;}
+
+.cu3_set6 {width: 460px; height: auto;}
+
+.cu3_set7 {width: 380px; height: auto;}
+
+.cu3_set9 {width: 825px; height: auto;}
+
+[class^="cu3_set"] img 
+    {width: 100%; height: 300px; object-fit: cover; transition: all 0.3s ease; cursor: pointer;}
+
+[class^="cu3_set"]:hover img {filter: brightness(0.7);}
+
+[class^="cu3_set"]::after 
+    {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 300px;
+     background-color: rgba(249, 249, 249, 0.8); background-image: url("/media/view.svg");
+     background-repeat: no-repeat; background-position: center; background-size: 25px;
+     opacity: 0; transition: all 0.3s ease; pointer-events: none; background-size: 18px;}
+
+[class^="cu3_set"]:hover::after {opacity: 1;}
+
+.film {display: flex; justify-content: space-between; align-items: center; text-align: left;}
+
+.cu3_title {font-size: 23px; letter-spacing: 10%; font-weight: 700;}
+
+.cu3_direc, .cu3_rel {font-size: 12px; letter-spacing: 10%; font-weight: 400;
+                      text-align: right;}
+
+.cu3_rel {color: rgba(18, 18, 18, 0.5); padding-top: 3px;}
+
+.movie_modal {position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; 
+              display: flex; justify-content: center; align-items: center;}
+
+.modal_bg {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; 
+           background-position: center; filter: brightness(0.4) blur(4px); z-index: -1;}
+
+.modal_content {background: rgba(242, 242, 242, 0.95); width: 580px; height: 720px; 
+                padding: 40px 8px 8px 8px; position: relative; display: flex; 
+                flex-direction: column; justify-content: space-between;
+                box-shadow: 0 40px 100px rgba(18, 18, 18, 0.5);}
+
+/* 팝업 상단 헤더 */
+.modal_header_row {display: flex; justify-content: space-between; align-items: flex-start; 
+                   padding: 0 40px 20px 40px;}
+                   
+.m_title {font-size: 23px; font-weight: 700; letter-spacing: 10%; margin: 0; text-align: left;}
+
+.m_info_right {text-align: right; font-size: 12px; line-height: 1.6; color: rgba(18, 18, 18, 0.5);
+               letter-spacing: 10%; font-weight: 400; padding-top: 5px;}
+
+.m_direc_name {font-size: 14px; font-weight: 400; color: #121212; margin-bottom: 5px;}
+
+/* 팝업 본문 설명 */
+.modal_body_row {display: flex; justify-content: space-between; gap: 40px; margin: 30px 0;
+                 padding: 0 40px 0 40px;}
+
+.m_description {flex: 2.5; text-align: left;}
+
+.m_description h3 {font-size: 16px; letter-spacing: 10%; font-weight: 600; margin-bottom: 15px;
+                   line-height: 1.8;}
+
+.m_description p {font-size: 14px; letter-spacing: 10%; font-weight: 300;
+                  line-height: 1.8; word-break: keep-all;}
+
+.m_keywords_list {flex: 1; text-align: right; padding-left: 20px; padding-top: 135px; 
+                  padding-bottom: 0px;}
+
+.m_keywords_list p {font-size: 12px; letter-spacing: 20%; font-weight: 300; margin-bottom: 10px;
+                    text-decoration: underline; text-underline-offset: 4px; color: rgba(18, 18, 18, 0.7);
+                    text-decoration-color: rgba(18, 18, 18, 0.3); text-decoration-thickness: 0.5px;} 
+
+/* 팝업 하단 비디오 프리뷰 */
+.m_video_preview {position: relative; width: 100%; height: 350px; overflow: hidden;
+                  border-radius: 0 0 7px 7px; display: flex; justify-content: center;}
+
+.m_video_preview img {width: 100%; height: 100%; object-fit: cover;}
+
+.m_play_bar {position: absolute; bottom: 8px; width: 548px; height: 60px; border-radius: 5px;
+             background: linear-gradient(135deg, rgba(249, 249, 249, 0.5) 0%, rgba(249, 249, 249, 0.45) 100%); 
+             backdrop-filter: blur(1.5px) saturate(180%); border-top: 1px solid rgba(249, 249, 249, 0.3);
+             display: flex; justify-content: space-between; align-items: center; padding: 0 20px; z-index: 10;}
+             
+.m_arrow {display: flex; gap: 15px; cursor: pointer;}
+
+.m_left {transform: rotate(180deg);}
+
+.m_play_btn {background: linear-gradient(135deg, rgba(249, 249, 249, 0.3) 0%, rgba(249, 249, 249, 0.15) 100%); 
+             backdrop-filter: blur(1.5px) saturate(180%); border-radius: 30px; font-size: 15px; letter-spacing: 5%;
+             border-top: 1px solid rgba(249, 249, 249, 0.3); padding: 8px 40px; width: 140px; height: 38px;
+             display: flex; justify-content: center; align-items: center; padding: 0;
+             font-weight: 300; cursor: pointer; transition: 0.01s; position: relative;
+             box-shadow: inset 0 4px 4px 0 rgba(18, 18, 18, 0.13),
+                         inset -2px -2px 6px rgba(18, 18, 18, 0.13);}
+
+.m_play_btn:hover {background: linear-gradient(135deg, rgba(16, 144, 191, 0.55) 0%, rgba(16, 144, 191, 0.4) 100%);
+                   color: #f9f9f9; backdrop-filter: blur(5px) saturate(180%); font-size: 15px; 
+                   letter-spacing: 5%; font-weight: 500;
+                   box-shadow: inset 0 4px 4px 0 rgba(18, 18, 18, 0.1),
+                               inset -2px -2px 6px rgba(18, 18, 18, 0.1);}
+
+.m_cancel {cursor: pointer; font-size: 18px;}

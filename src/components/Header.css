@@ -77,7 +77,7 @@
 .search_modal_content::before {content: ''; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; 
                                backdrop-filter: blur(15px); z-index: -1; border-radius: 38px;}
 
-.close_btn {position: absolute; top: 30px; right: 40px; font-size: 24px; cursor: pointer; color: rgba(18, 18, 18, 0.5);}
+.close_btn {position: absolute; top: 30px; right: 30px; font-size: 23px; cursor: pointer; color: rgba(18, 18, 18, 0.5);}
 
 .search_input_wrapper {width: 100%; max-width: 500px; position: relative; border-bottom: 1.6px solid rgba(18, 18, 18, 0.5); 
                        margin-top: 100px; display: flex; align-items: center;}

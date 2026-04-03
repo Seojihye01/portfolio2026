@@ -1,0 +1,16 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding-top: 100px; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.cu2_intro {font-size: 16px; letter-spacing: 10%; font-weight: 400; line-height: 2; 
+            width: 920px; margin-bottom: 140px;}
+
+.cu2_set1, .cu2_set3 {display: block; text-align: right;}
+
+.cu2_set2 {display: block; padding: 140px 0 140px 0;}
+
+.cu2_title1, .cu2_title2, .cu2_title3 {font-size: 20px; letter-spacing: 10%; 
+                                       font-weight: 600; padding-bottom: 20px;}
+
+.cu2_sen1, .cu2_sen2, .cu2_sen3 {font-size: 20px; letter-spacing: 10%; font-weight: 300; line-height: 2;}

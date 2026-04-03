@@ -94,7 +94,7 @@ const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
                         {isSearchOpen && (
                             <div className={`search_modal_overlay ${isSearchOpen ? 'active' : ''}`}>
                                 <div className='search_modal_content'>
-                                    <button className='close_btn' onClick={() => setIsSearchOpen(false)}>X</button>
+                                    <button className='close_btn' onClick={() => setIsSearchOpen(false)}>✕</button>
 
                                     <div className='search_input_wrapper'>
                                         <input type='text' placeholder='Search' autoFocus={isSearchOpen} />
