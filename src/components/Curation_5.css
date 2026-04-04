@@ -1,0 +1,13 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding-top: 100px; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.cu5_title {font-size: 100px; letter-spacing: 5%; font-weight: bold; 
+            font-style: italic; text-align: right; margin-bottom: 25px;}
+
+.cu5_cont {display: flex; justify-content: space-between;} 
+
+.cu5_cont img {width: 500px; height: 500px;}
+
+.cu5_text {margin-top: 55px; flex: 3;}

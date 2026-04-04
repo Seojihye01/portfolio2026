@@ -1,0 +1,15 @@
+.curation_container {width: 100%; min-height: 100vh; padding-top: 100px; display: flex; 
+                     justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.curation_container.cu4_section {min-height: 290px; padding-top: 0; margin-top: 150px; background: rgba(229, 229, 229, 0.8);
+              display: flex; justify-content: center; align-items: center;}
+
+.cu4_title {display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; }
+
+.cu4_en {font-size: 19px; font-weight: bold; font-style: italic; padding-bottom: 10px;}
+
+.cu4_kr {font-size: 22px; font-weight: 200; font-style: italic;}
+

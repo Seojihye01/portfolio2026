@@ -4,29 +4,41 @@
 .curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
 
 .cu3_sec1, .cu3_sec2, .cu3_sec4, .cu3_sec5 
-    {display: flex; flex-direction: row; gap: 30px; padding-bottom: 100px;}
+    {display: flex; flex-direction: row; gap: 30px; padding-bottom: 150px;}
 
-.cu3_sec3 {width: 100%; padding-bottom: 100px; display: flex; justify-content: center;}
+.cu3_sec3 {width: 100%; padding-bottom: 150px; display: flex; justify-content: center;}
 
-.cu3_key {font-size: 92px; letter-spacing: 10%; font-weight: 900; color: rgba(18, 18, 18, 0.1);
-          width: 100%; text-align: justify; text-align-last: justify; margin: 0;}
+.cu3_key {font-size: 92px; letter-spacing: 10%; font-weight: 900; color: transparent;
+          width: 100%; text-align: justify; text-align-last: justify; margin: 0;
+          background-color: transparent; color: transparent; opacity: 0.4; 
+          -webkit-background-clip: text; background-clip: text;
+          filter: 
+            /* 깊게 파인 상단 안쪽 벽면 그림자 */
+            drop-shadow(1px 1px 3px rgba(18, 18, 18, 0.01)) 
+            /* 깎인 하단 모서리 밝은 빛 반사 (방향 뒤집음) */
+            drop-shadow(-1px -1px 3px rgba(249, 249, 249, 1));
+          text-shadow: 
+                1px 1px 1px rgba(249, 249, 249, 0.8), 
+                1px 1px 2px rgba(18, 18, 18, 0.45), 
+                -1px -1px 2px rgba(18, 18, 18, 0.51),
+                -2px -2px 50px rgba(18, 18, 18, 0.15);}
 
 .cu3_sec5 {align-self: flex-end;}
 
 [class^="cu3_set"]  
     {display: flex; flex-direction: column; gap: 20px; position: relative;}
 
-.cu3_set1, .cu3_set3, .cu3_set8 {width: 300px; height: auto;}
+.cu3_set2, .cu3_set4, .cu3_set9 {width: 300px; height: auto;}
 
-.cu3_set2 {width: 540px; height: auto;}
+.cu3_set3 {width: 540px; height: auto;}
 
-.cu3_set4, .cu3_set5 {width: 585px; height: auto;}
+.cu3_set5, .cu3_set6 {width: 585px; height: auto;}
 
-.cu3_set6 {width: 460px; height: auto;}
+.cu3_set7 {width: 460px; height: auto;}
 
-.cu3_set7 {width: 380px; height: auto;}
+.cu3_set8 {width: 380px; height: auto;}
 
-.cu3_set9 {width: 825px; height: auto;}
+.cu3_set10 {width: 825px; height: auto;}
 
 [class^="cu3_set"] img 
     {width: 100%; height: 300px; object-fit: cover; transition: all 0.3s ease; cursor: pointer;}
@@ -54,16 +66,15 @@
               display: flex; justify-content: center; align-items: center;}
 
 .modal_bg {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; 
-           background-position: center; filter: brightness(0.4) blur(4px); z-index: -1;}
+           background-position: center; filter: brightness(0.4); z-index: -1;}
 
-.modal_content {background: rgba(242, 242, 242, 0.95); width: 580px; height: 720px; 
+.modal_content {background: rgba(249, 249, 249, 0.8); width: 580px; height: 720px; 
                 padding: 40px 8px 8px 8px; position: relative; display: flex; 
                 flex-direction: column; justify-content: space-between;
                 box-shadow: 0 40px 100px rgba(18, 18, 18, 0.5);}
 
-/* 팝업 상단 헤더 */
 .modal_header_row {display: flex; justify-content: space-between; align-items: flex-start; 
-                   padding: 0 40px 20px 40px;}
+                   padding: 10px 40px 20px 40px;}
                    
 .m_title {font-size: 23px; font-weight: 700; letter-spacing: 10%; margin: 0; text-align: left;}
 
@@ -73,7 +84,7 @@
 .m_direc_name {font-size: 14px; font-weight: 400; color: #121212; margin-bottom: 5px;}
 
 /* 팝업 본문 설명 */
-.modal_body_row {display: flex; justify-content: space-between; gap: 40px; margin: 30px 0;
+.modal_body_row {display: flex; justify-content: space-between; gap: 40px; margin: 23px 0;
                  padding: 0 40px 0 40px;}
 
 .m_description {flex: 2.5; text-align: left;}
@@ -84,10 +95,9 @@
 .m_description p {font-size: 14px; letter-spacing: 10%; font-weight: 300;
                   line-height: 1.8; word-break: keep-all;}
 
-.m_keywords_list {flex: 1; text-align: right; padding-left: 20px; padding-top: 135px; 
-                  padding-bottom: 0px;}
+.m_keywords_list {flex: 1; text-align: right; padding-left: 20px; padding-top: 135px;}
 
-.m_keywords_list p {font-size: 12px; letter-spacing: 20%; font-weight: 300; margin-bottom: 10px;
+.m_keywords_list p {font-size: 12px; letter-spacing: 20%; font-weight: 300; margin-bottom: 7px;
                     text-decoration: underline; text-underline-offset: 4px; color: rgba(18, 18, 18, 0.7);
                     text-decoration-color: rgba(18, 18, 18, 0.3); text-decoration-thickness: 0.5px;} 
 
@@ -102,7 +112,7 @@
              backdrop-filter: blur(1.5px) saturate(180%); border-top: 1px solid rgba(249, 249, 249, 0.3);
              display: flex; justify-content: space-between; align-items: center; padding: 0 20px; z-index: 10;}
              
-.m_arrow {display: flex; gap: 15px; cursor: pointer;}
+.m_arrow {display: flex; gap: 20px; cursor: pointer;}
 
 .m_left {transform: rotate(180deg);}
 
@@ -120,4 +130,4 @@
                    box-shadow: inset 0 4px 4px 0 rgba(18, 18, 18, 0.1),
                                inset -2px -2px 6px rgba(18, 18, 18, 0.1);}
 
-.m_cancel {cursor: pointer; font-size: 18px;}
+.m_cancel {cursor: pointer; font-size: 18px; padding-left: 5px;}

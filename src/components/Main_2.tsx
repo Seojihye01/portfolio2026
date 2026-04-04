@@ -14,7 +14,7 @@ const Main_2 = () => {
                     </video>
                     <div className='video_overlay'></div>
                 </div>
-                <Link to='/login' className='title_box'> 
+                <Link to='/curation' className='title_box'> 
                         <h1>An editor's view<br/> of cinema</h1>
                         <img src='/media/arrow_w.svg' />
                 </Link>

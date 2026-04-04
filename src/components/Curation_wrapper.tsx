@@ -1,6 +1,8 @@
 import Curation_1 from './Curation_1';
 import Curation_2 from './Curation_2';
 import Curation_3 from './Curation_3';
+import Curation_4 from './Curation_4';
+import Curation_5 from './Curation_5';
 
 
 
@@ -12,6 +14,8 @@ const Curation_wrapper =() => {
         <Curation_1/>
         <Curation_2/>
         <Curation_3/>
+        <Curation_4/>
+        <Curation_5/>
         
         </div>
     );

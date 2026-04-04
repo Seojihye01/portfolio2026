@@ -1,44 +1,62 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import './Curation_1.css';
 import { allMovies, type Movie } from "./MovieData";
 
 const Curation_1 = () => {
-    // 1. 현재 메인에서 보여줄 영화 관리 (allMovies의 첫 번째 영화를 기본값으로)
+    // 1. 상태 관리
     const [currentMovie, setCurrentMovie] = useState<Movie>(allMovies[0]);
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [isStarted, setIsStarted] = useState(false);
-    const [isEnded, setIsEnded] = useState(false); // 영상 종료 상태 추가
+    const [isEnded, setIsEnded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
-    
 
-    // 2. 내비게이션 로직 (allMovies 전체를 순회)
+    // 2. 영화 변경 시 비디오 소스 리로드
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.load(); // 소스 변경 시 명시적으로 로드 호출
+        }
+    }, [currentMovie]);
+
+    // 3. 내비게이션 로직
     const navigateMovie = (direction: 'prev' | 'next') => {
         const baseMovie = selectedMovie || currentMovie;
         const currentIndex = allMovies.findIndex(m => m.id === baseMovie.id);
         let nextIndex = direction === 'prev' 
-        ? (currentIndex - 1 + allMovies.length) % allMovies.length 
-        : (currentIndex + 1) % allMovies.length;
+            ? (currentIndex - 1 + allMovies.length) % allMovies.length 
+            : (currentIndex + 1) % allMovies.length;
     
         const nextMovie = allMovies[nextIndex];
         setSelectedMovie(nextMovie);
+        // 만약 메인 화면 영화도 같이 바꾸고 싶다면 여기서 setCurrentMovie(nextMovie)를 호출하세요.
     };
 
+    // 4. 재생 시작 및 리플레이 로직
     const handleStart = () => {
         if (videoRef.current) {
+            videoRef.current.currentTime = 0; // 처음부터 재생 보장
             videoRef.current.muted = false;
-            videoRef.current.play();
-            setIsStarted(true);
-            setIsEnded(false);
+            
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        setIsStarted(true);
+                        setIsEnded(false);
+                    })
+                    .catch(error => {
+                        console.error("재생 실패:", error);
+                    });
+            }
         }
     };
 
     const handleVideoEnd = () => {
         setIsStarted(false);
-        setIsEnded(true); // 종료 상태 활성화
+        setIsEnded(true);
     };
 
     const handleReplay = (e: React.MouseEvent) => {
-        e.stopPropagation(); // 부모 클릭 이벤트 방지
+        e.stopPropagation();
         handleStart();
     };
 
@@ -46,7 +64,6 @@ const Curation_1 = () => {
         e.stopPropagation();
         setSelectedMovie(currentMovie);
     };
-
 
     return (
         <section className="curation_container">
@@ -59,30 +76,24 @@ const Curation_1 = () => {
                     <div className="cu_cont">
                         {/* 왼쪽: 비디오 영역 */}
                         <div className="cu_left">
-                            {/* 시작 가이드 */}
+                            
+                            {/* 시작 전 가이드 (이퀄라이저) */}
                             {!isStarted && !isEnded && (
-                                <div className="video_guide" onClick={handleStart}>
-                                    <p>START EXPERIENCE</p>
+                                <div className="video_guide" onClick={handleStart} style={{ zIndex: 10 }}>
+                                    <div className="cu1_play">
+                                        <img src="/media/play.svg" className="play_btn" />
+                                    </div>
+                                    <div className="equalizer_wrapper">
+                                        {[...Array(20)].map((_, i) => (
+                                            <div key={i} className="eq_bar"></div>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
-                            {isStarted && (
-                            <video
-                                ref={videoRef}
-                                className="curation_video"
-                                src={`/media/${currentMovie.title}.mp4`}
-                                playsInline
-                                onEnded={() => {
-                                    setIsStarted(false);
-                                    setIsEnded(true);
-                                }}
-                                controls={false}
-                            />
-                            )}
-
-                            {/* 영상 종료 후 나타나는 버튼들 */}
+                            {/* 영상 종료 후 오버레이 */}
                             {isEnded && (
-                                <div className="video_guide ended_overlay">
+                                <div className="video_guide ended_overlay" style={{ zIndex: 10 }}>
                                     <div className="ended_controls_container">
                                         <div className="control_item" onClick={handleReplay}>
                                             <div className="pill_icon_button">
@@ -98,11 +109,20 @@ const Curation_1 = () => {
                                 </div>
                             )}
 
-                            <video ref={videoRef} onEnded={handleVideoEnd} playsInline className="curation_video">
-                                {/* 영화 객체의 title을 활용해 매칭되는 영상 소스 연결 */}
+                            {/* 비디오 태그: 항상 유지하며 opacity로 제어 */}
+                            <video
+                                ref={videoRef}
+                                className="curation_video"
+                                onEnded={handleVideoEnd}
+                                playsInline
+                                style={{ 
+                                    opacity: isStarted ? 1 : 0,
+                                    pointerEvents: isStarted ? 'auto' : 'none'
+                                }}
+                            >
                                 <source src={`/media/${currentMovie.title}.mp4`} type="video/mp4" />
                                 브라우저가 비디오를 지원하지 않습니다.
-                            </video>          
+                            </video>
                         </div>
         
                         {/* 오른쪽: 영화 정보 영역 */}
@@ -157,10 +177,9 @@ const Curation_1 = () => {
                             <div className="m_video_preview">
                                 <img src={selectedMovie.img} alt="preview" />
                                 <div className="m_play_bar">
-                                    {/* 모달 내부 화살표는 movies 전체 데이터를 탐색하도록 연결 */}
                                     <div className="m_arrow">
-                                        <img src="/media/arrow_b.svg" className="m_left" onClick={() => navigateMovie('prev')} />
-                                        <img src="/media/arrow_b.svg" className="m_right" onClick={() => navigateMovie('next')} />
+                                        <img src="/media/arrow_b.svg" className="m_left" onClick={() => navigateMovie('prev')} alt="prev" />
+                                        <img src="/media/arrow_b.svg" className="m_right" onClick={() => navigateMovie('next')} alt="next" />
                                     </div>
                                     <button className="m_play_btn">PLAY</button>
                                     <span className="m_cancel" onClick={() => setSelectedMovie(null)}>✕</span>

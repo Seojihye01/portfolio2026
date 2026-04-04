@@ -14,7 +14,7 @@ const Curation_2 = () => {
                 <div className="cu2_set1">
                     <h3 className="cu2_title1">01 시각적 정점의 기록</h3>
                     <p className="cu2_sen1">
-                        Dune의 거대함부터 Whiplash의 날카로운 긴장감까지<br />영화적 미학이 가장 밀도 있게 응축된 순간을 기록한다
+                        Dune의 웅장함부터 Whiplash의 날카로운 긴장감까지<br />영화적 미학이 가장 밀도 있게 응축된 순간을 기록한다
                     </p>
                 </div>
                 <div className="cu2_set2">
