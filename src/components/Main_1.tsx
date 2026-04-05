@@ -6,7 +6,9 @@ const Main_1 = () => {
     <div className='hero_video_section'>
       {/* 배경 영상 영역 */}
       <div className="video_container">
-        <video autoPlay muted loop playsInline className="background_video">
+        <video autoPlay muted loop playsInline
+        onContextMenu={(e) => e.preventDefault()}
+        className="background_video">
           <source src="/media/Dune.mp4" type="video/mp4" />
           브라우저가 비디오를 지원하지 않습니다.
         </video>

@@ -79,7 +79,9 @@ const Main_6: React.FC = () => {
                     {/* 메인 펀딩 카드 */}
                     <div className="cont_mid">
                         <div className="mid_1">
-                                <video autoPlay muted loop playsInline className="mid1_video">
+                                <video autoPlay muted loop playsInline 
+                                onContextMenu={(e) => e.preventDefault()}
+                                className="mid1_video">
                                     <source src="/media/main6.mp4" type="video/mp4" />
                                         브라우저가 비디오를 지원하지 않습니다.
                                 </video>

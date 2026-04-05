@@ -43,6 +43,13 @@ a {
 img,
 video {
   vertical-align: top;
+  -webkit-touch-callout: none; /* iOS 사파리 길게 누르기 금지 */
+  -webkit-user-select: none;   /* 사파리 선택 금지 */
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;           /* 텍스트/이미지 선택 방지 */
+  -webkit-user-drag: none;     /* 드래그 앤 드롭 금지 */
 }
 
 /* 7. 폼 요소 기본 스타일 정리 */

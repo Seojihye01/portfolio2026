@@ -3,6 +3,7 @@ import Curation_2 from './Curation_2';
 import Curation_3 from './Curation_3';
 import Curation_4 from './Curation_4';
 import Curation_5 from './Curation_5';
+import Curation_6 from './Curation_6';
 
 
 
@@ -16,6 +17,7 @@ const Curation_wrapper =() => {
         <Curation_3/>
         <Curation_4/>
         <Curation_5/>
+        <Curation_6/>
         
         </div>
     );

@@ -9,7 +9,9 @@ const Main_2 = () => {
         <div className="grid_wrapper">
             <div className='grid_top'>
                 <div className='video_box1'>
-                    <video autoPlay muted loop playsInline className="main_video">
+                    <video autoPlay muted loop playsInline 
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="main_video">
                         <source src="/media/Main_stbox.mp4" type="video/mp4" />
                     </video>
                     <div className='video_overlay'></div>
@@ -25,7 +27,9 @@ const Main_2 = () => {
                     <p>Films,<br/>selected<br/>for you</p>
                 </div>
                 <div className='video_box2'>
-                    <video autoPlay muted loop playsInline className="main_video2 color">
+                    <video autoPlay muted loop playsInline 
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="main_video2 color">
                         <source src="/media/main.mp4" type="video/mp4" />
                     </video>
                     <div className='video_overlay'></div>

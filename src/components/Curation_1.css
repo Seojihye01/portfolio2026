@@ -13,12 +13,12 @@
 
 .cu_cont {display: flex; align-items: flex-start; gap: 100px;}
 
-.cu_left {width: 750px; height: 610px; overflow: hidden; position: relative; z-index: 1; margin-top: 130px;
+.cu_left {width: 750px; height: 610px; overflow: hidden; position: relative; z-index: 1; margin-top: 90px;
          }
 
 .video_guide {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 18, 0.02);
-              display: flex; flex-direction: column; justify-content: center; align-items: center; 
-              pointer-events: none; gap: 40px;}
+              display: flex; flex-direction: column; justify-content: space-between; align-items: center; 
+              pointer-events: none; padding: 120px 0 100px 0; box-sizing: border-box;}
 
 @keyframes borderGlowSlight {
     0%, 100% {
@@ -36,33 +36,34 @@
 .curation_video:-webkit-full-screen {object-fit: contain;}
 
 .cu_right {width: 350px; height: 650px; box-sizing: border-box; padding-top: 55px; display: flex; 
-           flex-direction: column;}
+           flex-direction: column; margin-top: 40px; border-top: 1px solid rgba(18, 18, 18, 0.5);}
 
-.cu1_header {border-top: 1px solid rgba(18, 18, 18, 0.5); padding-top: 30px; margin-bottom: 60px;}
+.cu1_header {width: 100%; display: flex; justify-content: center; margin-bottom: 60px;}
 
-.cu1_title_row {display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;}
+.cu1_title_row {display: flex; align-items: baseline; gap: 130px; opacity: 0.8;}
 
-.title1 {font-size: 28px; letter-spacing: 10%; font-weight: 700; margin: 0;}
+.title1 {font-size: 23px; letter-spacing: 10%; font-weight: 400; margin: 0; position: relative; 
+         top: 7px; left: 14px; opacity: 0.8;}
 
-.cu1_director {font-size: 16px;}
+.cu1_director, .cu1_info_row {font-size: 12px; color: rgba(18, 18, 18, 0.6);}
 
-.cu1_info_row {display: flex; flex-direction: column; gap: 10px; margin-top: 20px;
-               font-size: 13px; color: rgba(18, 18, 18, 0.7); text-align: right;}
+.cu1_info_row {display: flex; flex-direction: column; gap: 10px; text-align: right;}
 
-.cu1_description {margin-bottom: 60px; font-weight: 400; width: 95%; word-break: keep-all;}
+.cu1_description {margin-bottom: 60px; font-weight: 400; width: 80%; word-break: keep-all;
+                  padding-top: 40px; margin-bottom: 60px;}
 
 .cu1_subtitle {font-size: 17px; font-weight: 500; line-height: 1.8; margin-bottom: 40px;
                margin-top: 50px;}
 
-.cu1_sen2 {font-size: 14px; font-weight: 300; line-height: 2;}
+.cu1_sen2 {font-size: 14px; font-weight: 300; line-height: 2; padding-top: 10px;}
 
-.cu1_keyword {align-self: flex-end; text-align: right; margin-top: 143px;}
+.cu1_keyword {align-self: flex-end; text-align: right; margin-top: 163px;}
 
 .cu1_keyword p {font-size: 13px; font-weight: 300; margin: 8px 0; text-decoration: underline;
                 text-underline-offset: 4px; text-decoration-color: rgba(0,0,0,0.2);}
 
 .ended_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                pointer-events: auto; background: rgba(249, 249, 249, 0.9);
+                pointer-events: auto; background: rgba(18, 18, 18, 0.02);
                 display: flex; justify-content: center; align-items: center;
                 z-index: 999;}
 
@@ -74,32 +75,44 @@
 .cu_left:fullscreen .ended_overlay,
 .cu_left:-webkit-full-screen .ended_overlay {z-index: 2147483647;}
 
-.ended_controls_container {display: flex; gap: 30px; justify-content: center; align-items: center;}
+.ended_controls_container {display: flex; gap: 50px; justify-content: center; align-items: center;}
 
 .control_item {cursor: pointer; transition: transform 0.3s ease, opacity 0.3s ease;}
 
-.pill_icon_button {display: flex; justify-content: center; align-items: center; min-width: 80px;  
-                   height: 45px; padding: 0 20px; border: 1px solid rgba(18, 18, 18, 0.05);
-                   border-radius: 40px; box-shadow: 0 0 15px rgba(18, 18, 18, 0.1);
-                   animation: borderGlowSlight 3s ease-in-out infinite; will-change: box-shadow;}
+.cu1_icon_btn {display: flex; justify-content: center; align-items: center; min-width: 80px;  
+               height: 45px; padding: 0 20px; border-radius: 40px; pointer-events: auto;
+               position: relative; border: 0.1px solid rgba(18, 18, 18, 0.05); 
+               box-shadow: 
+                -5px -5px 22px rgba(18, 18, 18, 0.08),  
+                5px 5px 12px rgba(249, 249, 249, 1),
+                inset 3px 3px 12px rgba(18, 18, 18, 0.1), 
+                inset -6px -6px 12px rgba(249, 249, 249, 0.8);
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;}
 
-.pill_icon_button img {width: 22px; height: 22px; padding: 0; border: none; border-radius: 0;
-                       box-shadow: none; animation: none;}
+.cu1_icon_btn img {width: 21px; height: 21px; opacity: 0.2; position: relative; z-index: 1; margin-top: 2px;}
 
-.pill_icon_button .view {width: 18px; height: 18px;}
+.cu1_icon_btn .view {width: 16px; height: 16px; }
 
-.control_item:hover {transform: scale(1.05); opacity: 0.8;}
+/* --- 상호작용 효과 --- */
+.cu1_icon_btn:active {transform: scale(1); 
+                      box-shadow: 
+                        -5px -5px 10px rgba(18, 18, 18, 0.05),
+                        5px 5px 12px rgba(249, 249, 249, 1),
+                        inset 4px 4px 11px rgba(18, 18, 18, 0.12), 
+                        inset -8px -8px 10px rgba(249, 249, 249, 0.9);}
+
+.cu1_icon_btn:active .cu1_icon_btn img {transform: scale(0.9); opacity: 0.2;}
 
 /* 이퀄라이저 전체 컨테이너 */
-.equalizer_wrapper {position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); 
-                    display: flex; align-items: center; justify-content: center; gap: 20px;
+.equalizer_wrapper {position: absolute; top: 52%; left: 50%; transform: translate(-50%, -50%); 
+                    display: flex; align-items: center; justify-content: center; gap: 18px;
                     width: 100%; height: 250px; z-index: 2; pointer-events: none;}
 
-.eq_bar {width: 4px; height: 100%; background: rgba(249, 249, 249, 0.7); border-radius: 10px; 
+.eq_bar {width: 4px; height: 100%; background: rgba(249, 249, 249, 0.1); border-radius: 10px; 
          transform-origin: center; animation: eq_flow 1.5s infinite ease-in-out;  
-         /* --- 네오모피즘 질감 (그림자) --- */
+         /* --- 뉴모피즘 질감 --- */
          /* 1. 바깥쪽 어두운 그림자 (오른쪽 하단) */
-         box-shadow: 2px 2px 5px rgba(18, 18, 18, 0.12),
+         box-shadow: 2px 0px 8px rgba(18, 18, 18, 0.13),
               /* 2. 바깥쪽 밝은 그림자 (왼쪽 상단) - 빛을 받는 부분 */
               -2px -2px 5px rgba(249, 249, 249, 0.7),
               /* 3. 안쪽 어두운 그림자 (오른쪽 하단) - 입체감 추가 */
@@ -124,29 +137,31 @@
         /* 솟아오를 때 그림자를 더 깊게 만들어 입체감 강조 */
         box-shadow: 
             10px 10px 20px rgba(18, 18, 18, 0.06), 
-            -10px -10px 20px rgba(249, 249, 249, 1);
+            -10px -10px 20px rgba(249, 249, 249, 0.7);
     }
 }
 
 .cu1_play {width: 102px; height: 42px; border-radius: 30px; background: #f9f9f9; 
            display: flex; justify-content: center; align-items: center; position: relative;
            box-shadow: 
-            -5px -5px 12px rgba(18, 18, 18, 0.08),  
+            -5px -5px 22px rgba(18, 18, 18, 0.08),  
             5px 5px 12px rgba(249, 249, 249, 1),
-            inset 6px 6px 12px rgba(18, 18, 18, 0.05), 
+            inset 6px 6px 12px rgba(18, 18, 18, 0.1), 
             inset -6px -6px 12px rgba(249, 249, 249, 0.8);
             border: 0.1px solid rgba(18, 18, 18, 0.05); 
            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
-           pointer-events: auto; margin-top: 210px;}
+           pointer-events: auto; margin-top: 110px;}
 
 .play_btn {position: relative; z-index: 1; margin-left: 5px; width: 18px; opacity: 0.2;}
 
 /* --- 상호작용 효과 --- */
-.cu1_play:active {transform: scale(1); 
-                  box-shadow: 
-                    -5px -5px 8px rgba(18, 18, 18, 0.05),
-                     2px 2px 5px rgba(249, 249, 249, 1),
-                     inset 5px 5px 10px rgba(18, 18, 18, 0.12), 
-                     inset -8px -8px 10px rgba(249, 249, 249, 0.9);}
+.cu1_play.active_hold {transform: scale(1); 
+                       box-shadow: 
+                            -5px -5px 12px rgba(18, 18, 18, 0.05),
+                            5px 5px 12px rgba(249, 249, 249, 1),
+                            inset 6px 6px 12px rgba(18, 18, 18, 0.12), 
+                            inset -8px -8px 10px rgba(249, 249, 249, 0.9);
+                        transition: all 0.1s ease;}
 
-.cu1_play:active .play_btn {transform: scale(0.95); opacity: 0.2;}
+.cu1_play.active_hold .play_btn {transform: scale(0.95); opacity: 0.2;}
+

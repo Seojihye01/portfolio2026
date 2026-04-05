@@ -4,10 +4,17 @@
 .curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
 
 .cu5_title {font-size: 100px; letter-spacing: 5%; font-weight: bold; 
-            font-style: italic; text-align: right; margin-bottom: 25px;}
+            font-style: italic; text-align: right; margin-bottom: 80px;}
 
-.cu5_cont {display: flex; justify-content: space-between;} 
+.cu5_cont {display: flex; justify-content: flex-start; align-items: flex-start; gap: 100px;} 
 
-.cu5_cont img {width: 500px; height: 500px;}
+.cu5_cont img {width: 500px; height: 520px; object-fit: cover; padding-top: 30px;
+               filter: grayscale(1);}
 
-.cu5_text {margin-top: 55px; flex: 3;}
+.cu5_text {margin-top: 80px; display: flex; flex-direction: column; gap: 80px; width: 600px;}
+
+.text_en, .text_kr {width: 460px; font-size: 16px; font-weight: 400; line-height: 1.8;}
+
+.text_en {align-self: flex-start;}
+
+.text_kr {text-align: right; word-break: keep-all; align-self: flex-end;}

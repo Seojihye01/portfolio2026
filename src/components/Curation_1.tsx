@@ -9,6 +9,7 @@ const Curation_1 = () => {
     const [isStarted, setIsStarted] = useState(false);
     const [isEnded, setIsEnded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isClicked, setIsClicked] = useState(false);
 
     // 2. 영화 변경 시 비디오 소스 리로드
     useEffect(() => {
@@ -32,9 +33,13 @@ const Curation_1 = () => {
 
     // 4. 재생 시작 및 리플레이 로직
     const handleStart = () => {
+        setIsClicked(true);
+
         if (videoRef.current) {
-            videoRef.current.currentTime = 0; // 처음부터 재생 보장
-            videoRef.current.muted = false;
+            setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.muted = false;
             
             const playPromise = videoRef.current.play();
             if (playPromise !== undefined) {
@@ -42,12 +47,16 @@ const Curation_1 = () => {
                     .then(() => {
                         setIsStarted(true);
                         setIsEnded(false);
+                        setIsClicked(false);
                     })
                     .catch(error => {
                         console.error("재생 실패:", error);
+                        setIsClicked(false);
                     });
             }
         }
+    }, 400);
+    }
     };
 
     const handleVideoEnd = () => {
@@ -80,13 +89,24 @@ const Curation_1 = () => {
                             {/* 시작 전 가이드 (이퀄라이저) */}
                             {!isStarted && !isEnded && (
                                 <div className="video_guide" onClick={handleStart} style={{ zIndex: 10 }}>
-                                    <div className="cu1_play">
-                                        <img src="/media/play.svg" className="play_btn" />
+                                    <div className="cu1_header">
+                                        <div className="cu1_title_row">
+                                            <p className="cu1_director">{currentMovie.direc}</p>
+                                            <h3 className="title1">{currentMovie.title}</h3>
+                                            <div className="cu1_info_row">
+                                                <p>Running Time : {currentMovie.runtime}</p>
+                                                <p>Release : {currentMovie.rel}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="equalizer_wrapper">
                                         {[...Array(20)].map((_, i) => (
                                             <div key={i} className="eq_bar"></div>
                                         ))}
+                                    </div>
+                                    <div className={`cu1_play ${isClicked ? 'active_hold' : ''}`} 
+    onClick={handleStart}>
+                                        <img src="/media/play.svg" className="play_btn" />
                                     </div>
                                 </div>
                             )}
@@ -96,12 +116,12 @@ const Curation_1 = () => {
                                 <div className="video_guide ended_overlay" style={{ zIndex: 10 }}>
                                     <div className="ended_controls_container">
                                         <div className="control_item" onClick={handleReplay}>
-                                            <div className="pill_icon_button">
+                                            <div className="cu1_icon_btn">
                                                 <img src="/media/replay.svg" alt="replay" className="replay" />
                                             </div>
                                         </div>
                                         <div className="control_item" onClick={openModal}>
-                                            <div className="pill_icon_button">
+                                            <div className="cu1_icon_btn">
                                                 <img src="/media/view.svg" alt="info" className="view" />
                                             </div>
                                         </div>
@@ -115,6 +135,7 @@ const Curation_1 = () => {
                                 className="curation_video"
                                 onEnded={handleVideoEnd}
                                 playsInline
+                                onContextMenu={(e) => e.preventDefault()}
                                 style={{ 
                                     opacity: isStarted ? 1 : 0,
                                     pointerEvents: isStarted ? 'auto' : 'none'
@@ -127,17 +148,6 @@ const Curation_1 = () => {
         
                         {/* 오른쪽: 영화 정보 영역 */}
                         <div className="cu_right">
-                            <div className="cu1_header">
-                                <div className="cu1_title_row">
-                                    <h3 className="title1">{currentMovie.title}</h3>
-                                    <p className="cu1_director">{currentMovie.direc}</p>
-                                </div>
-                                <div className="cu1_info_row">
-                                    <p>Running Time : {currentMovie.runtime}</p>
-                                    <p>Release : {currentMovie.rel}</p>
-                                </div>
-                            </div>
-
                             <div className="cu1_description">
                                 <h3 className="cu1_subtitle">{currentMovie.subTitle}</h3>
                                 <p className="cu1_sen2">{currentMovie.desc}</p>
