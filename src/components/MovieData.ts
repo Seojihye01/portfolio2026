@@ -57,7 +57,7 @@ export const allMovies: Movie[] = [
         keywords: ["언어적 소통", "시간의 원형", "운명적 수용"]
     },
     { 
-        id: 7, title: "Mad Max: Fury Road", subTitle: "사막의 지평선과 거대한 함선이 만드는 압도적 대비",
+        id: 7, title: "Mad Max : Fury Road", subTitle: "사막의 지평선과 거대한 함선이 만드는 압도적 대비",
         direc: "George Miller", rel: "2015", runtime: "2h 0m",
         img: "/media/mad_max.jpg", className: "cu3_set7",
         desc: "아날로그 액션의 정수. 붉은 사막 위를 질주하는 광기와 해방의 아드레날린.",

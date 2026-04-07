@@ -1,0 +1,81 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding-top: 100px; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;
+                     overflow: hidden;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; justify-content: center;}
+
+.file_stack_container {position: relative; width: 930px; height: 680px; margin-bottom: 150px;}
+
+.file_page {position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); margin-bottom: 150px;}
+
+/* --- 호버 모션: 1번이 아닌 페이지를 호버하면 우측으로 나옴 --- */
+.file_page:not(.page_01):hover {transform: translateX(100px);}
+
+.index_tab {position: absolute; right: -55px; width: 55px; height: 150px; background: inherit;
+            border-radius: 0 12px 12px 0; display: flex; justify-content: center;
+            align-items: center; box-shadow: 5px 0 15px rgba(18, 18, 18, 0.05);}
+
+.page_01 .index_tab {top: 40px;}
+
+.page_02 .index_tab {top: 100px;}
+
+.page_03 .index_tab {top: 160px;}
+
+.page_02 {left: 55px; box-shadow: 5px 0 15px rgba(18, 18, 18, 0.05);}
+
+.page_03 {left: 110px; box-shadow: 5px 0 15px rgba(18, 18, 18, 0.05);}
+
+.index_label, .locked_msg {transform: rotate(90deg); white-space: nowrap; 
+                           font-size: 13px; letter-spacing: 5%; font-weight: 400;}
+
+.paper_inner {width: 100%; height: 100%; padding: 60px 60px; display: flex; flex-direction: column;
+              border-radius: 0 12px 12px 0; box-sizing: border-box; position: relative;
+              background: rgba(249, 249, 249, 0.5); backdrop-filter: blur(15px); 
+              -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(249, 249, 249, 0.4);
+              border-left: 1px solid rgba(249, 249, 249, 0.6);
+              box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);}
+
+.header_row {display: flex; justify-content: space-between; margin-bottom: 200px;}
+
+.archive_btn {font-size: 16px; letter-spacing: 5%; font-weight: 300; cursor: pointer;
+              display: inline-flex; gap: 13px; align-items: center;
+              transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);}
+
+.archive_btn:active {transform: scale(0.9);}
+
+.icon_img_wrap {width: 12px; display: flex; align-items: center; justify-content: center;}
+
+.cta_icon {width: 100%; height: auto; display: block; transition: all 0.2s ease;}
+
+.archive_btn.saved .cta_icon {animation: iconPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2);}
+
+@keyframes iconPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.main_content {flex: 1; display: flex; flex-direction: column; position: relative;}
+
+.c7_issue {position: absolute; left: 110px; top: -50px;}
+
+.c7_view .issue_no {font-size: 13px; letter-spacing: 5%; font-weight: 300; position: absolute; 
+                    right: 0px; top: -10px;}
+
+.c7_view .issue_title {font-size: 30px; letter-spacing: 5%; font-weight: 700; margin-top: 15px;}
+
+.movie_list {list-style: none; text-align: right; display: flex; flex-direction: column; gap: 20px;}
+
+.movie_list li {font-size: 12px; letter-spacing: 5%; font-weight: 300; color: #777;}
+
+.locked_view {flex: 1; display: flex; justify-content: flex-end; align-items: flex-end; 
+              background: inherit; position: absolute; bottom: 150px; right: -140px; }
+
+.locked_msg {white-space: nowrap; font-size: 13px;  letter-spacing: 5%; font-weight: 400; color: #bbb;}
+
+.cu7_curator {margin-top: auto; display: flex; justify-content: flex-start; align-items: end;}
+
+.curator_tag {display: flex; gap: 7px; font-size: 14px; letter-spacing: 5%; font-weight: 300;
+              position: absolute; bottom: 80px; align-items: flex-end;}
+
+.cu7_team_mem {font-size: 11px;}

@@ -47,7 +47,7 @@ const Login = ({ onLogin }: LoginProps) => {
                             </div>
                             <div className="floor_2_right">
                                 <a href="#"><p className="forgot">Forgot password?</p></a>
-                                <Link to='/signup_1'><p className="not">Not a member?</p></Link>
+                                <Link to='/signup'><p className="not">Not a member?</p></Link>
                             </div>
                         </div>
                         <div className="social_media">

@@ -105,7 +105,7 @@ const Curation_1 = () => {
                                         ))}
                                     </div>
                                     <div className={`cu1_play ${isClicked ? 'active_hold' : ''}`} 
-    onClick={handleStart}>
+                                        onClick={handleStart}>
                                         <img src="/media/play.svg" className="play_btn" />
                                     </div>
                                 </div>
