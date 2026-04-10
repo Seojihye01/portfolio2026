@@ -129,7 +129,7 @@ const Main_5 = () => {
         </div>
         
         <div className="main5_footer">
-          <a href='#' className="main5_explore_btn">
+          <a href='/explore' className="main5_explore_btn">
             <span>Explore</span>
             <img src="/media/arrow_b.svg" alt="arrow" />
           </a>

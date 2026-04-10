@@ -38,7 +38,7 @@ export const allMovies: Movie[] = [
     { 
         id: 4, title: "Interstellar", subTitle: "사막의 지평선과 거대한 함선이 만드는 압도적 대비",
         direc: "Christopher Nolan", rel: "2014", runtime: "2h 49m",
-        img: "/media/interstellar.jpg", className: "cu3_set4",
+        img: "/media/interstellar2.jpg", className: "cu3_set4",
         desc: "차원을 넘나드는 시간과 사랑의 물리학. 장엄한 우주 대서사시 속에 녹아든 부성애와 인류의 희망.",
         keywords: ["시간의 상대성", "우주 대서사", "인류의 도약"]
     },
@@ -87,3 +87,4 @@ export const allMovies: Movie[] = [
 
 
 ];
+

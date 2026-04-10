@@ -6,17 +6,17 @@ const Footer = () => {
     return (
         <section className="footer_container">
             <div className="footer_inner">
-                <div className="footer_top">
+                <a href="/" className="footer_top">
                     <img src="/media/logo_b.png" className="footer_logo"/>
                     <p className="catchphrase">archive today, remember always.</p>
-                </div>
+                </a>
                 
                 <div className="footer_middle">
                     <div className="sector">
                         <ul className="sec_1">
                             <li className="sec_title">SERVICE</li>
-                            <a href="#"><li>Curation</li></a>
-                            <a href="#"><li>Explore</li></a>
+                            <a href="/curation"><li>Curation</li></a>
+                            <a href="/explore"><li>Explore</li></a>
                             <a href="#"><li>Funding</li></a>
                             <a href="#"><li>About</li></a>
                             <a href="#"><li>Membership</li></a>

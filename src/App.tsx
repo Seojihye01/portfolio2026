@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from "./components/Signup";
 import Curation from "./components/Curation";
+import Explore from "./components/Explore";
+
 
 
 
@@ -31,9 +33,8 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup onLogin={handleLogin} />} />
         <Route path="/curation" element={<Curation />} />
-        {/* <Route path="/curation" element={<div>Curation Page Content</div>} />
-        <Route path="/explore" element={<div>Explore Page Content</div>} />
-        <Route path="/funding" element={<div>Funding Page Content</div>} /> */}
+        <Route path="/explore" element={<Explore />} />
+        {/* <Route path="/funding" element={<div>Funding Page Content</div>} /> */}
       </Routes>
       <Footer />
     </>

@@ -1,39 +1,14 @@
-.hero_video_section {
-  position: relative;
-  width: 100vw;
-  height: 100vh; /* 화면 전체 차지 */
-  overflow: hidden;
-  background-color: #121212;
-}
+.hero_video_section {position: relative; width: 100vw; height: 100vh; overflow: hidden;}
 
-.video_container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
+.video_container {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;}
 
-.background_video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 영상이 잘리지 않고 화면을 꽉 채우도록 */
-}
+.background_video {width: 100%; height: 100%; object-fit: cover;}
 
-/* 영상이 너무 밝아 헤더가 안 보일 경우를 대비한 오버레이 */
-.video_dimmer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4) 0%,   /* 상단 헤더 부분 어둡게 */
-    transparent 30%,
-    transparent 70%,
-    rgba(0, 0, 0, 0.4) 100%  /* 하단 부분 어둡게 */
-  );
-  z-index: 1;
-}
+.video_dimmer {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+               background: linear-gradient(
+                to bottom,
+                        rgba(0, 0, 0, 0.4) 0%,   /* 상단 헤더 부분 어둡게 */
+                          transparent 30%,
+                          transparent 70%,
+                        rgba(0, 0, 0, 0.4) 100%  /* 하단 부분 어둡게 */
+                        );}

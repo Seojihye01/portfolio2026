@@ -40,7 +40,7 @@ const Main_4: React.FC = () => {
                             </video>             
                         </div>
                     </div>                   
-                    <a href="#" className="main4_cta">
+                    <a href="/curation" className="main4_cta">
                         <span className="cta_text">CURATION</span>
                         <img src="/media/arrow_b.svg" alt="arrow" className="cta_arrow"/>
                     </a>

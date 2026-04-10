@@ -1,0 +1,49 @@
+.explore_b_container {width: 100%; min-height: 100vh; background: #000000; padding: 200px; 
+                     display: flex; justify-content: center; align-items: center;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.ex2_grid_container {display: grid; grid-template-columns: repeat(4, 1fr); aspect-ratio: 16 / 9;
+                     grid-template-rows: repeat(2, 325px); gap: 7px; width: 1200px;}
+
+.grid_item {position: relative; background-image: url("/media/universe.png"); overflow: hidden;
+            background-size: 1200px 650px; background-repeat: no-repeat;}
+
+.grid_item::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* 안쪽으로 어두워지는 내부 그림자 효과 */
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7); 
+    /* 가장자리를 부드럽게 뭉개주는 선형 그라데이션 */
+    background: linear-gradient(
+        to bottom, 
+        rgba(0,0,0,0) 70%, 
+        rgba(0,0,0,0.5) 100%
+    );
+    pointer-events: none; /* 텍스트 클릭 방해 금지 */
+    z-index: 1;
+}
+
+.empty_box {background-image: none;}
+
+.item_1 {background-position: 0 0;}
+
+.item_2 {background-position: -303px 0;} /* (1200/4) + gap 계산값 */
+
+.item_3 {background-position: -606px 0;}
+
+.item_4 {background-position: -909px 0;}
+
+.item_5 {background-position: 0 -332px;} /* 세로 높이 + gap */
+
+.item_6 {background-position: -303px -332px;}
+
+.item_8 {background-position: -909px -332px;}
+
+.item_1 .ex2_title_en {position: absolute; top: 20px; left: 20px; font-size: 33px; letter-spacing: 10%;
+                       font-weight: 700; line-height: 1.6; color: #f9f9f9; width: 237px;}
+
+.item_7 .ex2_title_kr {position: absolute; bottom: 0px; right: 0px; font-size: 20px; letter-spacing: 10%;
+                       font-weight: 300; line-height: 2; width: 237px; text-align: right;color: #f9f9f9;}

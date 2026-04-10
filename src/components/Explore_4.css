@@ -1,0 +1,91 @@
+.explore_grid_container {width: 100%; min-height: 100vh; padding: 100px 60px; display: flex;
+                         justify-content: center; margin-top: 150px;}
+
+.explore_inner_flex {width: 1200px; display: flex; gap: 100px;}
+
+.side_nav_section {width: 340px; position: sticky; top: 120px;}
+
+.side_filter_container {padding: 45px 25px; border-radius: 12px; margin-bottom: 40px;
+                        background: 135deg, rgba(18, 18, 18, 0.15), rgba(18, 18, 18, 0.05); 
+                        position: relative; border: 1px solid rgba(249, 249, 249, 0.3); 
+                        box-shadow: inset 1px 4px 10px rgba(18,18,18, 0.1), inset -2px -2px 6px rgba(249, 249, 249, 0.8);}
+
+.filter_group {margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;}
+
+.filter_label {font-size: 11px; color: rgba(18, 18, 18, 0.4); letter-spacing: 1px; font-weight: 400;}
+
+.neu_input_box {width: 200px; height: 42px; background: #f8f8f8; border-radius: 8px; 
+                box-shadow: inset 3px 3px 6px rgba(18, 18, 18, 0.08), inset -3px -3px 6px #f9f9f9;
+                cursor: pointer; position: relative; display: flex; align-items: center; padding: 0 15px;
+                border: 0.5px solid rgba(18, 18, 18, 0.05);}
+
+.selected_value {font-size: 13px; color: #666;}
+
+.neu_dropdown_list {position: absolute; top: 45px; left: 0; width: 100%; background: rgba(249, 249, 249, 0.2);
+                    backdrop-filter: blur(3px); -ms-overflow-style: none; scrollbar-width: none;
+                    border-radius: 8px; box-shadow: 0 10px 30px rgba(18, 18, 18, 0.1); z-index: 50;
+                    list-style: none; max-height: 150px; overflow-y: auto;}
+
+.neu_dropdown_list::-webkit-scrollbar {display: none;}
+
+.neu_dropdown_list li {padding: 10px 15px; font-size: 12px; color: #888;}
+
+.neu_dropdown_list li:hover {background: rgba(18, 18, 18, 0.05);}
+
+/* 페이지네이션 */
+.ex4_pagination {display: flex; flex-direction: column; align-items: center; padding: 25px 30px;
+                 border-radius: 12px; position: relative; border: 1px solid rgba(249, 249, 249, 0.3); 
+                 background: 135deg, rgba(18, 18, 18, 0.15), rgba(18, 18, 18, 0.05);
+                 box-shadow: inset 1px 4px 10px rgba(18, 18, 18, 0.1), inset -2px -2px 6px rgba(249, 249, 249, 0.8);}
+
+.neu_pagination_bar {display: flex; align-items: center; justify-content: space-between;}
+
+.page_indicator_box {display: flex; align-items: center; gap: 20px;}
+
+.txt_page {font-size: 12px; color: rgba(18, 18, 18, 0.8); letter-spacing: 2px;}
+
+.page_direct_input {width: 40px; background: transparent; border: none; font-size: 12px;
+                    border-bottom: 1px solid rgba(18, 18, 18, 0.3); outline: none;
+                    color: rgba(18, 18, 18, 0.8); text-align: center; margin: 0;
+                    appearance: textfield; -webkit-appearance: none; -moz-appearance: textfield;}
+
+.page_direct_input::-webkit-outer-spin-button,
+.page_direct_input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
+                
+.txt_num {font-size: 12px; color: rgba(18, 18, 18, 0.8); font-weight: 400;}
+
+.arrow_btn {border: none; background: none; color: #ddd; cursor: pointer; font-size: 18px;
+            display: block; align-items: center; justify-content: center;}
+
+.ex4_left {width: 10px; transform: rotate(180deg); opacity: 0.2;}
+
+.ex4_right {width: 10px; opacity: 0.2;}
+
+.total_page {font-size: 10px; letter-spacing: 10%; font-weight: 300; color: rgba(18, 18, 18, 0.4);
+             padding-top: 5px;}
+
+/* 우측 그리드 & 호버 효과 */
+.movie_content_area {flex: 1; display: flex; justify-content: center;align-items: center;}
+
+.masonry_layout {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+                 grid-auto-rows: 170px;}
+
+.movie_item {position: relative; border-radius: 8px; overflow: hidden; background: #f0f0f0;}
+
+.movie_item.tall {grid-row: span 2;}
+
+.movie_item.wide {grid-column: span 2;}
+
+.movie_item img {width: 100%; height: 100%; object-fit: cover; transition: 0.4s;}
+
+.movie_hover_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                      background: rgba(18, 18, 18, 0.6); display: flex; padding: 20px;
+                      justify-content: center; align-items: center; opacity: 0; 
+                      transition: 0.3s ease; text-align: center;}
+
+.movie_item:hover .movie_hover_overlay {opacity: 1;}
+
+.movie_item:hover img {transform: scale(1.05);}
+
+.movie_hover_title {font-size: 14px; font-weight: 400; letter-spacing: 0.5px; color: #f9f9f9;
+                    line-height: 1.6; letter-spacing: 5%;}
