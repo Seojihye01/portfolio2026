@@ -1,82 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // 상세페이지 이동을 위한 hook
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { allMovies } from "./MovieData"; // 중앙 데이터 임포트
 import './Explore_4.css';
 
 const Explore_4 = () => {
     const [selectedFilters, setSelectedFilters] = useState({
-        GENRE: "All",
-        YEAR: "2026",
-        COUNTRY: "All",
-        "SORT BY": "Latest"
+        GENRE: "All", YEAR: "2026", COUNTRY: "All", "SORT BY": "Latest"
     });
 
     const [activeFilter, setActiveFilter] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [isEditingPage, setIsEditingPage] = useState(false); // 페이지 입력 모드 상태
-    const [pageInput, setPageInput] = useState(""); // 입력값 상태
+    const [isEditingPage, setIsEditingPage] = useState(false);
+    const [pageInput, setPageInput] = useState("");
     const [displayMovies, setDisplayMovies] = useState<any[]>([]);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+    const [isInsideContent, setIsInsideContent] = useState(false);
+
     const totalPages = 1000;
+    const scrollTimeout = useRef<number | null>(null);
+    const contentAreaRef = useRef<HTMLElement>(null);
 
-    const filterOptions: { [key: string]: string[] } = {
-        GENRE: ["All", "Sci-Fi", "Drama", "Action", "Documentary", "Romance", "Noir", "Arthouse", "Classic", "Independent", "Short Film"],
-        YEAR: ["All", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2010s", "2000s", "Before 2000"],
-        COUNTRY: ["All", "Korea", "USA", "UK", "Europe", "Asia", "ETC"],
-        "SORT BY": ["-", "Latest", "Most viewed", "Rising"]
-    };
-
-    const updateMovies = () => {
-        const movieImages = [
-            { id: "hailmary", img: "/media/hailmary.png", title: "Project Hail Mary" },
-            { id: "martian", img: "/media/martian.jpg", title: "The Martian" },
-            { id: "interstellar", img: "/media/interstellar.jpg", title: "Interstellar" },
-            { id: "gravity", img: "/media/gravity.jpg", title: "Gravity" },
-            { id: "007", img: "/media/007.jpg", title: "007 Spectre" },
-            { id: "budapest", img: "/media/budapest.jpg", title: "The Grand Budapest Hotel" },
-            { id: "french", img: "/media/french_1.png", title: "The French Dispatch" },
-            { id: "london", img: "/media/london.jpg", title: "Paddington" },
-            { id: "escaperoom", img: "/media/escaperoom.jpg", title: "Escape Room" },
-            { id: "tenet", img: "/media/tenet.jpg", title: "TENET" }
-        ];
+    // 1. 딱 10개만 뽑아서 랜덤하게 섞는 로직
+    const getMoviesByPage = useCallback((page: number) => {
+        // 전체 데이터에서 10개만 셔플해서 가져옴
+        const shuffled = [...allMovies]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 10); // 디자인 레이아웃(10개)에 맞게 자르기
         
-        const shuffleArray = (array: any[]) => {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        };
-
-        const shuffledList = shuffleArray(movieImages).map((movie, i) => ({
+        return shuffled.map((movie, i) => ({
             ...movie,
-            key: `movie-${currentPage}-${i}-${Math.random()}`
+            key: `movie-${page}-${movie.id}-${i}-${Math.random()}`
         }));
+    }, []);
 
-        setDisplayMovies(shuffledList);
-    };
-
-    useEffect(() => {
-        updateMovies();
-    }, [selectedFilters, currentPage]);
+    const handlePageChange = useCallback((nextPage: number) => {
+        if (nextPage < 1 || nextPage > totalPages || isTransitioning) return;
+        setIsTransitioning(true);
+        
+        setTimeout(() => {
+            setCurrentPage(nextPage);
+            setDisplayMovies(getMoviesByPage(nextPage));
+            setTimeout(() => {
+                setIsTransitioning(false);
+            }, 50);
+        }, 400);
+    }, [isTransitioning, getMoviesByPage, totalPages]);
 
     const handleSelectFilter = (category: string, option: string) => {
         setSelectedFilters(prev => ({ ...prev, [category]: option }));
         setActiveFilter(null);
+        handlePageChange(1); // 필터 변경 시 첫 페이지로
     };
 
-    // 1. 페이지 직접 입력 처리
-    const handlePageSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            const newPage = parseInt(pageInput);
-            if (newPage >= 1 && newPage <= totalPages) {
-                setCurrentPage(newPage);
-            }
-            setIsEditingPage(false);
-        }
-    };
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+        setCursorPos({ x: e.clientX, y: e.clientY });
+    }, []);
+
+    useEffect(() => {
+        const area = contentAreaRef.current;
+        const handleNativeWheel = (e: WheelEvent) => {
+            if (!isInsideContent) return;
+            e.preventDefault();
+            if (scrollTimeout.current) window.clearTimeout(scrollTimeout.current);
+            scrollTimeout.current = window.setTimeout(() => {
+                if (e.deltaY > 0) {
+                    if (currentPage < totalPages) handlePageChange(currentPage + 1);
+                } else {
+                    if (currentPage > 1) handlePageChange(currentPage - 1);
+                }
+            }, 50);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        area?.addEventListener('wheel', handleNativeWheel, { passive: false });
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            area?.removeEventListener('wheel', handleNativeWheel);
+        };
+    }, [currentPage, handlePageChange, totalPages, isInsideContent, handleMouseMove]);
+
+    useEffect(() => {
+        setDisplayMovies(getMoviesByPage(1));
+    }, [getMoviesByPage]);
 
     return (
         <section className="explore_grid_container">
+            <div 
+                className={`custom_cursor ${isInsideContent ? 'active' : ''}`}
+                style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
+            >
+                <img src='/media/cursor_b.svg' alt="scroll" />
+            </div>
+
             <div className="explore_inner_flex">
                 <aside className="side_nav_section">
                     <div className="side_filter_container">
@@ -104,7 +120,7 @@ const Explore_4 = () => {
 
                     <div className="ex4_pagination">
                         <div className="neu_pagination_bar">
-                            <button className="arrow_btn" onClick={() => setCurrentPage(p => Math.max(1, p - 1))}>
+                            <button className="arrow_btn" onClick={() => handlePageChange(currentPage - 1)}>
                                 <img src="/media/arrow_b.svg" className="ex4_left" alt="prev" />
                             </button>
                             <div className="page_indicator_box" onClick={() => { setIsEditingPage(true); setPageInput(String(currentPage)); }}>
@@ -115,7 +131,13 @@ const Explore_4 = () => {
                                         className="page_direct_input"
                                         value={pageInput}
                                         onChange={(e) => setPageInput(e.target.value)}
-                                        onKeyDown={handlePageSubmit}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") {
+                                                const newPage = parseInt(pageInput);
+                                                if (newPage >= 1 && newPage <= totalPages) handlePageChange(newPage);
+                                                setIsEditingPage(false);
+                                            }
+                                        }}
                                         onBlur={() => setIsEditingPage(false)}
                                         autoFocus
                                     />
@@ -123,22 +145,27 @@ const Explore_4 = () => {
                                     <span className="txt_num">{String(currentPage).padStart(2, '0')}</span>
                                 )}
                             </div>
-                            <button className="arrow_btn" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}>
+                            <button className="arrow_btn" onClick={() => handlePageChange(currentPage + 1)}>
                                 <img src="/media/arrow_b.svg" className="ex4_right" alt="next" />
                             </button>
                         </div>
-                        <p className="total_page">TOTAL 1000 PAGES</p>
+                        <p className="total_page">TOTAL {totalPages} PAGES</p>
                     </div>
                 </aside>
 
-                <main className="movie_content_area">
+                <main 
+                    ref={contentAreaRef}
+                    className={`movie_content_area ${isTransitioning ? 'is_switching' : ''}`}
+                    onMouseEnter={() => setIsInsideContent(true)}
+                    onMouseLeave={() => setIsInsideContent(false)}
+                    style={{ cursor: isInsideContent ? 'none' : 'default' }}
+                >
                     <div className="masonry_layout">
                         {displayMovies.map((movie, idx) => (
-                            /* 3. 영화 상세 페이지 링크 이동 */
                             <a href={`/movie/${movie.id}`} key={movie.key} 
                                className={`movie_item 
-                               ${idx === 1 ? 'tall' : ''} 
-                               ${idx === 9 ? 'wide' : ''}`}>
+                               ${idx % 10 === 1 ? 'tall' : ''} 
+                               ${idx % 10 === 9 ? 'wide' : ''}`}>
                                 <img src={movie.img} alt={movie.title} />
                                 <div className="movie_hover_overlay">
                                     <span className="movie_hover_title">{movie.title}</span>
@@ -150,6 +177,13 @@ const Explore_4 = () => {
             </div>
         </section>
     );
+};
+
+const filterOptions: { [key: string]: string[] } = {
+    GENRE: ["All", "Sci-Fi", "Drama", "Action", "Documentary", "Romance", "Noir", "Arthouse", "Classic", "Independent", "Short Film"],
+    YEAR: ["All", "2026", "2025", "2024", "2023", "2022", "2021", "2020", "2010s", "2000s", "Before 2000"],
+    COUNTRY: ["All", "Korea", "USA", "UK", "Europe", "Asia", "ETC"],
+    "SORT BY": ["-", "Latest", "Most viewed", "Rising"]
 };
 
 export default Explore_4;

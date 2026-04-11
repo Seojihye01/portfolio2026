@@ -65,12 +65,20 @@
              padding-top: 5px;}
 
 /* 우측 그리드 & 호버 효과 */
-.movie_content_area {flex: 1; display: flex; justify-content: center;align-items: center;}
+.movie_content_area {flex: 1; display: flex; justify-content: center; align-items: center;
+                     overflow: hidden; transform: translateY(0); opacity: 1; cursor: none;
+                     will-change: transform, opacity; backface-visibility: hidden;
+                     transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                                 transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);}
+
+.movie_content_area.switching {opacity: 0; transform: translateY(-20px);}
 
 .masonry_layout {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
                  grid-auto-rows: 170px;}
 
-.movie_item {position: relative; border-radius: 8px; overflow: hidden; background: #f0f0f0;}
+.movie_item {position: relative; border-radius: 8px; overflow: hidden; background: #f0f0f0;
+             
+             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);}
 
 .movie_item.tall {grid-row: span 2;}
 
@@ -89,3 +97,28 @@
 
 .movie_hover_title {font-size: 14px; font-weight: 400; letter-spacing: 0.5px; color: #f9f9f9;
                     line-height: 1.6; letter-spacing: 5%;}
+
+.movie_content_area:not(.is_switching) .movie_item {animation: itemReveal 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;}
+
+@keyframes itemReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Custom Cursor */
+.custom_cursor {position: fixed; width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center;
+                justify-content: center; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%) scale(0);
+                transition: transform 0.2s ease-out; background: rgba(249, 249, 249, 0.3); background: rgba(249, 249, 249, 0.3);
+                box-shadow: inset 1px 2px 5px rgba(18, 18, 18, 0.2), inset -2px -2px 6px rgba(249, 249, 249, 0.5);}
+
+.custom_cursor.active {transform: translate(-50%, -50%) scale(1);}
+
+.custom_cursor img {width: 35%; opacity: 0.8;}
+
+.side_nav_section, .neu_input_box, .arrow_btn {cursor: pointer;}

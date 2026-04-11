@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { allMovies } from "./MovieData"; // 중앙 데이터 임포트
 import './Explore_3.css';
 
 const Explore_3 = () => {
-    // 시안에 맞춘 영화 데이터 구성
-    const movies = [
-        { title: "Project Hail Mary", director: "Phil Lord,\nChristopher Miller", year: "2026", img: "/media/hailmary.png" },
-        { title: "Interstellar", director: "Christopher Nolan", year: "2014", img: "/media/interstellar2.jpg" },
-        { title: "Gravity", director: "Alfonso Cuarón", year: "2013", img: "/media/gravity.jpg" },
-        { title: "The Martian", director: "Ridley Scott", year: "2015", img: "/media/martian.jpg" }
-    ];
+    // 1. 특정 영화 4개만 정확히 필터링
+    const targetTitles = ["Project Hail Mary", "The Martian", "Interstellar", "Gravity"];
+    
+    const exploreMovies = allMovies.filter(movie => 
+        targetTitles.includes(movie.title)
+    );
 
-    // 현재 선택된 영화 상태 (초기값: 첫 번째 영화)
-    const [selectedMovie, setSelectedMovie] = useState(movies[1]);
+    // 2. 현재 선택된 영화 상태
+    const [selectedMovie, setSelectedMovie] = useState(exploreMovies[0]);
+
+    
+    const sortedMovies = [...exploreMovies].sort((a, b) => 
+        targetTitles.indexOf(a.title) - targetTitles.indexOf(b.title)
+    );
+
+    // 컴포넌트 마운트 시 첫 번째 영화를 기본 선택 
+    useEffect(() => {
+        if (sortedMovies.length > 0) {
+            setSelectedMovie(sortedMovies[0]);
+        }
+    }, []);
+
+    if (sortedMovies.length === 0) return null;
 
     return (
         <section className="explore_b_container">
@@ -25,10 +39,10 @@ const Explore_3 = () => {
                     
                     {/* 왼쪽: 타이틀 리스트 */}
                     <div className="ex3_title_list">
-                        {movies.map((movie) => (
+                        {sortedMovies.map((movie) => (
                             <h2 
-                                key={movie.title}
-                                className={selectedMovie.title === movie.title ? "active" : ""}
+                                key={movie.id}
+                                className={selectedMovie?.id === movie.id ? "active" : ""}
                                 onMouseEnter={() => setSelectedMovie(movie)}
                             >
                                 {movie.title}
@@ -38,13 +52,25 @@ const Explore_3 = () => {
 
                     {/* 중앙: 이미지 포스터 */}
                     <div className="ex3_image_wrap">
-                        <img src={selectedMovie.img} alt={selectedMovie.title} key={selectedMovie.title} />
+                        {selectedMovie && (
+                            <img 
+                                src={selectedMovie.img} 
+                                alt={selectedMovie.title} 
+                                key={selectedMovie.id} // 애니메이션 트리거
+                            />
+                        )}
                     </div>
 
                     {/* 오른쪽: 상세 정보 */}
                     <div className="ex3_info">
-                        <div className="ex3_director">{selectedMovie.director}</div>
-                        <div className="ex3_release">{selectedMovie.year}</div>
+                        {selectedMovie && (
+                            <>
+                                <div className="ex3_director">
+                                    {selectedMovie.direc}
+                                </div>
+                                <div className="ex3_release">{selectedMovie.rel}</div>
+                            </>
+                        )}
                     </div>
 
                 </div>
