@@ -34,12 +34,12 @@ const MovieModal = ({ movie, onClose, onMovieClick }: MovieModalProps) => {
     };
 
     return (
-        <div className="modal_backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
+        <div className="modal_backdrop" onClick={onClose}>
             <div 
             className="modal_bg_blur" 
             style={{ backgroundImage: `url(${movie.img})` }}
             ></div>
-            <div className="modal_content custom_scrollbar">
+            <div className="modal_content custom_scrollbar" onClick={(e) => e.stopPropagation()}>
                 <button className="modal_close_btn" onClick={onClose}>✕</button>
 
                 <div className="modal_visual_area">
