@@ -1,31 +1,38 @@
 import React, { useState } from "react";
 import './Curation_3.css';
-import { allMovies, type Movie } from "./MovieData"; // 데이터 임포트
+import { allMovies, type Movie } from "./MovieData";
+import MovieModal from "./Moviemodal"; 
 
 const Curation_3 = () => {
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [isDetailOpen, setIsDetailOpen] = useState(false);
 
-    // [로직] 전체 데이터를 순회하는 함수
-    const navigateMovie = (direction: 'prev' | 'next') => {
+    const navMovies = allMovies.slice(0, 10);
+    const renderMovies = navMovies.filter(m => m.id !== 1);
+
+    const navigateMovie = (e: React.MouseEvent, direction: 'prev' | 'next') => {
+        e.stopPropagation();
         if (!selectedMovie) return;
         
-        const currentIndex = allMovies.findIndex(m => m.id === selectedMovie.id);
-        let nextIndex;
+        const currentIndex = navMovies.findIndex(m => m.id === selectedMovie.id);
+        let nextIndex = direction === 'prev' 
+            ? (currentIndex - 1 + navMovies.length) % navMovies.length 
+            : (currentIndex + 1) % navMovies.length;
 
-        if (direction === 'prev') {
-            nextIndex = (currentIndex - 1 + allMovies.length) % allMovies.length;
-        } else {
-            nextIndex = (currentIndex + 1) % allMovies.length;
-        }
-
-        setSelectedMovie(allMovies[nextIndex]);
+        setSelectedMovie(navMovies[nextIndex]);
     };
 
-    // [필터링] Curation_3 섹션에만 노출할 영화 
-    const displayMovies = allMovies.filter(m => m.id !== 1);
+    const handleMoreClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDetailOpen(true);
+    };
 
     const MovieCard = ({ movie }: { movie: Movie }) => (
-        <div className={movie.className} onClick={() => setSelectedMovie(movie)}>
+        <div className={movie.className} onClick={() => {
+            setSelectedMovie(movie);
+            setIsDetailOpen(false);
+        }}>
             <img src={movie.img} alt={movie.title} />
             <div className="film">
                 <h2 className="cu3_title">{movie.title}</h2>
@@ -40,24 +47,19 @@ const Curation_3 = () => {
     return (
         <section className="curation_container">
             <div className="curation_inner">
-                <div className="cu3_sec1">
-                    {displayMovies.slice(0, 3).map(m => <MovieCard key={m.id} movie={m} />)}
-                </div>
-                <div className="cu3_sec2">
-                    {displayMovies.slice(3, 5).map(m => <MovieCard key={m.id} movie={m} />)}
-                </div>
-                <div className="cu3_sec3">
-                    <p className="cu3_key">INSIDE THE MOMENT</p>
-                </div>
-                <div className="cu3_sec4">
-                    {displayMovies.slice(5, 8).map(m => <MovieCard key={m.id} movie={m} />)}
-                </div>
-                <div className="cu3_sec5">
-                    {displayMovies.slice(8, 9).map(m => <MovieCard key={m.id} movie={m} />)}
-                </div>
+                <div className="cu3_sec1">{renderMovies.slice(0, 3).map(m => <MovieCard key={m.id} movie={m} />)}</div>
+                <div className="cu3_sec2">{renderMovies.slice(3, 5).map(m => <MovieCard key={m.id} movie={m} />)}</div>
+                <div className="cu3_sec3"><p className="cu3_key">INSIDE THE MOMENT</p></div>
+                <div className="cu3_sec4">{renderMovies.slice(5, 8).map(m => <MovieCard key={m.id} movie={m} />)}</div>
+                <div className="cu3_sec5">{renderMovies.slice(8, 9).map(m => <MovieCard key={m.id} movie={m} />)}</div>
 
+                {/* 단계 1: 프리뷰 모달 (상세 모달이 열리면 pointer-events를 꺼서 간섭 방지) */}
                 {selectedMovie && (
-                    <div className="movie_modal">
+                    <div className="movie_modal" style={{ 
+                        zIndex: 100, 
+                        opacity: isDetailOpen ? 0 : 1, // 상세 모달 열리면 프리뷰는 숨김
+                        pointerEvents: isDetailOpen ? 'none' : 'auto' 
+                    }}>
                         <div className="modal_bg" style={{ backgroundImage: `url(${selectedMovie.img})` }}></div>
                         <div className="modal_content">                            
                             <div className="modal_header_row">
@@ -81,16 +83,30 @@ const Curation_3 = () => {
 
                             <div className="m_video_preview">
                                 <img src={selectedMovie.img} alt="preview" />
-                                <div className="m_play_bar">
+                                <div className="m_control_bar">
                                     <div className="m_arrow">
-                                        <img src="/media/arrow_b.svg" className="m_left" onClick={() => navigateMovie('prev')} />
-                                        <img src="/media/arrow_b.svg" className="m_right" onClick={() => navigateMovie('next')} />
+                                        <img src="/media/arrow_b.svg" className="m_left" onClick={(e) => navigateMovie(e, 'prev')} alt="prev" />
+                                        <img src="/media/arrow_b.svg" className="m_right" onClick={(e) => navigateMovie(e, 'next')} alt="next" />
                                     </div>
-                                    <button className="m_play_btn">PLAY</button>
-                                    <span className="m_cancel" onClick={() => setSelectedMovie(null)}>✕</span>
+                                    <button className="m_more_btn" onClick={handleMoreClick}>MORE</button>
+                                    <span className="m_cancel" onClick={() => {
+                                        setSelectedMovie(null);
+                                        setIsDetailOpen(false);
+                                    }}>✕</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                )}
+
+                {/* 단계 2: 공통 상세 모달 (최상단 배치) */}
+                {isDetailOpen && selectedMovie && (
+                    <div className="detail_modal_wrapper" style={{ zIndex: 99999 }}>
+                        <MovieModal 
+                            movie={selectedMovie} 
+                            onClose={() => setIsDetailOpen(false)} 
+                            onMovieClick={(next) => setSelectedMovie(next)}
+                        />
                     </div>
                 )}
             </div>

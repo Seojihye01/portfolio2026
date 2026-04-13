@@ -1,0 +1,104 @@
+.modal_backdrop {position: fixed; inset: 0; background: rgba(18, 18, 18, 0.4); display: flex;
+                 justify-content: center; align-items: center; z-index: 10001; backdrop-filter: blur(0px);}
+
+.modal_bg_blur {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover;
+                background-position: center; filter: brightness(0.3) blur(15px);  z-index: -1; 
+                transform: scale(1.1);}
+
+.modal_close_btn {position: absolute; top: 0px; right: -10px; background: none; border: none;
+                  font-size: 20px; cursor: pointer; z-index: 10;}
+
+.modal_content {width: 563px; height: auto; background: rgba(249, 249, 249, 0.8); position: relative; 
+                overflow-y: auto; overflow-x: hidden; box-shadow: 0 30px 60px rgba(18, 18, 18, 0.5);
+                border-radius: 8px; -ms-overflow-style: none; scrollbar-width: none;}
+
+.modal_content::-webkit-scrollbar {display: none;}
+
+.modal_visual_area {width: 563px; height: 300px; aspect-ratio: 16 / 9; background: transparent; padding-top: 5px;}
+
+.modal_hero img {width: 100%; height: 300px; object-fit: cover; display: block;}
+
+.modal_header {display: flex; justify-content: space-between; align-items: center; margin-top: 20px;}
+
+.modal_body {padding: 0 10px 10px 10px;}
+
+.title_set {display: flex; align-items: center; gap: 12px; flex-wrap: nowrap;}
+
+.modal_main_title {font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin: 0; line-height: 1;
+                   white-space: nowrap;}
+
+.age_badge {background: #1090BF; color: #f9f9f9; font-size: 12px; padding: 4px 4px; border-radius: 4px;
+            font-weight: 600; display: flex; align-items: center; margin-top: 15px;}
+
+.star_rating {display: flex; align-items: center; margin-top: 18px;}
+
+.star_item {width: 22px; height: 22px; cursor: pointer; transition: 0.2s;}
+
+.star_icon.filled {color: #121212;}
+
+.share_btn img {width: 21px; height: auto; display: block; cursor: pointer; opacity: 0.6;}
+
+.modal_meta_row {display: flex; align-items: center; gap: 15px; margin-top: 15px; font-size: 14px;}
+
+.tech_icons {display: flex; gap: 12px; margin-left: 15px; opacity: 0.9;}
+
+.dolby {width: 35px;}
+
+.hd {width: 29px; margin-right: 5px;}
+
+.sound {width: 20px;}
+
+.modal_actions {display: flex; gap: 10px; margin: 25px 0;}
+
+.btn_play, .btn_save {flex: 1; height: 44px; border: 2px solid rgba(18, 18, 18, 0.8); font-weight: 600; 
+                      font-size: 13px; letter-spacing: 1px; cursor: pointer;}
+
+.btn_play:hover, .btn_save:hover {background: #121212; color: #f9f9f9;}
+
+.btn_save.active {background: #121212; color: #f9f9f9;}
+
+.modal_details {border-top: 1px solid rgba(18, 18, 18, 0.3); padding: 40px 0; text-align: left;}
+
+.detail_item {font-size: 14px; margin-bottom: 11px; display: flex; align-items: flex-start;}
+
+.detail_item .label {color: #888; margin-right: 11px; align-items: left; width: 80px;}
+
+.synopsis_text {margin-top: 20px; font-size: 14px; line-height: 2.5; text-align: justify; margin-top: 50px;}
+
+.section_tab {margin: 40px 0 20px; border-bottom: 1px solid #eee; display: flex; gap: 20px;}
+
+.tab {font-size: 14px; font-weight: 700; padding-bottom: 10px; color: #ccc; cursor: pointer;}
+
+.tab:hover {color: #121212;}
+
+.tab.active {color: #121212; border-bottom: 2px solid #121212;}
+
+.related_grid {display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;}
+
+.related_card {position: relative; overflow: hidden; cursor: pointer; border-radius: 6px;}
+
+.related_card img {width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px;}
+
+.card_overlay {position: absolute; inset: 0; background: rgba(18, 18, 18, 0.7); display: flex;
+               align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
+               padding: 10px; z-index: 99999;}
+
+.related_card:hover .card_overlay {opacity: 1;}
+
+.card_title {color: #f9f9f9; font-size: 13px; font-weight: 500; text-align: center;}
+
+.trailer_list {grid-column: 1 / -1; display: flex; flex-direction: column; gap: 50px;}
+
+.trailer_item {display: flex; flex-direction: column; gap: 15px;}
+
+.trailer_item video, .trailer_item iframe {width: 100%; aspect-ratio: 16 / 9; background: #121212; margin-bottom: 10px;
+                                           border-radius: 8px; border: none; object-fit: cover; display: block;}
+
+.trailer_caption {display: block; font-size: 11px; font-weight: 300; letter-spacing: 0.5px; 
+                  text-transform: uppercase;}
+
+video::-internal-media-controls-download-button {display:none;}
+
+video::-webkit-media-controls-enclosure {overflow:hidden;}
+
+video::-webkit-media-controls-panel {width: calc(100% + 30px);}

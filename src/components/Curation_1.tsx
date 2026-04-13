@@ -1,62 +1,63 @@
 import React, { useState, useRef, useEffect } from "react";
 import './Curation_1.css';
 import { allMovies, type Movie } from "./MovieData";
+import MovieModal from "./Moviemodal"; 
 
 const Curation_1 = () => {
-    // 1. 상태 관리
+    const curatedList = allMovies.slice(0, 10);
     const [currentMovie, setCurrentMovie] = useState<Movie>(allMovies[0]);
-    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null); 
+    const [isDetailOpen, setIsDetailOpen] = useState(false); 
     const [isStarted, setIsStarted] = useState(false);
     const [isEnded, setIsEnded] = useState(false);
-    const videoRef = useRef<HTMLVideoElement>(null);
     const [isClicked, setIsClicked] = useState(false);
+    
+    const videoRef = useRef<HTMLVideoElement>(null);
 
-    // 2. 영화 변경 시 비디오 소스 리로드
     useEffect(() => {
         if (videoRef.current) {
-            videoRef.current.load(); // 소스 변경 시 명시적으로 로드 호출
+            videoRef.current.load();
         }
     }, [currentMovie]);
 
-    // 3. 내비게이션 로직
-    const navigateMovie = (direction: 'prev' | 'next') => {
+    // 모달 내비게이션 (버블링 방지 필수)
+    const navigateMovie = (e: React.MouseEvent, direction: 'prev' | 'next') => {
+        e.stopPropagation();
         const baseMovie = selectedMovie || currentMovie;
-        const currentIndex = allMovies.findIndex(m => m.id === baseMovie.id);
+        const currentIndex = curatedList.findIndex(m => m.id === baseMovie.id);
         let nextIndex = direction === 'prev' 
-            ? (currentIndex - 1 + allMovies.length) % allMovies.length 
-            : (currentIndex + 1) % allMovies.length;
+            ? (currentIndex - 1 + curatedList.length) % curatedList.length 
+            : (currentIndex + 1) % curatedList.length;
     
-        const nextMovie = allMovies[nextIndex];
+        const nextMovie = curatedList[nextIndex];
         setSelectedMovie(nextMovie);
-        // 만약 메인 화면 영화도 같이 바꾸고 싶다면 여기서 setCurrentMovie(nextMovie)를 호출하세요.
     };
 
-    // 4. 재생 시작 및 리플레이 로직
+    const handleMoreClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsDetailOpen(true);
+    };
+
     const handleStart = () => {
         setIsClicked(true);
-
         if (videoRef.current) {
             setTimeout(() => {
-            if (videoRef.current) {
-                videoRef.current.currentTime = 0;
-                videoRef.current.muted = false;
-            
-            const playPromise = videoRef.current.play();
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        setIsStarted(true);
-                        setIsEnded(false);
-                        setIsClicked(false);
-                    })
-                    .catch(error => {
-                        console.error("재생 실패:", error);
-                        setIsClicked(false);
-                    });
-            }
+                if (videoRef.current) {
+                    videoRef.current.currentTime = 0;
+                    videoRef.current.muted = false;
+                    videoRef.current.play()
+                        .then(() => {
+                            setIsStarted(true);
+                            setIsEnded(false);
+                            setIsClicked(false);
+                        })
+                        .catch(err => {
+                            console.error("Playback failed:", err);
+                            setIsClicked(false);
+                        });
+                }
+            }, 400);
         }
-    }, 400);
-    }
     };
 
     const handleVideoEnd = () => {
@@ -83,12 +84,10 @@ const Curation_1 = () => {
                     <h1 className="key_phrase">INSIDE THE MOMENT</h1>
       
                     <div className="cu_cont">
-                        {/* 왼쪽: 비디오 영역 */}
+                        {/* 왼쪽: 메인 비디오 영역 */}
                         <div className="cu_left">
-                            
-                            {/* 시작 전 가이드 (이퀄라이저) */}
                             {!isStarted && !isEnded && (
-                                <div className="video_guide" onClick={handleStart} style={{ zIndex: 10 }}>
+                                <div className="video_guide" onClick={handleStart} style={{ zIndex: 10, pointerEvents: 'auto' }}>
                                     <div className="cu1_header">
                                         <div className="cu1_title_row">
                                             <p className="cu1_director">{currentMovie.direc}</p>
@@ -104,14 +103,12 @@ const Curation_1 = () => {
                                             <div key={i} className="eq_bar"></div>
                                         ))}
                                     </div>
-                                    <div className={`cu1_play ${isClicked ? 'active_hold' : ''}`} 
-                                        onClick={handleStart}>
-                                        <img src="/media/play.svg" className="play_btn" />
+                                    <div className={`cu1_play ${isClicked ? 'active_hold' : ''}`}>
+                                        <img src="/media/play.svg" className="play_btn" alt="play" />
                                     </div>
                                 </div>
                             )}
 
-                            {/* 영상 종료 후 오버레이 */}
                             {isEnded && (
                                 <div className="video_guide ended_overlay" style={{ zIndex: 10 }}>
                                     <div className="ended_controls_container">
@@ -129,30 +126,25 @@ const Curation_1 = () => {
                                 </div>
                             )}
 
-                            {/* 비디오 태그: 항상 유지하며 opacity로 제어 */}
                             <video
                                 ref={videoRef}
                                 className="curation_video"
                                 onEnded={handleVideoEnd}
                                 playsInline
-                                onContextMenu={(e) => e.preventDefault()}
                                 style={{ 
                                     opacity: isStarted ? 1 : 0,
                                     pointerEvents: isStarted ? 'auto' : 'none'
                                 }}
                             >
                                 <source src={`/media/${currentMovie.title}.mp4`} type="video/mp4" />
-                                브라우저가 비디오를 지원하지 않습니다.
                             </video>
                         </div>
         
-                        {/* 오른쪽: 영화 정보 영역 */}
                         <div className="cu_right">
                             <div className="cu1_description">
                                 <h3 className="cu1_subtitle">{currentMovie.subTitle}</h3>
                                 <p className="cu1_sen2">{currentMovie.desc}</p>
                             </div>
-
                             <div className="cu1_keyword">
                                 {currentMovie.keywords.map((kw: string) => (
                                     <p key={kw}>{kw}</p>
@@ -162,7 +154,7 @@ const Curation_1 = () => {
                     </div>
                 </div>
 
-                {/* 모달 레이어 */}
+                {/* 프리뷰 모달 (selectedMovie가 있을 때만) */}
                 {selectedMovie && (
                     <div className="movie_modal">
                         <div className="modal_bg" style={{ backgroundImage: `url(${selectedMovie.img})` }}></div>
@@ -184,19 +176,33 @@ const Curation_1 = () => {
                                     {selectedMovie.keywords.map((kw: string) => <p key={kw}>{kw}</p>)}
                                 </div>
                             </div>
+
                             <div className="m_video_preview">
                                 <img src={selectedMovie.img} alt="preview" />
-                                <div className="m_play_bar">
+                                {/* 디자인을 담당하는 핵심 컨트롤 바 */}
+                                <div className="m_control_bar">
                                     <div className="m_arrow">
-                                        <img src="/media/arrow_b.svg" className="m_left" onClick={() => navigateMovie('prev')} alt="prev" />
-                                        <img src="/media/arrow_b.svg" className="m_right" onClick={() => navigateMovie('next')} alt="next" />
+                                        <img src="/media/arrow_b.svg" className="m_left" onClick={(e) => navigateMovie(e, 'prev')} alt="prev" />
+                                        <img src="/media/arrow_b.svg" className="m_right" onClick={(e) => navigateMovie(e, 'next')} alt="next" />
                                     </div>
-                                    <button className="m_play_btn">PLAY</button>
-                                    <span className="m_cancel" onClick={() => setSelectedMovie(null)}>✕</span>
+                                    <button className="m_more_btn" onClick={handleMoreClick}>MORE</button>
+                                    <span className="m_cancel" onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedMovie(null);
+                                    }}>✕</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                )}
+
+                {/* 상세 모달 (MovieModal) */}
+                {isDetailOpen && selectedMovie && (
+                    <MovieModal 
+                        movie={selectedMovie} 
+                        onClose={() => setIsDetailOpen(false)} 
+                        onMovieClick={(next) => setSelectedMovie(next)}
+                    />
                 )}
             </div>
         </section>

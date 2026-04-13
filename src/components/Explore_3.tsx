@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { allMovies } from "./MovieData"; // 중앙 데이터 임포트
+import { allMovies, type Movie } from "./MovieData"; // 1. Movie 타입 추가
 import './Explore_3.css';
 
-const Explore_3 = () => {
-    // 1. 특정 영화 4개만 정확히 필터링
+// 2. Props 인터페이스 정의
+interface ExploreProps {
+    onMovieClick: (movie: Movie) => void;
+}
+
+const Explore_3 = ({ onMovieClick }: ExploreProps) => { // 3. props 받기
     const targetTitles = ["Project Hail Mary", "The Martian", "Interstellar", "Gravity"];
     
     const exploreMovies = allMovies.filter(movie => 
         targetTitles.includes(movie.title)
     );
 
-    // 2. 현재 선택된 영화 상태
-    const [selectedMovie, setSelectedMovie] = useState(exploreMovies[0]);
-
-    
     const sortedMovies = [...exploreMovies].sort((a, b) => 
         targetTitles.indexOf(a.title) - targetTitles.indexOf(b.title)
     );
 
-    // 컴포넌트 마운트 시 첫 번째 영화를 기본 선택 
+    const [selectedMovie, setSelectedMovie] = useState(sortedMovies[0]);
+
     useEffect(() => {
         if (sortedMovies.length > 0) {
             setSelectedMovie(sortedMovies[0]);
         }
     }, []);
+
+    // 4. 클릭 핸들러 (모달 오픈용)
+    const handleOpenModal = () => {
+        if (selectedMovie) {
+            onMovieClick(selectedMovie);
+        }
+    };
 
     if (sortedMovies.length === 0) return null;
 
@@ -37,42 +45,44 @@ const Explore_3 = () => {
             <div className="explore_inner">
                 <div className="ex3_cont">
                     
-                    {/* 왼쪽: 타이틀 리스트 */}
+                    {/* 타이틀 클릭 시에도 모달 오픈 */}
                     <div className="ex3_title_list">
                         {sortedMovies.map((movie) => (
                             <h2 
                                 key={movie.id}
                                 className={selectedMovie?.id === movie.id ? "active" : ""}
                                 onMouseEnter={() => setSelectedMovie(movie)}
+                                onClick={handleOpenModal} // 추가
+                                style={{ cursor: 'pointer' }} // 추가
                             >
                                 {movie.title}
                             </h2>
                         ))}
                     </div>
 
-                    {/* 중앙: 이미지 포스터 */}
-                    <div className="ex3_image_wrap">
+                    {/* 이미지 클릭 시 모달 오픈 */}
+                    <div 
+                        className="ex3_image_wrap" 
+                        onClick={handleOpenModal} 
+                        style={{ cursor: 'pointer' }} // 추가
+                    >
                         {selectedMovie && (
                             <img 
                                 src={selectedMovie.img} 
                                 alt={selectedMovie.title} 
-                                key={selectedMovie.id} // 애니메이션 트리거
+                                key={selectedMovie.id}
                             />
                         )}
                     </div>
 
-                    {/* 오른쪽: 상세 정보 */}
                     <div className="ex3_info">
                         {selectedMovie && (
                             <>
-                                <div className="ex3_director">
-                                    {selectedMovie.direc}
-                                </div>
+                                <div className="ex3_director">{selectedMovie.direc}</div>
                                 <div className="ex3_release">{selectedMovie.rel}</div>
                             </>
                         )}
                     </div>
-
                 </div>
             </div>
         </section>

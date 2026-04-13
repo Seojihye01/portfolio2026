@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { allMovies, type Movie } from './MovieData'; 
 import './Main_5.css';
 
-const movieData = [
-  { id: '01', genre: 'FANTASY', title: 'TRASHHHH', year: 2025, director: 'Denis Nolan', img: '/media/dune1.png' },
-  { id: '02', genre: 'ROMANCE', title: 'LOVELY DAY', year: 2024, director: 'Jane Doe', img: '/media/glass.jpg' },
-  { id: '03', genre: 'SCI-FI', title: 'INTERSTELLAR', year: 2014, director: 'Christopher Nolan', img: '/media/dune1.png' },
-  { id: '04', genre: 'NOIR', title: 'NIGHT CITY', year: 2023, director: 'Sam Smith', img: '/media/glass.jpg' },
-  { id: '05', genre: 'ARTHOUSE', title: 'SILENCE', year: 2022, director: 'Lee Young', img: '/media/dune1.png' },
+// 인터랙션을 위해 5개의 영화를 고정 데이터로 추출
+const displayMovies = [
+  { ...allMovies[0], displayGenre: 'FANTASY' }, // Dune
+  { ...allMovies[3], displayGenre: 'SCI-FI' },   // Interstellar
+  { ...allMovies[2], displayGenre: 'NOIR' },     // Blade Runner 2049
+  { ...allMovies[13], displayGenre: 'ARTHOUSE' }, // The Grand Budapest Hotel
+  { ...allMovies[11], displayGenre: 'SURVIVAL' }, // The Martian
 ];
 
 const Main_5 = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState<'up' | 'down'>('up');
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [isInsideContent, setIsInsideContent] = useState(false); // content 영역 진입 상태
+  const [isInsideContent, setIsInsideContent] = useState(false);
   
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -22,20 +24,17 @@ const Main_5 = () => {
 
   useEffect(() => {
     const handleGlobalWheel = (e: WheelEvent) => {
-      // 마우스가 실제 콘텐츠 영역(isInsideContent)에 있을 때만 스크롤 가로채기
       if (!isInsideContent) return;
 
       const isFirst = activeIndexRef.current === 0;
-      const isLast = activeIndexRef.current === movieData.length - 1;
+      const isLast = activeIndexRef.current === displayMovies.length - 1;
       const scrollingUp = e.deltaY < 0;
       const scrollingDown = e.deltaY > 0;
 
-      // 양 끝에서 탈출 방향 휠은 허용
       if ((isFirst && scrollingUp) || (isLast && scrollingDown)) return;
 
       e.preventDefault();
       
-      // 섹션이 화면 중앙에 오도록 정렬 (잘림 방지)
       contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       if (isAnimating.current) return;
@@ -79,7 +78,6 @@ const Main_5 = () => {
 
   return (
     <section className='main5_container'>
-      {/* 커스텀 커서: content 구역에서만 활성화 */}
       <div 
         className={`custom_cursor ${isInsideContent ? 'active' : ''}`}
         style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
@@ -93,7 +91,6 @@ const Main_5 = () => {
           <p>당신의 발견을 기다리는 영화 속 이야기들</p>
         </div>
 
-        {/* 인터랙션 핵심 구역 */}
         <div 
           className='main5_content'
           ref={contentRef}
@@ -102,10 +99,10 @@ const Main_5 = () => {
         >
           <div className='genre_scroll_area' ref={scrollRef}>
             <div className="scroll_spacer"></div>
-            {movieData.map((item, index) => (
+            {displayMovies.map((item, index) => (
               <div key={item.id} className={`genre_item ${activeIndex === index ? 'active' : ''}`}>
-                <span className='genre_num'>{item.id}/</span>
-                <span className='genre_name'>{item.genre}</span>
+                <span className='genre_num'>0{index + 1}/</span>
+                <span className='genre_name'>{item.displayGenre}</span>
               </div>
             ))}
             <div className="scroll_spacer"></div>
@@ -113,7 +110,7 @@ const Main_5 = () => {
 
           <div className='movie_display_area'>
             <div className={`shutter_wrapper ${direction}`}>
-              {movieData.map((item, index) => (
+              {displayMovies.map((item, index) => (
                 <div key={item.id} className={`shutter_slide ${activeIndex === index ? 'show' : ''}`}>
                   <img src={item.img} alt={item.title} className="movie_img" />
                 </div>
@@ -121,9 +118,18 @@ const Main_5 = () => {
             </div>
             
             <div className='movie_info_box'>
-              <div className='info_row'><span>TITLE</span><span className='val'>{movieData[activeIndex].title}</span></div>
-              <div className='info_row'><span>YEAR</span><span className='val'>{movieData[activeIndex].year}</span></div>
-              <div className='info_row'><span>DIRECTOR</span><span className='val'>{movieData[activeIndex].director}</span></div>
+              <div className='info_row'>
+                <span>TITLE</span>
+                <span className='val'>{displayMovies[activeIndex].title}</span>
+              </div>
+              <div className='info_row'>
+                <span>YEAR</span>
+                <span className='val'>{displayMovies[activeIndex].rel}</span>
+              </div>
+              <div className='info_row'>
+                <span>DIRECTOR</span>
+                <span className='val'>{displayMovies[activeIndex].direc}</span>
+              </div>
             </div>
           </div>
         </div>

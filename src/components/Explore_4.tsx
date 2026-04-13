@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { allMovies } from "./MovieData"; // 중앙 데이터 임포트
+import { allMovies, type Movie } from "./MovieData"; // Movie 타입 추가
 import './Explore_4.css';
 
-const Explore_4 = () => {
+// 1. Props 인터페이스 정의
+interface ExploreProps {
+    onMovieClick: (movie: Movie) => void;
+}
+
+const Explore_4 = ({ onMovieClick }: ExploreProps) => { // 2. props 받기
     const [selectedFilters, setSelectedFilters] = useState({
         GENRE: "All", YEAR: "2026", COUNTRY: "All", "SORT BY": "Latest"
     });
@@ -21,18 +26,24 @@ const Explore_4 = () => {
     const scrollTimeout = useRef<number | null>(null);
     const contentAreaRef = useRef<HTMLElement>(null);
 
-    // 1. 딱 10개만 뽑아서 랜덤하게 섞는 로직
     const getMoviesByPage = useCallback((page: number) => {
-        // 전체 데이터에서 10개만 셔플해서 가져옴
         const shuffled = [...allMovies]
             .sort(() => Math.random() - 0.5)
-            .slice(0, 10); // 디자인 레이아웃(10개)에 맞게 자르기
+            .slice(0, 10);
         
         return shuffled.map((movie, i) => ({
             ...movie,
             key: `movie-${page}-${movie.id}-${i}-${Math.random()}`
         }));
     }, []);
+
+    // 3. 영화 클릭 핸들러 추가
+    const handleMovieClick = (e: React.MouseEvent, movie: Movie) => {
+        e.preventDefault(); // 페이지 이동 방지
+        onMovieClick(movie); // 모달 오픈
+    };
+
+    // ... (기존 useEffect 및 기타 함수들은 동일)
 
     const handlePageChange = useCallback((nextPage: number) => {
         if (nextPage < 1 || nextPage > totalPages || isTransitioning) return;
@@ -50,7 +61,7 @@ const Explore_4 = () => {
     const handleSelectFilter = (category: string, option: string) => {
         setSelectedFilters(prev => ({ ...prev, [category]: option }));
         setActiveFilter(null);
-        handlePageChange(1); // 필터 변경 시 첫 페이지로
+        handlePageChange(1);
     };
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -162,15 +173,19 @@ const Explore_4 = () => {
                 >
                     <div className="masonry_layout">
                         {displayMovies.map((movie, idx) => (
-                            <a href={`/movie/${movie.id}`} key={movie.key} 
+                            <div // 4. a 태그 대신 div나 button을 사용하거나, href를 유지하려면 onClick에서 방지
+                               key={movie.key} 
                                className={`movie_item 
                                ${idx % 10 === 1 ? 'tall' : ''} 
-                               ${idx % 10 === 9 ? 'wide' : ''}`}>
+                               ${idx % 10 === 9 ? 'wide' : ''}`}
+                               onClick={(e) => handleMovieClick(e, movie)} // 5. 클릭 연결
+                               style={{ cursor: isInsideContent ? 'none' : 'pointer' }}
+                            >
                                 <img src={movie.img} alt={movie.title} />
                                 <div className="movie_hover_overlay">
                                     <span className="movie_hover_title">{movie.title}</span>
                                 </div>
-                            </a>
+                            </div>
                         ))}
                     </div>
                 </main>

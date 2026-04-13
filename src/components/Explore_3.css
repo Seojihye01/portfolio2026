@@ -8,7 +8,7 @@
 .explore_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
 
 .ex3_cont {display: grid; grid-template-columns: 250px 1fr 200px; align-items: center; padding: 30px; 
-           width: 1200px; z-index: 999;} 
+           width: 1200px; z-index: 99;} 
 
 .ex3_title_list h2 {font-size: 20px; letter-spacing: -2%; font-weight: 700; cursor: pointer;
                     color: rgba(249, 249, 249, 0.2); margin-bottom: 20px; transition: all 0.3s ease;}

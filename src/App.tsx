@@ -8,6 +8,9 @@ import Login from './components/Login';
 import Signup from "./components/Signup";
 import Curation from "./components/Curation";
 import Explore from "./components/Explore";
+import { type Movie } from "./components/MovieData";
+import MovieModal from "./components/Moviemodal";
+import Player from "./components/Player";
 
 
 
@@ -18,9 +21,15 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
 
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null); // 모달에 띄울 영화 정보 저장
+
   const handleLogin = () => setIsLoggedIn(true); // 로그인 처리 함수
 
   const handleLogout = () => setIsLoggedIn(false); // 로그아웃 처리 함수
+
+  const openModal = (movie: Movie) => setSelectedMovie(movie);
+
+  const closeModal = () => setSelectedMovie(null);
 
   return (
     <>
@@ -32,11 +41,19 @@ function App() {
         <Route path="/sub" element={<div>sub Page Content</div>} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup onLogin={handleLogin} />} />
-        <Route path="/curation" element={<Curation />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/curation" element={<Curation onMovieClick={openModal} />} />
+        <Route path="/explore" element={<Explore onMovieClick={openModal} />} />
+        <Route path="/player/:movieId" element={<Player />} />
         {/* <Route path="/funding" element={<div>Funding Page Content</div>} /> */}
       </Routes>
       <Footer />
+      {selectedMovie && (
+        <MovieModal 
+          movie={selectedMovie} 
+          onClose={closeModal} 
+          onMovieClick={openModal}
+        />
+      )}
     </>
   );
 }

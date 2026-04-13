@@ -1,15 +1,15 @@
 .explore_b_container {width: 100%; min-height: 100vh; background: #000000; padding: 200px; 
                      display: flex; justify-content: center; align-items: center;}
 
-.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+.ex2_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
 
 .ex2_grid_container {display: grid; grid-template-columns: repeat(4, 1fr); aspect-ratio: 16 / 9;
                      grid-template-rows: repeat(2, 325px); gap: 7px; width: 1200px;}
 
-.grid_item {position: relative; background-image: url("/media/universe.png"); overflow: hidden;
+.ex2_grid_item {position: relative; background-image: url("/media/universe.png"); overflow: hidden;
             background-size: 1200px 650px; background-repeat: no-repeat;}
 
-.grid_item::after {
+.ex2_grid_item::after {
     content: "";
     position: absolute;
     top: 0; left: 0;

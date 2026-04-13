@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import './Curation_6.css';
-import { allMovies, type Movie } from "./MovieData";
+import { allMovies, type Movie } from "./MovieData"; // 경로 확인
 
+interface CurationProps {
+    onMovieClick: (movie: Movie) => void;
+}
 
-const Curation_6 = () => {
+const Curation_6 = ({ onMovieClick }: CurationProps) => {
 
     const categoryMapping: Record<string, number> = {
         "Most Saved": 7,   // Mad Max: Fury Road
         "Most Clicked": 1,  // Dune
-        "Most Played": 4   // Interstellar
+        "Most Played": 4    // Interstellar
     };
 
-    // 2. 현재 선택된 카테고리 및 영화 상태 관리
     const [selectedCate, setSelectedCate] = useState("Most Saved");
-    const currentMovie = allMovies.find(m => m.id === categoryMapping[selectedCate]) || allMovies[0];
+    const currentMovie = allMovies.find(m => String(m.id) === String(categoryMapping[selectedCate])) || allMovies[0];
 
-    const handleNavigateToMovie = () => {
-        console.log(`[Directory.M] ${currentMovie.title} 상세 큐레이션으로 이동합니다.`);
-        // 실제 구현 시: navigate(`/curation/${currentMovie.id}`);
+    // 제목 클릭 시 실행될 함수
+    const handleTitleClick = () => {
+        // App.tsx에서 전달받은 모달 오픈 함수 실행
+        onMovieClick(currentMovie);
     };
 
     return (
@@ -41,13 +44,20 @@ const Curation_6 = () => {
                             ))}
                         </div>
 
-                        <div className="cu6_movie_visual" key={currentMovie.id}>
+                        {/* 이미지 클릭 시에도 모달이 뜨게 하면 UX가 더 좋습니다 */}
+                        <div 
+                            className="cu6_movie_visual" 
+                            key={currentMovie.id}
+                            onClick={handleTitleClick}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <img src={currentMovie.img} alt={currentMovie.title} className="fade_in" />
                         </div>
                     </div>
 
                     <div className="cu6_movie_cta_row">
-                        <div className="cu6_title_set" onClick={handleNavigateToMovie}>
+                        {/* 텍스트 세트 클릭 시 모달 오픈 */}
+                        <div className="cu6_title_set" onClick={handleTitleClick} style={{ cursor: 'pointer' }}>
                             <h3 className="cu6_m_title">{currentMovie.title}</h3>
                             <div className="arrow_group">
                                 <img src="/media/arrow_btn.svg" alt="arrow" />

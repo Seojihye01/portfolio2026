@@ -7,12 +7,12 @@ const Explore_2 = () => {
 
     return (
         <section className="explore_b_container">
-            <div className="explore_inner">
+            <div className="ex2_inner">
                 <div className="ex2_grid_container">
                     {gridItems.map((item, index) => (
                         <div 
                             key={index} 
-                            className={`grid_item item_${index + 1} ${item === "empty" ? "empty_box" : ""}`}
+                            className={`ex2_grid_item item_${index + 1} ${item === "empty" ? "empty_box" : ""}`}
                         >
                             {/* 1번째 조각 영문 타이틀 */}
                             {index === 0 && (
