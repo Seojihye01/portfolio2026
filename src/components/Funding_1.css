@@ -1,0 +1,11 @@
+.supporter_section {width: 100%; height: 100vh; overflow: hidden;  display: flex; justify-content: center;
+                    align-items: center; position: relative;  z-index: 10; margin: 50px;}
+
+.interaction_wrapper {position: relative; display: flex; justify-content: center; align-items: center;
+                      width: 1200px; height: 100%;}
+
+.job_tag {position: absolute; font-size: 14px; color: #bbb; letter-spacing: 10%; font-weight: 400;
+          text-transform: uppercase; white-space: nowrap; pointer-events: none;}
+
+.center_supporter {font-size: 36px; text-transform: uppercase; z-index: 20; white-space: nowrap;
+                   pointer-events: none;}

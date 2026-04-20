@@ -32,6 +32,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -77,4 +79,16 @@ video {
   -ms-user-select: none;
   user-select: none;           /* 텍스트/이미지 선택 방지 */
   -webkit-user-drag: none;     /* 드래그 앤 드롭 금지 */
+}
+
+:global(body), :global(html) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html, body, #root {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }

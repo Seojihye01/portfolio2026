@@ -80,3 +80,14 @@ html, body {
 
 #root {width: 100%; margin: 0; padding: 0;}
 
+html, body, #root {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+:global(body), :global(html) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}

@@ -55,7 +55,7 @@ const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
                             <div className='sub'><a href='#'>Search</a></div>
                         </div>
                     </li>
-                    <li className='gnbH'><a href='#'>FUNDING</a>
+                    <li className='gnbH'><a href='/funding'>FUNDING</a>
                         <div className='sub_gnb'>
                             <div className='sub'><a href='#'>Main</a></div>
                             <div className='sub'><a href='#'>Now Funding</a></div>

@@ -11,6 +11,8 @@ import Explore from "./components/Explore";
 import { type Movie } from "./components/MovieData";
 import MovieModal from "./components/Moviemodal";
 import Player from "./components/Player";
+import Funding from "./components/Funding";
+
 
 
 
@@ -38,13 +40,13 @@ function App() {
       <Routes>
         {/* 메인 페이지 컴포넌트를 여기에 연결하세요 */}
         <Route path="/" element={<Main />} />
-        <Route path="/sub" element={<div>sub Page Content</div>} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup onLogin={handleLogin} />} />
         <Route path="/curation" element={<Curation onMovieClick={openModal} />} />
         <Route path="/explore" element={<Explore onMovieClick={openModal} />} />
         <Route path="/player/:movieId" element={<Player />} />
-        {/* <Route path="/funding" element={<div>Funding Page Content</div>} /> */}
+        <Route path="/funding" element={<Funding />} />
+       
       </Routes>
       <Footer />
       {selectedMovie && (

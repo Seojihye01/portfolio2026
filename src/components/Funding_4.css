@@ -1,0 +1,77 @@
+.funding_section {width: 100%; height: 100vh; background: #ffffff; overflow: hidden; 
+                  position: relative; display: flex; align-items: center; cursor: none;}
+
+.funding_section.funding_full_page {width: 100%; height: 100vh; margin: 0; padding: 0; display: flex;
+                                    justify-content: center; align-items: center; overflow: hidden;
+                                    position: relative; background-color: #fff; scroll-snap-align: start;
+                                    scroll-snap-stop: always;}
+
+.funding_container {max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 60px; position: relative;
+                    height: 100%; display: flex; flex-direction: column; justify-content: center;
+                    align-items: center;}
+
+.fu4_content_step {width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px;}
+
+.main_flow {gap: 60px;}
+
+.fu4_inner_content {width: 100%; display: flex; flex-direction: column; align-items: center;}
+
+.text_step_layer {display: flex; flex-direction: column; align-items: center; gap: 75px; position: absolute; 
+                  left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; 
+                  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);}
+
+.text_step_layer.step_0, .text_step_layer.step_1, .text_step_layer.step_2, .text_step_layer.step_3 {
+  top: 15%; left: 60px; transform: translate(0, 0); align-items: flex-start;}
+
+.text_step_layer, .final_content_layer {position: absolute; width: 100%; display: flex; flex-direction: column;
+                                        align-items: center;}
+
+.center_fixed {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%;
+               display: flex; flex-direction: column; align-items: center;}
+
+.static_title {font-size: 60px; font-weight: 700; margin-bottom: 60px; text-align: center; position: absolute;
+               top: 15%; left: 60px;}
+
+.fu4_bottom_tab {display: flex; width: 100%; justify-content: space-between; align-items: flex-start;
+                 min-height: 250px; margin-top: 150px;}
+
+.grid_row {display: flex; gap: 40px; justify-content: center; width: 100%;}
+
+.text_step_layer.step_0 .grid_row, .text_step_layer.step_1 .grid_row {gap: 15px;}
+
+.grid_char {font-size: 40px; font-weight: 800; color: #121212; display: inline-block; 
+            width: 50px; height: 50px; text-align: center;}
+
+.fu4_tab_section {display: flex; width: 100%; justify-content: space-between; align-items: flex-start;
+                  gap: 100px;}
+
+.fu4_content_wrapper {margin-top: 150px; width: 100%;}
+
+.fu4_tab {display: flex; justify-content: space-between; width: 100%; align-items: flex-start; margin-top: 20px;}
+
+.tab_left {flex: 1;}
+
+.tab_en {font-size: 16px; color: #86868b; margin-bottom: 20px;}
+
+.tab_kr {font-size: 23px; line-height: 1.8; font-weight: 400;}
+
+.tab_right {width: fit-content;}
+
+.nav_list {display: flex; flex-direction: column; gap: 25px; align-items: flex-end;}
+
+.list_label {font-size: 20px; transition: 0.4s; color: #acacb1;}
+
+.list_label.active {color: #121212; font-weight: 600;}
+
+.indicator_line {width: 3px; height: 20px; transition: 0.4s;}
+
+.custom_cursor_wrapper {position: fixed; width: 50px; height: 50px; z-index: 9999; pointer-events: none;
+                        transform: translate(-50%, -50%) scale(0); transition: transform 0.2s;}
+
+.custom_cursor_wrapper.active {transform: translate(-50%, -50%) scale(1);}
+
+.custom_cursor_visual {width: 100%; height: 100%; background: rgba(249, 249, 249, 0.4); backdrop-filter: blur(1px); 
+                       border-radius: 8px; display: flex; align-items: center; justify-content: center;
+                       box-shadow: inset 1px 2px 5px rgba(18, 18, 18, 0.1);}
+
+.custom_cursor_visual img {width: 40%; opacity: 0.7;}

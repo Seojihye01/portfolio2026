@@ -1,0 +1,114 @@
+.funding_list_section {width: 100%; min-height: 100vh; padding: 80px 20px; background-color: #f9f9f9; 
+                       position: relative; transition: background-color 0.5s ease; margin: 100px 0;}
+
+.glass_morph {background: rgba(249, 249, 249, 0.4); border: 1px solid rgba(249, 249, 249, 0.7); 
+              backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px;
+              box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);}
+
+.theme_ {--point-color: #aaa; --tab-point: #aaa;}
+
+.funding_container {max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;}
+
+.status_tab_container {display: flex; justify-content: center; margin-bottom: 50px;}
+
+.status_tab_track {display: flex; padding: 5px; border-radius: 40px; position: relative; width: fit-content;
+                   overflow: hidden; border: none; height: 45px; backdrop-filter: blur(1px) saturate(120%);
+                   background: linear-gradient(90deg, rgba(16, 144, 191, 0.02) 0%, rgba(16, 144, 191, 0.2) 100%); 
+                   box-shadow: inset 0 4px 9px rgba(18, 18, 18, 0.1), 0 4px 15px rgba(18, 18, 18, 0.15);
+                   min-width: 400px;}
+
+.status_tab_track::before {content: ''; position: absolute; inset: 0; opacity: 0.58; transition: opacity 0.5s ease;
+                           background: linear-gradient(to right, rgba(249, 249, 249, 0.3) 0%,
+                                                     rgba(16, 144, 191, 0.01) 25%, 
+                                                     rgba(16, 144, 191, 0.01) 65%, 
+                                                     rgba(16, 144, 191, 0.01) 100%);}
+
+.tab_btn {padding: 12px 35px; border: none; background: none; font-size: 14px; font-weight: 400; 
+          color: #999; cursor: pointer; z-index: 2; transition: all 0.3s; display: flex; flex: 1;
+          justify-content: center; align-items: center; padding-top: -10px; min-width: 100px;}
+
+.tab_btn.active {font-weight: 500; color: #777;}
+
+.tab_indicator {position: absolute; top: 5px; bottom: 5px; width: calc(25% - 10px); border-radius: 35px;
+                background: rgba(249, 249, 249, 0.2); backdrop-filter: blur(2px); z-index: 1;
+                -webkit-backdrop-filter: blur(2px); transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
+                box-shadow: inset 0 4px 9px rgba(18, 18, 18, 0.12), 0 4px 9px rgba(18, 18, 18, 0.20);}
+
+.tab_indicator::before {content: ''; position: absolute; inset: -10px -20px; filter: blur(1px);
+                        background: transparent; transition: all 0.5s ease; opacity: 0.15;}
+
+.tab_indicator.pos_Dev {left: 10px;}
+
+.tab_indicator.pos_Prod {left: calc(25% + 7px);}
+
+.tab_indicator.pos_Post {left: calc(50% + 5px);}
+
+.tab_indicator.pos_Ready {left: calc(75% + 1px);}
+
+.category_nav {display: flex; justify-content: center; gap: 35px; margin-bottom: 60px;}
+
+.cat_btn {background: none; border: none; font-size: 16px; color: #bbb; cursor: pointer; 
+          transition: all 0.3s;}
+
+.cat_btn.active {color: var(--point-color);}
+
+.funding_grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;}
+
+.funding_card {position: relative; border-radius: 15px; overflow: hidden; transition: all 0.4s ease;
+               background: rgba(229, 229, 229, 0.2); backdrop-filter: blur(4px) saturate(110%);
+               -webkit-backdrop-filter: blur(4px) saturate(110%); 
+               box-shadow: inset 0 4px 10px rgba(18, 18, 18, 0.15), 
+                                 0 4px 20px rgba(18, 18, 18, 0.15);       
+               border: none; text-decoration: none;}
+
+.funding_card_link {text-decoration: none; color: inherit; display: block;}
+
+.card_img_box {position: relative; overflow: hidden; aspect-ratio: 16/11; border-top-left-radius: 15px; 
+               border-top-right-radius: 15px;  display: flex; justify-content: center;
+              align-items: center; margin-top: 4px;}
+
+.card_img_box img {width: 330px; height: auto; object-fit: cover; transition: transform 0.6s; border-radius: 12px;}
+
+.more_overlay {position: absolute; inset: 0; background: rgba(18, 18, 18, 0.5); opacity: 0; border-radius: 12px;
+               display: flex; justify-content: center; align-items: center; transition: 0.3s; 
+               width: 330px; height: 220px; top: 23px; left: 28px;}
+
+.more_overlay span {color: #f9f9f9; font-weight: 600; letter-spacing: 2px; transform: translateY(10px); transition: 0.4s;}
+
+.funding_card:hover, 
+.funding_card:active {background: linear-gradient(0deg, rgba(16, 144, 191, 0.05), rgba(16, 144, 191, 0.05)), 
+                                                rgba(229, 229, 229, 0.4); transform: translateY(-5px);}
+
+.funding_card:hover .more_overlay {opacity: 1;}
+
+.funding_card:hover .more_overlay span {transform: translateY(0);}
+
+.card_content {padding: 2px 28px 15px 28px;}
+
+.card_header {display: flex; justify-content: space-between; margin-bottom: 15px; align-items: flex-start; 
+              padding: 20px; border-bottom: 1px solid rgba(249, 249, 249, 0.1); border-radius: 13px; width: 330px;
+              background: rgba(249, 249, 249, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);  
+              border-top: 1px solid rgba(249, 249, 249, 0.5); box-shadow: inset 0 2px 13px rgba(18, 18, 18, 0.1);}
+
+.genre_label {font-size: 12px; letter-spacing: 5%; font-weight: 400; color: #aaa;}
+
+.achievement_tag {font-size: 13px; letter-spacing: 10%; font-weight: 500; margin-top: 45px;}
+
+.card_info_list {display: flex; flex-direction: column; gap: 2px;}
+
+.info_row {display: flex; justify-content: space-between; font-size: 14px; letter-spacing: 5%; font-weight: 300;
+           color: #888; align-items: center; text-decoration: none; border: none;}
+
+.dot_line {flex: 1; height: 1px; border-bottom: 1.5px dotted rgba(18, 18, 18, 0.25); margin: 0 20px; 
+           align-items: center; position: relative; top: -1px;}
+
+.card_content, .card_header h3, .card_info_list span {text-decoration: none !important;}
+
+.placeholder_card {background: transparent; border: 2px dashed #ddd; box-shadow: none;
+                   display: flex; justify-content: center; align-items: center; min-height: 400px;}
+
+.placeholder_inner {text-align: center; color: #bbb;}
+
+.placeholder_inner p {font-weight: 600; font-size: 14px; margin-bottom: 15px;}
+
+.placeholder_inner span {font-size: 12px;}
