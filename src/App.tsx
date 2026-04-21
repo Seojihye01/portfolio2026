@@ -12,6 +12,7 @@ import { type Movie } from "./components/MovieData";
 import MovieModal from "./components/Moviemodal";
 import Player from "./components/Player";
 import Funding from "./components/Funding";
+import FundingEx from "./components/FundingEx";
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/explore" element={<Explore onMovieClick={openModal} />} />
         <Route path="/player/:movieId" element={<Player />} />
         <Route path="/funding" element={<Funding />} />
+        <Route path="/funding/:id" element={<FundingEx />} />
        
       </Routes>
       <Footer />

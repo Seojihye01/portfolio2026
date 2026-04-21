@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { fundingProjects, type FundingProject } from './FundingData'; 
 import './Funding_3.css';
 
@@ -19,7 +20,7 @@ const Funding_3 = () => {
     if (activeCategory !== "All") {
       filtered = filtered.filter(project => project.genre === activeCategory);
     }
-    // 데이터 복제 (충분히 많아 보이게)
+    // 데이터 복제
     return [...filtered, ...filtered, ...filtered].map((p, index) => ({
       ...p,
       uniqueId: `${p.id}-${index}`
@@ -27,7 +28,6 @@ const Funding_3 = () => {
   }, [activeTab, activeCategory]);
 
   return (
-    // 💡 테마 클래스를 여기에 부여해서 전체 색상을 제어합니다.
     <section className={`funding_list_section theme_${activeTab}`}>
       {/* 💡 글래스모피즘을 위한 배경 blur 오버레이 (선택사항) */}
       <div className="section_background" />
@@ -66,8 +66,8 @@ const Funding_3 = () => {
         {/* 카드 그리드 */}
         <div className="funding_grid">
           {displayProjects.map((project: any) => (
-            <a href={`/funding/${project.id}`} key={project.uniqueId} className="funding_card_link">
-              {/* 💡 카드에도 글래스모피즘 적용 */}
+            <Link to={`/funding/${project.id}`} key={project.uniqueId} className="funding_card_link">
+              <div className="funding_card">
               <div className="funding_card glass_morph">
                 <div className="card_img_box">
                   <img src={project.image} alt={project.title} />
@@ -91,7 +91,8 @@ const Funding_3 = () => {
                   </div>
                 </div>
               </div>
-            </a>
+              </div>
+            </Link>
           ))}
           {displayProjects.length < 6 && (
             <div className="funding_card placeholder_card">

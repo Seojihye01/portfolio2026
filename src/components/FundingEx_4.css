@@ -1,0 +1,28 @@
+.fex4_container {width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center;
+                 background-image: url("/media/paint3.jpg"); background-size: cover; background-position: center;
+                 padding: 100px 0;}
+
+.fex4_inner {width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; text-align: center;}
+
+.fex4_title {font-size: 22px; font-weight: 500; letter-spacing: 10px; margin-bottom: 50px;
+             text-shadow: 1px 1px 1px rgba(249, 249, 249, 0.5), -1px -1px 1px rgba(18, 18, 18, 0.1);}
+
+.fex4_slot_window {width: 420px; height: 150px; border-radius: 12px; overflow: hidden; position: relative;
+                   box-shadow: 0 10px 30px rgba(18, 18, 18, 0.15); margin-bottom: 60px; background: #f9f9f9;}
+
+.fex4_slot_img {width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;}
+
+.fex4_shuffle_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+                       background: rgba(249, 249, 249, 0.05); pointer-events: none;}
+
+.fex4_meta_grid {width: 420px; display: flex; flex-direction: column; gap: 30px;}
+
+.fex4_row {display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px;
+           border-bottom: 1px solid rgba(18, 18, 18, 0.05); box-sizing: border-box;}
+
+.fex4_label, .fex4_value {font-size: 14px; 
+                          text-shadow: 0.5px 1px 1px rgba(249, 249, 249, 0.8), -0.5px -1px 1px rgba(18, 18, 18, 0.2);}
+
+.fex4_label {font-weight: 300; text-align: left;}
+
+.fex4_value {font-weight: 400; text-align: right;}

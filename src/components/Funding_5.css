@@ -27,7 +27,7 @@
 .stat_item {text-align: center;}
 
 .stat_num {font-size: 75px; font-weight: 300; line-height: 1; display: block; margin-bottom: 15px;
-           font-variant-numeric: tabular-nums;}
+          }
 
 .stat_label {font-size: 16px; font-weight: 400;}
 

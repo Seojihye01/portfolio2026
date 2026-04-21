@@ -1,0 +1,19 @@
+.funding_timer_bar {background-color: #121212; padding: 25px 156px; display: flex; color: #f9f9f9;
+                    justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;}
+
+.timer_label {font-size: 40px; font-weight: 800; letter-spacing: 5%;}
+
+.timer_display {font-size: 40px; font-weight: 800; display: flex; align-items: center;
+                font-variant-numeric: tabular-nums;}
+
+.divider {margin: 0 2px;}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .funding_timer_bar {
+    padding: 15px 25px;
+  }
+  .timer_label, .timer_display {
+    font-size: 24px;
+  }
+}

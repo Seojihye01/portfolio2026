@@ -62,7 +62,7 @@ const Main_6: React.FC = () => {
                     <div className="vf_top">
                         <div className="left_up_tag">
                             <div className="rec_group">
-                                <a href="/">
+                                <a href="/funding">
                                     <span className="rec_dot"></span>
                                     <p className="rec_tag">FUNDING</p>
                                 </a>
