@@ -1,17 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fundingProjects } from "./FundingData"; 
 import "./FundingEx_2.css";
 
 const FundingEx_2 = () => {
-  // 초기 시간 설정 (예: 10분 10초 10밀리초 등을 시뮬레이션하기 위한 총 초)
-  // 시안의 00:10:10:10 형식을 [시:분:초:밀리초]로 가정하여 설정
+  const { id } = useParams<{ id: string }>();
+  
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
-    minutes: 10,
-    seconds: 10,
-    ms: 10,
+    minutes: 0,
+    seconds: 0,
+    ms: 0,
   });
 
   useEffect(() => {
+    const project = fundingProjects.find((p) => p.id === Number(id));
+    
+    // 1. remainingDays가 존재할 경우 시간으로 변환
+    if (project && project.remainingDays !== undefined) {
+      // 예: 3일 남음 -> 72시간 0분 0초
+      setTimeLeft({
+        hours: project.remainingDays * 24, 
+        minutes: 0,
+        seconds: 0,
+        ms: 0,
+      });
+    }
+  }, [id]);
+
+  useEffect(() => {
+    // 2. 타이머 작동 로직 (기존과 동일)
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         let { hours, minutes, seconds, ms } = prev;
@@ -24,7 +42,7 @@ const FundingEx_2 = () => {
         if (ms > 0) {
           ms -= 1;
         } else {
-          ms = 99; // 밀리초 리셋
+          ms = 99;
           if (seconds > 0) {
             seconds -= 1;
           } else {
@@ -39,28 +57,27 @@ const FundingEx_2 = () => {
             }
           }
         }
-
         return { hours, minutes, seconds, ms };
       });
-    }, 10); // 10ms 마다 업데이트하여 밀리초 단위 구현
+    }, 10);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [id]);
 
-  // 두 자리 숫자로 포맷팅
   const format = (num: number) => String(num).padStart(2, "0");
 
   return (
     <div className="funding_timer_bar">
-      <span className="timer_label">Funding</span>
+      <span className="timer_label">Remaining</span>
       <div className="timer_display">
+        {/* 3. 시안처럼 00:00:00:00 형식 유지 */}
         <span>{format(timeLeft.hours)}</span>
         <span className="divider">:</span>
         <span>{format(timeLeft.minutes)}</span>
         <span className="divider">:</span>
         <span>{format(timeLeft.seconds)}</span>
         <span className="divider">:</span>
-        <span>{format(timeLeft.ms)}</span>
+        <span className="ms_text">{format(timeLeft.ms)}</span>
       </div>
     </div>
   );

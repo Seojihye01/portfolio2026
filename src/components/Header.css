@@ -1,12 +1,16 @@
-#header {width: 100%; position: fixed; top: 0; left: 0; z-index: 100; 
-         transition: all 0.3s ease; background: rgba(249, 249, 249, 0.7); 
-         box-shadow: 0 2px 10px rgba(18, 18, 18, 0.05);}
+#header {width: 100%; position: fixed; top: 0; left: 0; z-index: 100; transition: all 0.3s ease;}
+         
+#header.theme-light {background: rgba(249, 249, 249, 0.7); border-bottom: none; 
+                     box-shadow: 0 2px 10px rgba(18, 18, 18, 0.1);}
 
-#header.is-main {background: transparent; border-bottom: 2px rgba(249, 249, 249, 0.7) solid;}
+#header.theme-light .gnb1, #header.theme-light .gnb2 {color: #121212;}
 
-#header.is-main .gnb1, #header.is-main .gnb2 {color: #f9f9f9;}
+#header.theme-dark {background: transparent; border-bottom: 2px solid rgba(249, 249, 249, 0.7); 
+                    box-shadow: none; height: 70.5px;}
 
-#header.is-main .sub_gnb, #header.is-main .sub_menu {background: rgba(249, 249, 249, 0.7); 
+#header.theme-dark .gnb1, #header.theme-dark .gnb2 {color: #f9f9f9;}
+
+#header.theme-dark .sub_gnb, #header.theme-dark .sub_menu {background: rgba(249, 249, 249, 0.7); 
                                                      box-shadow: 0 4px 15px rgba(18, 18, 18, 0.1);}
 
 .header_inner {width: 1200px; margin: 0 auto; display: flex; transition: height 0.4s;
@@ -14,25 +18,15 @@
 
 .header_inner .logo {width: 140px;}
 
-#header.scrolled {background: rgba(249, 249, 249, 0.9); border-bottom: none;
-                  box-shadow: 0 2px 10px rgba(18, 18, 18, 0.05);}
-
-#header.scrolled .header_inner {height: 70.5px;}
-
-#header.scrolled .sub_gnb, #header.scrolled .sub_menu {background: rgba(249, 249, 249, 0.9);}
-
-#header.scrolled .gnb1, #header.scrolled .gnb2 {color: #121212;}
-
 .gnb1, .gnb2 {display: flex; align-items: center; gap: 40px;}
 
-.gnb1 {display: flex; gap: 80px; color: #121212; font-weight: 400;}
+.gnb1 {gap: 80px; font-weight: 400;}
 
 .gnbH {position: relative; padding: 10px 0;}
 
-.sub_gnb {display: none; position: absolute; z-index: 1;
-          top: 55px; left: 50%; transform: translateX(-50%);
-          background: rgba(249, 249, 249, 0.98); padding: 10px; min-width: max-content;
-          text-align: center; border-radius: 0 0 8px 8px; z-index: 10;
+.sub_gnb {display: none; position: absolute; z-index: 1; top: 55px; left: 50%; transform: translateX(-50%);
+          background: rgba(249, 249, 249, 0.7); padding: 10px; min-width: max-content;
+          text-align: center; border-radius: 0 0 8px 8px; z-index: 10; backdrop-filter: blur(4px);
           box-shadow: 0 2px 10px rgba(18, 18, 18, 0.1);}
 
 .gnbH:hover .sub_gnb, .menu_item:hover .sub_menu {display: block; animation: fadeInDown 0.3s ease;}
@@ -49,8 +43,8 @@
 .menu_item {position: relative; padding: 10px 0;}
 
 .sub_menu {display: none; position: absolute; z-index: 1;
-           top: 60px; left: 50%; transform: translateX(-50%);
-           background: rgba(249, 249, 249, 0.98); padding: 10px; min-width: 100px;
+           top: 60px; left: 50%; transform: translateX(-50%); backdrop-filter: blur(4px);
+           background: rgba(249, 249, 249, 0.7); padding: 10px; min-width: 100px;
            text-align: center; border-radius: 0 0 8px 8px; z-index: 10;
            box-shadow: 0 2px 10px rgba(18, 18, 18, 0.1);}
 
@@ -70,14 +64,14 @@
 
 .search_modal_overlay.active {opacity: 1; visibility: visible; pointer-events: auto;}
 
-.search_modal_content {position: relative; width: 800px; height: 500px; background: rgba(249, 249, 249, 0.5);
+.search_modal_content {position: relative; width: 800px; height: 500px; background: rgba(249, 249, 249, 0.55);
                        border-radius: 40px; padding: 60px; display: flex; flex-direction: column; align-items: center;
                        box-shadow: 0 8px 32px rgba(18, 18, 18, 0.1); overflow: visible; z-index: 1;}
 
 .search_modal_content::before {content: ''; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; 
                                backdrop-filter: blur(15px); z-index: -1; border-radius: 38px;}
 
-.close_btn {position: absolute; top: 30px; right: 30px; font-size: 23px; cursor: pointer; color: rgba(18, 18, 18, 0.5);}
+.header_close_btn {position: absolute; top: 30px; right: 30px; font-size: 23px; cursor: pointer; color: rgba(18, 18, 18, 0.5);}
 
 .search_input_wrapper {width: 100%; max-width: 500px; position: relative; border-bottom: 1.6px solid rgba(18, 18, 18, 0.5); 
                        margin-top: 100px; display: flex; align-items: center;}
@@ -95,3 +89,5 @@
 
 .search_tag {padding: 8px 16px; border: 1px solid rgba(18, 18, 18, 0.5); border-radius: 10px; font-size: 14px;
              color: rgba(18, 18, 18, 0.5); }
+
+html {scroll-behavior: smooth;}

@@ -96,7 +96,7 @@ const Explore_4 = ({ onMovieClick }: ExploreProps) => { // 2. props 받기
     }, [getMoviesByPage]);
 
     return (
-        <section className="explore_grid_container">
+        <section className="explore_grid_container" data-theme="light">
             <div 
                 className={`custom_cursor ${isInsideContent ? 'active' : ''}`}
                 style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}

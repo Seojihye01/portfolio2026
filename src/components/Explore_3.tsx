@@ -36,7 +36,7 @@ const Explore_3 = ({ onMovieClick }: ExploreProps) => { // 3. props 받기
     if (sortedMovies.length === 0) return null;
 
     return (
-        <section className="explore_b_container">
+        <section className="explore_b_container" data-theme="dark">
             <div className="ex3_video">
                 <video autoPlay muted loop playsInline>
                     <source src="/media/ex_bg.mp4" type="video/mp4" />

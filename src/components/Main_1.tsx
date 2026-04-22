@@ -3,7 +3,7 @@ import './Main_1.css';
 
 const Main_1 = () => {
   return (
-    <div className='hero_video_section'>
+    <div className='hero_video_section' data-theme="dark">
       {/* 배경 영상 영역 */}
       <div className="video_container">
         <video autoPlay muted loop playsInline

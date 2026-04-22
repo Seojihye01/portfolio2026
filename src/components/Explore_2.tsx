@@ -6,7 +6,7 @@ const Explore_2 = () => {
     const gridItems = [1, 2, 3, 4, 5, 6, "empty", 7]; 
 
     return (
-        <section className="explore_b_container">
+        <section className="explore_b_container" data-theme="dark">
             <div className="ex2_inner">
                 <div className="ex2_grid_container">
                     {gridItems.map((item, index) => (

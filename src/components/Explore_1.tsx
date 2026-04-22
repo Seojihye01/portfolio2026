@@ -4,7 +4,7 @@ import './Explore_1.css';
 const Explore_1 = () => {
 
     return(
-        <div className='hero_video_section'>
+        <div className='hero_video_section' data-theme="dark">
             <div className="video_container">
                 <video autoPlay muted loop playsInline
                     onContextMenu={(e) => e.preventDefault()}

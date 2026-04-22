@@ -17,7 +17,7 @@ const Footer = () => {
                             <li className="sec_title">SERVICE</li>
                             <a href="/curation"><li>Curation</li></a>
                             <a href="/explore"><li>Explore</li></a>
-                            <a href="#"><li>Funding</li></a>
+                            <a href="/funding"><li>Funding</li></a>
                             <a href="#"><li>About</li></a>
                             <a href="#"><li>Membership</li></a>
                         </ul>

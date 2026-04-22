@@ -1,6 +1,6 @@
 .main_container {width: 100vw; height: calc(100vh - 80px);
                  background-color: #f9f9f9; display: flex; padding: 40px; box-sizing: border-box;
-                 align-items: center; justify-content: center; margin-top: 80px; overflow: hidden; position: relative;}
+                 align-items: center; justify-content: center; margin-top: 180px; overflow: hidden; position: relative;}
 
 .grid_wrapper {width: 1200px; display: flex; flex-direction: column; gap: 20px;
                position: relative; z-index: 1;}

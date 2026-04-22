@@ -5,7 +5,7 @@ import './Main_2.css';
 const Main_2 = () => {
     
   return (
-    <div className='main_container'>
+    <div className='main_container' data-theme="light">
         <div className="grid_wrapper">
             <div className='grid_top'>
                 <div className='video_box1'>

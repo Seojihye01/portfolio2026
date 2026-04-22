@@ -38,7 +38,7 @@ const Explore_5 = ({ onMovieClick }: ExploreProps) => { // 3. props 받기
     };
 
     return (
-        <section className="ex5_container">
+        <section className="ex5_container" data-theme="light">
             <div className="ex5_inner">
                 <div className="ex5_grid_layout">
                     {currentMovies.map((movie, idx) => (

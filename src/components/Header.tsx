@@ -9,58 +9,66 @@ interface HeaderProps {
 
 const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
     const location = useLocation();
-
+    const [isDarkSection, setIsDarkSection] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     // 현재 경로가 '/'이면 true, 아니면 false
     const isMain = location.pathname === '/'; 
-    // 스크롤 여부 상태 관리
-    const [isScrolled, setIsScrolled] = useState(false);
-
+    
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 620); // 50px 이상 스크롤시 true or false
-        };
-        window.addEventListener('scroll', handleScroll);
-        // 클린업 함수: 컴포넌트 언마운트 시 이벤트 제거
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-    // 메인이면서 스크롤 전일 때만 '투명 테마'
-    const isTransparent = isMain && !isScrolled;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // 감시 중인 요소가 화면에 보이면 해당 요소의 data-theme 확인
+                    if (entry.isIntersecting) {
+                        const theme = entry.target.getAttribute('data-theme');
+                        setIsDarkSection(theme === 'dark');
+                    }
+                });
+            },
+            { threshold: [0.05] } // 섹션이 10%만 걸쳐도 감지
+        );
+        // 모든 섹션이나 어두운 배경이 들어가는 요소를 감시
+        const sections = document.querySelectorAll('[data-theme]');
+        sections.forEach((section) => observer.observe(section));
+
+        return () => observer.disconnect();
+    }, [location.pathname]); // 경로가 바뀔 때마다 다시 감시
+
 
     return (
-        <div id='header' className={`${isMain ? 'is-main' : ''} ${isScrolled ? 'scrolled' : ''}`}>
+        <div id='header' className={isDarkSection ? 'theme-dark' : 'theme-light'}>
             <div className='header_inner'>
                 <div>
                     <a href='/'>
-                        <img src={isTransparent ? "/media/logo_w.png" : "/media/logo_b.png"}
-                            alt="logo" className='logo' /></a>
+                        <img src={isDarkSection ? "/media/logo_w.png" : "/media/logo_b.png"} alt="logo" className='logo' />
+                    </a>
                 </div>
 
                 <ul className='gnb1'>
                     <li className='gnbH'><a href='/curation'>CURATION</a>
                         <div className='sub_gnb'>
-                            <div className='sub'><a href='#'>Main</a></div>
-                            <div className='sub'><a href='#'>Reason</a></div>
-                            <div className='sub'><a href='#'>Curation</a></div>
-                            <div className='sub'><a href='#'>Director's Insight</a></div>
-                            <div className='sub'><a href='#'>Review</a></div>
+                            <div className='sub'><Link to='/curation?section=0'>Intro</Link></div>
+                            <div className='sub'><Link to='/curation?section=1'>Object</Link></div>
+                            <div className='sub'><Link to='/curation?section=2'>Collection</Link></div>
+                            <div className='sub'><Link to='/curation?section=3'>Perspective</Link></div>
+                            <div className='sub'><Link to='/curation?section=4'>Monthly Brief</Link></div>
+                            <div className='sub'><Link to='/curation?section=5'>Summary</Link></div>
                         </div>
                     </li>
                     <li className='gnbH'><a href='/explore'>EXPLORE</a>
                         <div className='sub_gnb'>
-                            <div className='sub'><a href='#'>Main</a></div>
-                            <div className='sub'><a href='#'>Special Theme</a></div>
-                            <div className='sub'><a href='#'>Category</a></div>
-                            <div className='sub'><a href='#'>Dashboard</a></div>
-                            <div className='sub'><a href='#'>Search</a></div>
+                            <div className='sub'><Link to='/explore?section=0'>Intro</Link></div>
+                            <div className='sub'><Link to='/explore?section=1'>Exhibition</Link></div>
+                            <div className='sub'><Link to='/explore?section=2'>All Kinds of Cinema</Link></div>
+                            <div className='sub'><Link to='/explore?section=3'>Discovery</Link></div>
                         </div>
                     </li>
                     <li className='gnbH'><a href='/funding'>FUNDING</a>
                         <div className='sub_gnb'>
-                            <div className='sub'><a href='#'>Main</a></div>
-                            <div className='sub'><a href='#'>Now Funding</a></div>
-                            <div className='sub'><a href='#'>Reason of Funding</a></div>
-                            <div className='sub'><a href='#'>Funding Report</a></div>
+                            <div className='sub'><Link to='/funding?section=0'>Intro</Link></div>
+                            <div className='sub'><Link to='/funding?section=1'>Live Projects</Link></div>
+                            <div className='sub'><Link to='/funding?section=2'>Values</Link></div>
+                            <div className='sub'><Link to='/funding?section=3'>Funding Report</Link></div>
                         </div>
                     </li>
                 </ul>
@@ -68,8 +76,7 @@ const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
                 <ul className='gnb2'>
                     <li className='menu_item'>
                         <a href='#'>
-                            <img src={isTransparent ? "/media/userL_w.svg" : "/media/userL_b.svg"}
-                            alt="user" />
+                            <img src={isDarkSection ? "/media/userL_w.svg" : "/media/userL_b.svg"} alt="user" />
                         </a>
                         <div className='sub_menu'>
                             {isLoggedIn ? (
@@ -87,14 +94,13 @@ const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
                     </li>
                     <li className='menu_item'>
                         <button onClick={() => setIsSearchOpen(true)} className="search_btn">
-                            <img src={isTransparent ? "/media/searchL_w.svg" : "/media/searchL_b.svg"}
-                            alt="search" />
+                            <img src={isDarkSection ? "/media/searchL_w.svg" : "/media/searchL_b.svg"} alt="search" />
                         </button>
 
                         {isSearchOpen && (
                             <div className={`search_modal_overlay ${isSearchOpen ? 'active' : ''}`}>
                                 <div className='search_modal_content'>
-                                    <button className='close_btn' onClick={() => setIsSearchOpen(false)}>✕</button>
+                                    <button className='header_close_btn' onClick={() => setIsSearchOpen(false)}>✕</button>
 
                                     <div className='search_input_wrapper'>
                                         <input type='text' placeholder='Search' autoFocus={isSearchOpen} />

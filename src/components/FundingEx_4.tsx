@@ -43,7 +43,7 @@ const FundingEx_4 = () => {
           setDisplayImg(project.image); 
           setIsShuffling(false);
           
-          cycleTimeout = setTimeout(startRandomShuffle, 3000);
+          cycleTimeout = setTimeout(startRandomShuffle, 2000);
         }
       }, 100);
     };
