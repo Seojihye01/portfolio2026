@@ -1,9 +1,9 @@
-.main_container {width: 100vw; height: calc(100vh - 80px);
-                 background-color: #f9f9f9; display: flex; padding: 40px; box-sizing: border-box;
-                 align-items: center; justify-content: center; margin-top: 180px; overflow: hidden; position: relative;}
+.main_container {width: 100vw; height: calc(100vh - 80px); background-color: #f9f9f9; display: flex; 
+                 padding: 40px; box-sizing: border-box; align-items: center; justify-content: center;
+                  margin: 180px 0; overflow: hidden; position: relative;}
 
 .grid_wrapper {width: 1200px; display: flex; flex-direction: column; gap: 20px;
-               position: relative; z-index: 1;}
+               position: relative; z-index: 1; margin: 0 auto; height: 470px;}
 
 .grid_top {display: flex; gap: 20px;}
 
@@ -15,8 +15,7 @@
             align-items: flex-end; padding-left: 25px; padding-bottom: 15px; flex-shrink: 0;
             position: relative; border: 3px solid #121212;}
 
-.title_box h1 {color: #f9f9f9; font-size: 40px; line-height: 1.2;
-               font-weight: 800; margin: 0;}
+.title_box h1 {color: #f9f9f9; font-size: 40px; line-height: 1.2; font-weight: 800; margin: 0;}
 
 .title_box img {position: absolute; top: -30px; right: 0px; width: 80px; height: 160px; transform: rotate(90deg);}
 
@@ -34,16 +33,74 @@
 
 .video_box2 {width: 600px; position: relative; overflow: hidden;}
 
-.video_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+.video_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(18, 18, 18, 0.3); z-index: 1; pointer-events: none;}
 
 .main_video2.color {width: 100%; height: 100%; object-fit: cover; filter: grayscale(60%);}
 
-.video_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0, 0, 0, 0.3); z-index: 1; pointer-events: none;}
-
 .box_black.narrow {width: 100px; background: #121212; flex-shrink: 0;}
 
-.logo_box {width: 235px; background: #121212; position: relative; flex-shrink: 0;}
+.logo_box {width: 235px; background: #121212; position: relative; flex-shrink: 0; z-index: 10;
+           display: flex; justify-content: center; align-items: center; cursor: pointer; left: -5px;
+           overflow: hidden; transform: translateZ(0);}
 
 .logo_box p {position: absolute; bottom: 17px; right: 17px; color: #f9f9f9;
              font-weight: 700; font-size: 14px;}
+
+.target_dropzone {width: 235px; height: 200px; border: 0.1px solid rgba(18, 18, 18, 0.05); display: flex;
+                  justify-content: center; align-items: center; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                  margin-left: auto; margin-bottom: 0; background: #f9f9f9; 
+                  box-shadow: -5px -5px 22px rgba(18, 18, 18, 0.08), 5px 5px 12px rgba(249, 249, 249, 1),
+                              inset 6px 6px 12px rgba(18, 18, 18, 0.1), inset -6px -6px 12px rgba(249, 249, 249, 0.8);}
+
+.target_dropzone.matched {border: none;}
+
+.logo_box.matched {width: 235px; height: 200px; background: #121212; margin-left: 20px; display: flex;
+                   justify-content: flex-end; align-items: flex-end; padding: 17px; pointer-events: none;}
+
+.logo_box.matched .brand_name {font-size: 14px; font-weight: 700; color: #f9f9f9;}
+
+.drop_text {font-size: 12px; letter-spacing: 10%; font-weight: 400; color: #999; text-transform: uppercase;}
+
+.logo_box.draggable {position: absolute; top: 40px; left: 40px; width: 235px; height: 200px; background: #121212;
+                     z-index: 500; cursor: crosshair;}
+
+.logo_box.draggable:active {cursor: url("/media/target.svg"), grabbing;}
+
+.show {opacity: 1; transition: opacity 0.8s ease; }
+
+.video_box1, .video_box2, .logo_box {will-change: transform, opacity; backface-visibility: hidden;}
+
+.main_video, .main_video2 {object-fit: cover; background-color: #121212;}
+
+@media (max-width: 1024px) {
+    .main_container {padding: 20px; height: auto; /* 높이 고정 해제 */}
+
+    .video_box1, .title_box, .video_box2 {width: 100% !important; height: 120px; top: auto !important;
+        position: relative !important; /* 애니메이션 완료 후 흐름에 맞게 배치 */ left: auto !important;}
+
+    .subtitle_box {width: 100%; height: 100px; top: auto; position: relative; margin-bottom: 8px;}
+
+    .title_box h1 {font-size: 28px;}
+
+    .title_box img {width: 40px;}
+
+    .box_black.narrow {display: none; /* 모바일에서 불필요한 요소 제거로 시독성 확보 */}
+
+    .logo_box.matched {width: 100%; height: 120px; margin-left: 5px; justify-content: center; align-items: center;}
+
+    .grid_wrapper {width: 90%; height: auto; display: flex; flex-direction: column; gap: 15px;}
+
+    .grid_top, .grid_bottom {flex-direction: column; height: auto; gap: 15px;}
+
+    /* 로고 박스가 이동할 때 원래 자리를 비워두면 안 되므로, grid_bottom에 패딩이나 마진 */
+    .grid_bottom {padding-bottom: 270px; /* 로고 박스 높이 + 여백만큼 확보 */}
+
+    .logo_box {z-index: 50;}
+
+    .logo_box[data-isOpen="false"] {width: 100%;}
+
+    .logo_box.draggable {width: 100% !important; height: 120px !important; top: 20px; left: 0;}
+
+    .target_dropzone {width: 100%; height: 120px; margin-left: 0;}
+}

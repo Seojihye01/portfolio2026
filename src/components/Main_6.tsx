@@ -29,10 +29,12 @@ const Main_6: React.FC = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !hasAnimated) {
+                if (entry.isIntersecting) {
                     countUp(124500000, setTotalFunded, 2000);
                     countUp(5241, setSupporters, 1500);
-                    setHasAnimated(true); // 한 번만 실행되도록 설정
+                } else {
+                    setTotalFunded(0);
+                    setSupporters(0);
                 }
             },
             { threshold: 0.3 } // 섹션이 30% 이상 보일 때 시작

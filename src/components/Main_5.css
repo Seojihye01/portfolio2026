@@ -1,11 +1,11 @@
-.main5_container {width: 100%; height: auto; background: #f9f9f9; padding: 120px 0;
+.main5_container {width: 100%; height: 100vh; background: #f9f9f9; padding: 120px 0;
                   display: flex; align-items: center; justify-content: center; 
                   overflow: hidden; position: relative;}
 
 .main5_inner {width: 1200px; display: flex; flex-direction: column;
               position: relative; z-index: 10;}
 
-.main5_header h2 {font-size: 48px; letter-spacing: 5%; font-weight: 800;}
+.main5_header h2 {font-size: 55px; letter-spacing: 5%; font-weight: 800;}
 
 .main5_header p {font-size: 30px; font-weight: 300; padding-top: 20px; margin-bottom: 160px;}
 

@@ -1,6 +1,6 @@
 #header {width: 100%; position: fixed; top: 0; left: 0; z-index: 100; transition: all 0.3s ease;}
          
-#header.theme-light {background: rgba(249, 249, 249, 0.7); border-bottom: none; 
+#header.theme-light {background: rgba(249, 249, 249, 0.7); border-bottom: none; backdrop-filter: blur(1.5px);
                      box-shadow: 0 2px 10px rgba(18, 18, 18, 0.1);}
 
 #header.theme-light .gnb1, #header.theme-light .gnb2 {color: #121212;}
@@ -11,7 +11,7 @@
 #header.theme-dark .gnb1, #header.theme-dark .gnb2 {color: #f9f9f9;}
 
 #header.theme-dark .sub_gnb, #header.theme-dark .sub_menu {background: rgba(249, 249, 249, 0.7); 
-                                                     box-shadow: 0 4px 15px rgba(18, 18, 18, 0.1);}
+                                                           box-shadow: 0 4px 15px rgba(18, 18, 18, 0.1);}
 
 .header_inner {width: 1200px; margin: 0 auto; display: flex; transition: height 0.4s;
                justify-content: space-between; align-items: center; height: 70px;}
@@ -42,9 +42,9 @@
           }
 .menu_item {position: relative; padding: 10px 0;}
 
-.sub_menu {display: none; position: absolute; z-index: 1;
+.sub_menu {display: none; position: absolute; z-index: 1; 
            top: 60px; left: 50%; transform: translateX(-50%); backdrop-filter: blur(4px);
-           background: rgba(249, 249, 249, 0.7); padding: 10px; min-width: 100px;
+           background: rgba(249, 249, 249, 0.7); padding: 10px; min-width: 120px;
            text-align: center; border-radius: 0 0 8px 8px; z-index: 10;
            box-shadow: 0 2px 10px rgba(18, 18, 18, 0.1);}
 
@@ -52,11 +52,11 @@
 
 .menu_item:hover .sub_menu {display: block;}
 
-.sub {color: #121212; padding: 8px 0; cursor: pointer; font-size: 14px;}
+.sub {color: #121212; padding: 8px 15px; cursor: pointer; font-size: 14px; transition: background 0.2s;}
 
-.sub a {display: block; width: 100%; padding: 8px 0;}
+.sub Link {display: block; width: 100%; padding: 8px;}
 
-.sub:hover {color: #1090BF;}
+.sub:hover {background: rgba(18, 18, 18, 0.13); border-radius: 8px;}
 
 .search_modal_overlay {position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(18, 18, 18, 0.6);
                        display: flex; align-items: center; justify-content: center; z-index: 9999;

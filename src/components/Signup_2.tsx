@@ -37,7 +37,7 @@ const Signup_2: React.FC<Signup2Props> = ({ onNext, onPrev }) => {
         gender: ['Woman', 'Man'],
         region: ['Asia', 'Europe', 'North America', 'South America', 'etc'],
         role: ['Cinephile', 'Creator', 'Critic / Curator', 'etc'],
-        favourite: ['Fantasy', 'Romance', 'Action', 'Horror', 'Documentary', 'Arthouse', 'Noir', 'Classic', 'Independent', 'etc']
+        favourite: ['Fantasy', 'Romance', 'Action', 'Thriller', 'Documentary', 'Arthouse', 'Noir', 'Classic', 'Independent', 'etc']
     };
 
     // 4. 이벤트 핸들러 (매개변수 타입 지정)

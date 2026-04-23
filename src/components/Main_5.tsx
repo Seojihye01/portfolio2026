@@ -88,7 +88,7 @@ const Main_5 = () => {
       <div className='main5_inner'>
         <div className='main5_header'>
           <h2>02 BROWSE THE COLLECTION</h2>
-          <p>당신의 발견을 기다리는 영화 속 이야기들</p>
+          <p>발견을 기다리는 영화 속 이야기들</p>
         </div>
 
         <div 

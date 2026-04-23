@@ -32,9 +32,16 @@
 
 .arrow_icon.up {transform: rotate(180deg);}
 
-.options_list {position: absolute; top: 40px; left: 0; width: 100%; background: #f9f9f9; 
+.options_list {position: absolute; top: 40px; left: 0; width: 100%; background: #f9f9f9; padding-right: 5px;
                border: 1px solid #d9d9d9; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-               z-index: 100; list-style: none; padding: 5px 0; margin: 0; max-height: 200px; overflow-y: auto;}
+               z-index: 100; list-style: none; padding: 5px 0; margin: 0; max-height: 180px; overflow-y: auto;
+               scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(18, 18, 18, 0.2) transparent;}
+
+.options_list::-webkit-scrollbar {width: 4px;}
+
+.options_list::-webkit-scrollbar-track {background: transparent;}
+
+.options_list::-webkit-scrollbar-thumb {background: rgba(18, 18, 18, 0.2); border-radius: 10px;}
 
 .options_list li {padding: 10px 15px; cursor: pointer; font-size: 14px; transition: background 0.2s;}
 

@@ -5,7 +5,7 @@ import './Signup_1.css';
 const Signup_1 = ({ onNext }: { onNext: () => void }) => {
 
     return(
-        <section className="signup_container">
+        <section className="signup_container" data-theme="light">
             <div className="signup_inner">
                 <div className="signup_content">
                     <div className="step">

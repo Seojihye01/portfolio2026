@@ -47,7 +47,7 @@ const Main_4: React.FC = () => {
                 </div>
 
                 <div className="main4_bottom">
-                    <p className="main4_subtitle">당신의 감각을 깨울 선별된 서사들의 기록</p>
+                    <p className="main4_subtitle">감각을 깨울 선별된 서사들의 기록</p>
                     <h1 className="main4_maintitle">01 EDITOR'S PICKS</h1>
                 </div>
                 <hr className="main4_line"/>

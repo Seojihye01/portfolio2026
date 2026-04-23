@@ -15,7 +15,7 @@ const Login = ({ onLogin }: LoginProps) => {
     }
 
     return (
-        <section className="login_container">
+        <section className="login_container" data-theme="light">
             <div className="login_inner">
                 <div className="login_content">
                     <div className="cont_left">

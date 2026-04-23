@@ -1,5 +1,5 @@
 .main4_container {width: 100%; padding: 160px 0 80px; background: #f9f9f9; 
-                  display: flex; justify-content: center;}
+                  display: flex; justify-content: center; height: 100vh;}
 
 .main4_inner {width: 1200px; /* 기존 헤더 inner와 동일하게 맞춰 일관성 유지 */
               margin: 0 auto; display: flex; flex-direction: column;}

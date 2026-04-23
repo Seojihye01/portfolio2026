@@ -17,6 +17,7 @@ export interface Movie {
     videoUrl?: string;
     relatedMovies: number[]; // 관련 영화 ID 배열
     category?: string[];
+    genre: "Sci-Fi" | "Drama" | "Action" | "Thriller" | "Fantasy" | "History" | "Animation" | "Comedy" | "Documentary" | "Romance" | "Noir" | "Arthouse" | "Classic" | "Independent";
 }
 
 export const allMovies: Movie[] = [
@@ -30,7 +31,8 @@ export const allMovies: Movie[] = [
         actors: ["Timothée Chalamet", "Rebecca Ferguson"],
         trailerUrl: "https://www.youtube.com/embed/n9xhJrPXop4",
         videoUrl: "/media/Dune.mp4",
-        relatedMovies: [3, 6, 12]
+        relatedMovies: [3, 6, 12],
+        genre: "Sci-Fi"
     },
     { 
         id: 2, title: "Gravity", subTitle: "광활한 우주 속 절대적 고독",
@@ -41,7 +43,8 @@ export const allMovies: Movie[] = [
         keywords: ["우주적 고독", "생존의 중력", "시각적 경외"],
         actors: ["Sandra Bullock", "George Clooney"],
         trailerUrl: "https://www.youtube.com/embed/OiTiKOy5Pqn",
-        relatedMovies: [4, 12, 11]
+        relatedMovies: [4, 12, 11],
+        genre: "Sci-Fi"
     },
     { 
         id: 3, title: "Blade Runner 2049", subTitle: "안개와 조명이 빚어낸 디스토피아",
@@ -52,7 +55,8 @@ export const allMovies: Movie[] = [
         keywords: ["디스토피아", "인간의 본질", "미학적 탐구"],
         actors: ["Ryan Gosling", "Harrison Ford"],
         trailerUrl: "https://www.youtube.com/embed/gCcx85zbxz4",
-        relatedMovies: [1, 6, 5]
+        relatedMovies: [1, 6, 5],
+        genre: "Sci-Fi"
     },
     { 
         id: 4, title: "Interstellar", subTitle: "차원을 넘나드는 시간과 사랑의 물리학",
@@ -63,7 +67,8 @@ export const allMovies: Movie[] = [
         keywords: ["시간의 상대성", "우주 대서사", "인류의 도약"],
         actors: ["Matthew McConaughey", "Anne Hathaway"],
         trailerUrl: "https://www.youtube.com/embed/zSWdZVtXT7E",
-        relatedMovies: [2, 5, 12]
+        relatedMovies: [2, 5, 12],
+        genre: "Sci-Fi"
     },
     { 
         id: 5, title: "TENET", subTitle: "과거를 바꾸지 말고 시간을 되돌려라",
@@ -74,7 +79,8 @@ export const allMovies: Movie[] = [
         keywords: ["인버전", "물리학적 상상", "시각적 혁명"],
         actors: ["John David Washington", "Robert Pattinson"],
         trailerUrl: "https://www.youtube.com/embed/LdOM0x0ASFE",
-        relatedMovies: [4, 8, 3]
+        relatedMovies: [4, 8, 3],
+        genre: "Sci-Fi"
     },
     { 
         id: 6, title: "Arrival", subTitle: "언어와 시간이 만나는 경이로운 순간",
@@ -85,7 +91,8 @@ export const allMovies: Movie[] = [
         keywords: ["언어적 소통", "시간의 원형", "운명적 수용"],
         actors: ["Amy Adams", "Jeremy Renner"],
         trailerUrl: "https://www.youtube.com/embed/tFMo3UJ4B4g",
-        relatedMovies: [1, 3, 12]
+        relatedMovies: [1, 3, 12],
+        genre: "Sci-Fi"
     },
     { 
         id: 7, title: "Mad Max : Fury Road", subTitle: "붉은 사막 위를 질주하는 광기",
@@ -96,7 +103,8 @@ export const allMovies: Movie[] = [
         keywords: ["아날로그 액션", "질주하는 광기", "사막의 해방"],
         actors: ["Tom Hardy", "Charlize Theron"],
         trailerUrl: "https://www.youtube.com/embed/hEJnMQG9ev8",
-        relatedMovies: [1, 17, 9]
+        relatedMovies: [1, 17, 9],
+        genre: "Action"
     },
     { 
         id: 8, title: "Dunkirk", subTitle: "생존의 시간이 빚어낸 긴박함",
@@ -107,7 +115,8 @@ export const allMovies: Movie[] = [
         keywords: ["생존의 시간", "청각적 긴장", "전쟁의 잔상"],
         actors: ["Fionn Whitehead", "Tom Hardy"],
         trailerUrl: "https://www.youtube.com/embed/F-eMt3SrfFU",
-        relatedMovies: [5, 9, 4]
+        relatedMovies: [5, 9, 4],
+        genre: "History"
     },
     { 
         id: 9, title: "1917", subTitle: "멈추지 않는 긴장, 원 컨티뉴어스 숏",
@@ -118,7 +127,8 @@ export const allMovies: Movie[] = [
         keywords: ["몰입의 극치", "원 컨티뉴어스 숏", "전쟁의 긴박함"],
         actors: ["George MacKay", "Dean-Charles Chapman"],
         trailerUrl: "https://www.youtube.com/embed/YqNYrYUiMfg",
-        relatedMovies: [8, 7, 5]
+        relatedMovies: [8, 7, 5],
+        genre: "History"
     },
     { 
         id: 10, title: "Whiplash", subTitle: "열망과 광기가 충돌하는 완벽한 리듬",
@@ -129,7 +139,8 @@ export const allMovies: Movie[] = [
         keywords: ["광기어린 열망", "전율의 리듬", "집착의 끝"],
         actors: ["Miles Teller", "J.K. Simmons"],
         trailerUrl: "https://www.youtube.com/embed/7d_jwgPjTzE",
-        relatedMovies: [14, 15, 3]
+        relatedMovies: [14, 15, 3],
+        genre: "Drama"
     },
     { 
         id: 11, title: "Project Hail Mary", subTitle: "인류를 구하기 위한 외로운 우주 비행",
@@ -141,7 +152,8 @@ export const allMovies: Movie[] = [
         actors: ["Ryan Gosling"],
         trailerUrl: "https://www.youtube.com/embed/EXAMPLE_ID",
         relatedMovies: [12, 2, 4],
-        category: ["top 5", "new"]
+        category: ["top 5", "new"],
+        genre: "Sci-Fi"
     },
     { 
         id: 12, title: "The Martian", subTitle: "어떤 일이 있어도 살아남아야 한다",
@@ -153,7 +165,8 @@ export const allMovies: Movie[] = [
         actors: ["Matt Damon", "Jessica Chastain"],
         trailerUrl: "https://www.youtube.com/embed/ej3ioOneTy8",
         relatedMovies: [2, 4, 11],
-        category: ["like", "view"]
+        category: ["like", "view"],
+        genre: "Sci-Fi"
     },
     { 
         id: 13, title: "007 Spectre", subTitle: "거대 조직 스펙터와 제임스 본드의 대결",
@@ -165,7 +178,8 @@ export const allMovies: Movie[] = [
         actors: ["Daniel Craig", "Léa Seydoux"],
         trailerUrl: "https://www.youtube.com/embed/7GqClq9Zs9E",
         relatedMovies: [5, 17, 7],
-        category: ["view"]
+        category: ["view"],
+        genre: "Action"
     },
     { 
         id: 14, title: "The Grand Budapest Hotel", subTitle: "환상적인 색채 속에 감춰진 미스터리",
@@ -177,7 +191,8 @@ export const allMovies: Movie[] = [
         actors: ["Ralph Fiennes", "Tony Revolori"],
         trailerUrl: "https://www.youtube.com/embed/1Fg5iWmQjwk",
         relatedMovies: [15, 10, 16],
-        category: ["like"]
+        category: ["like"],
+        genre: "Comedy"
     },
     { 
         id: 15, title: "The French Dispatch", subTitle: "찬란하게 빛나는 마지막 호의 기사들",
@@ -189,7 +204,8 @@ export const allMovies: Movie[] = [
         actors: ["Bill Murray", "Tilda Swinton"],
         trailerUrl: "https://www.youtube.com/embed/TcPk2p0Zaw4",
         relatedMovies: [14, 16, 10],
-        category: ["like"]
+        category: ["like"],
+        genre: "Drama"
     },
     { 
         id: 16, title: "Paddington", subTitle: "런던에 도착한 사랑스러운 꼬마 곰",
@@ -201,7 +217,8 @@ export const allMovies: Movie[] = [
         actors: ["Ben Whishaw", "Hugh Bonneville"],
         trailerUrl: "https://www.youtube.com/embed/7bZFr2IA0Bo",
         relatedMovies: [14, 15, 12],
-        category: ["view"]
+        category: ["view"], 
+        genre: "Animation"
     },
     { 
         id: 17, title: "Escape Room", subTitle: "살아남기 위해선 정답을 찾아야 한다",
@@ -213,6 +230,7 @@ export const allMovies: Movie[] = [
         actors: ["Taylor Russell", "Logan Miller"],
         trailerUrl: "https://www.youtube.com/embed/69idS_p4Fsk",
         relatedMovies: [13, 7, 9],
-        category: ["like", "view"]
+        category: ["like", "view"],
+        genre: "Thriller"
     }
 ];
