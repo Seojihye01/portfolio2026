@@ -1,0 +1,58 @@
+.cu1_container {width: 100%; height: 100vh; background: #f9f9f9 IM !important; position: relative; overflow: hidden; cursor: grab;
+                display: flex; align-items: center; justify-content: center; perspective: 1200px; z-index: 1;}
+
+.cu1_genre_grid {display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(8, 1fr); 
+                 width: 100%; height: 100%; position: absolute; top: 0; left: 0; transform-style: preserve-3d;
+                 filter: blur(2px) opacity(0.8); pointer-events: none; background: #f9f9f9;}
+
+.cu1_grid_cell {display: flex; align-items: center; justify-content: center;}
+
+.cell_text {font-size: 11px; letter-spacing: 0.05em; color: rgba(18, 18, 18, 0.37); text-transform: uppercase;
+            white-space: nowrap;}
+
+.editor_entry_wrapper {position: relative; z-index: 10;}
+
+.editor_entry_btn {background: rgba(249, 249, 249, 0.6);  padding: 24px 56px; cursor: grabbing; border-radius: 2px;
+                   border: none; transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+                   box-shadow: inset 2px 4px 8px rgba(18, 18, 18, 0.25), inset -4px -4px 6px rgba(18, 18, 18, 0.03);
+                   backdrop-filter: blur(4px); animation: buttonGlow 3s ease-in-out infinite;}
+
+.editor_entry_btn span {font-size: 13px; letter-spacing: 0.1em; font-weight: 500; color: #666;}
+
+.editor_entry_btn:hover, .editor_entry_btn:active {transform: scale(0.97); cursor: grabbing;}
+
+.editor_entry_btn:active {transform: scale(0.94);}
+
+.transition_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100;
+                     background: #f9f9f9 !important;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+    .cu1_genre_grid {grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(12, 1fr);}
+
+    .editor_entry_btn {padding: 20px 48px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+    
+    .cu1_genre_grid {grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(12, 1fr); filter: blur(1.5px) opacity(0.6);}
+    
+    .cell_text {font-size: 9px;}
+
+    .editor_entry_btn {padding: 16px 32px; width: 80vw; max-width: 300px;}
+
+    .editor_entry_btn span {font-size: 11px; letter-spacing: 0.1em;}
+    
+}
+
+/* 3. 소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+
+    .cu1_genre_grid {grid-template-columns: repeat(4, 1fr);}
+    
+}
+

@@ -1,0 +1,73 @@
+.cu5_section {width: 100%; min-height: 100vh; position: relative; background: #121212; display: flex;
+              justify-content: center; align-items: center; padding: 80px 0; overflow: hidden;}
+
+.cu5_bg_metal {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+               background: url('/media/metal.png') no-repeat center center; background-size: cover;
+               background-attachment: fixed;}
+
+.cu5_grid_container {position: relative; z-index: 5; display: flex; flex-direction: column; width: 1200px;
+                     border: 0.5px solid rgba(18, 18, 18, 0.1);}
+
+.cu5_row {display: grid; grid-template-columns: repeat(4, 1fr); }
+
+.cu5_row.second_row {grid-template-columns: 1fr 2fr 1fr;}
+
+.cu5_locker_item {position: relative; aspect-ratio: 16 / 10; background: #121212; overflow: hidden; cursor: pointer;
+                  border-radius: 2px;}
+
+.cu5_shutter {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex;
+              justify-content: center; align-items: center; background: url('/media/metal.png') no-repeat center center;
+              background-size: cover; background-attachment: fixed; 
+              box-shadow: inset 0 0 0 0.5px rgba(249, 249, 249, 0.05), inset 0 0 1.5px rgba(18, 18, 18, 0.5);}
+
+.cu5_center_title {display: flex; justify-content: center; align-items: center;
+                   background: url('/media/metal.png') no-repeat center center; background-size: cover;
+                   background-attachment: fixed; 
+                   box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.05), inset 0 0 1.5px rgba(18, 18, 18, 0.5);}
+
+.cu5_inside_text {color: rgba(18, 18, 18, 0.05); font-size: 16px; letter-spacing: 0.15em; font-weight: 400; 
+                  text-align: center; text-shadow: 1px 1px 1px rgba(249, 249, 249, 0.1), -1px -1px 1px rgba(18, 18, 18, 0.4);}
+
+.cu5_engraved_title {color: rgba(0, 0, 0, 0.05); font-size: 16px; letter-spacing: 0.15em; font-weight: 400;
+                     text-shadow: 1px 1px 1px rgba(249, 249, 249, 0.1), -1px -1px 1px rgba(18, 18, 18, 0.4);
+                     transition: all 0.4s ease; padding: 0 10px; text-align: center;}
+
+.cu5_locker_item:hover .cu5_engraved_title {color: #f9f9f9;
+                                            text-shadow: 0 0 15px rgba(249, 249, 249, 0.8), 0 0 30px rgba(249, 249, 249, 0.4);}
+
+.cu5_inner_content {width: 100%; height: 100%;}
+
+.cu5_inner_content video {width: 100%; height: 100%; object-fit: cover;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media screen and (max-width: 1024px) {
+
+  .cu5_grid_container {width: 90%;}
+
+  .cu5_row, .cu5_row.second_row {display: grid; grid-template-columns: repeat(2, 1fr);}
+
+  .cu5_center_title {order: -1; grid-column: span 2; height: 100px;}
+
+  .cu5_inside_text {font-size: 14px;}
+
+  .cu5_engraved_title {font-size: 14px;}
+}
+
+/* 2. 모바일 (768px 이하) */
+@media screen and (max-width: 768px) {
+
+  .cu5_section {padding: 40px 0;}
+
+  .cu5_grid_container {width: 100%;}
+
+  .cu5_row, .cu5_row.second_row {grid-template-columns: 1fr;}
+
+  .cu5_center_title {grid-column: span 1; height: 80px;}
+
+  .cu5_inside_text {font-size: 14px;}
+
+  .cu5_engraved_title {font-size: 14px;}
+
+  .cu5_bg_metal, .cu5_shutter, .cu5_center_title {background-attachment: scroll;}
+}

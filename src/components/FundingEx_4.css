@@ -1,0 +1,70 @@
+.fex4_container {width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center;
+                 background-image: url("/media/panel.jpg"); background-size: cover; background-position: center;
+                 padding: 100px 0; margin: 0; overflow: hidden; box-sizing: border-box;}
+
+.fex4_inner {width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; text-align: center;}
+
+.fex4_title_slot_window {width: 100%; max-width: 420px; height: 50px; border-radius: 15px; overflow: hidden; 
+                         position: relative; background: #121212; display: flex; justify-content: center;
+                         align-items: center; box-shadow: 0 10px 30px rgba(18, 18, 18, 0.15); margin-bottom: 40px;}
+
+.fex4_title_display {color: #f9f9f9; font-size: clamp(16px, 4vw, 20px); letter-spacing: 8px; font-weight: 500;
+                     z-index: 2;}
+
+.fex4_meta_board {width: 100%; max-width: 420px; gap: 30px; border-radius: 20px; padding: 40px 30px; 
+                  display: flex; flex-direction: column; background-image: url("/media/panel.jpg"); box-sizing: border-box;
+                  background-size: cover; background-position: center; border: 0.5px solid rgba(18, 18, 18, 0.01);
+                  box-shadow: inset 2px 2px 5px rgba(18, 18, 18, 0.6), inset -2px -2px 5px rgba(249, 249, 249, 0.4);}
+
+.fex4_row {display: flex; justify-content: space-between; align-items: center; height: 30px;}
+
+.fex4_label {font-size: 12px; letter-spacing: 1px; font-weight: 400;}
+
+.fex4_right_content {display: flex; justify-content: flex-end; align-items: center; gap: 15px;}
+
+.fex4_multi_wrapper {display: flex; align-items: center; gap: 0; background: rgba(18, 18, 18, 0.22); 
+                     padding: 0 20px; border-radius: 20px; box-shadow: inset 0 2px 5px rgba(18, 18, 18, 0.45); 
+                     min-width: 180px; justify-content: center;}
+
+.fex4_slot_text_window {height: 30px; overflow: hidden; background: transparent; padding: 0 ;
+                        border-radius: 20px; min-width: fit-content; display: flex; justify-content: flex-end;
+                        box-shadow: none;}
+
+.fex4_slot_unit {height: 30px; line-height: 30px; font-size: 12px; letter-spacing: 10%; font-weight: 400; 
+                 width: 100%; text-align: right;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+  .fex4_inner {max-width: 380px;}
+
+  .fex4_meta_board {padding: 35px 25px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+  .fex4_inner {max-width: 340px;}
+
+  .fex4_title_display {font-size: 16px; letter-spacing: 4px;}
+
+  .fex4_label, .fex4_slot_unit {font-size: 11px;}
+
+}
+
+/* 3. 소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+
+  .fex4_inner {max-width: 100%;}
+
+  .fex4_meta_board {padding: 30px 20px; gap: 20px;}
+
+  .fex4_label {font-size: 10px;}
+
+  .fex4_slot_unit {font-size: 10.5px;}
+
+  .fex4_right_content {gap: 5px;}
+  
+}

@@ -1,0 +1,94 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+
+  color: #121212;
+  background-color: #f9f9f9;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-weight: 400;
+  text-decoration: inherit;
+}
+
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #121212;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #121212;
+    background-color: #f9f9f9;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+img,
+video {
+  vertical-align: top;
+  -webkit-touch-callout: none; /* iOS 사파리 길게 누르기 금지 */
+  -webkit-user-select: none;   /* 사파리 선택 금지 */
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;           /* 텍스트/이미지 선택 방지 */
+  -webkit-user-drag: none;     /* 드래그 앤 드롭 금지 */
+}
+
+:global(body), :global(html) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html, body, #root {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}

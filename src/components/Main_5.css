@@ -1,0 +1,118 @@
+.main5_container {width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center;
+                  background: #f4f4f4; padding: 100px 40px; box-sizing: border-box;}
+
+.main5_inner {display: flex; align-items: center; justify-content: center; gap: 120px; width: 100%; 
+              max-width: 1200px; flex-wrap: wrap;}
+
+.main5_clock_area, .main5_content_area {flex-shrink: 0;}
+
+.classic_clock_outer {width: 430px; height: 460px; background: #f4f4f4; border-radius: 15px;
+                      display: flex; justify-content: center; align-items: center; position: relative;
+                      box-shadow: inset 8px 8px 30px #d1d1d1, inset -8px -8px 16px #ffffff;}
+
+.classic_clock_inner {width: 250px; height: 250px; position: relative;}
+
+.clock_mark {position: absolute; width: 2px; height: 100%; left: 50%; margin-left: -1px;}
+
+.clock_mark::after {content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+                    width: 1.5px; height: 12px; background: #bbb;}
+
+.clock_mark:nth-child(3n+1)::after {height: 22px; width: 2px; background: #333;}
+
+.main5_step_label {position: absolute; font-size: 13px; letter-spacing: 0.1em; font-weight: 400; color: #bbb;
+                   transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);}
+
+.main5_step_label.on {font-weight: 700; color: #121212; text-shadow: 0 0 10px rgba(18, 18, 18, 0.05);}
+
+.dev {top: -35px; left: 50%; transform: translateX(-50%);}
+
+.prod {right: -70px; top: 50%; transform: translateY(-50%);}
+
+.post {bottom: -35px; left: 50%; transform: translateX(-50%);}
+
+.ready {left: -70px; top: 50%; transform: translateY(-50%);}
+
+.main5_hand {position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; background: #121212; 
+             border-radius: 4px;}
+
+.h_hour {width: 2px; height: 60px; z-index: 3;}
+
+.h_min {width: 2px; height: 85px; z-index: 2;}
+
+.h_sec {width: 1px; height: 115px; z-index: 4;}
+
+.main5_center_pin {width: 8px; height: 8px; background: #111; border-radius: 50%; position: absolute; 
+                   top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;}  
+
+.main5_content_area {width: 500px; display: flex; flex-direction: column;}
+
+.main5_status_list {display: flex; flex-direction: column; gap: 20px;
+                    margin-bottom: 45px;}
+
+.main5_status_item {display: flex; justify-content: space-between; align-items: center;
+                    font-size: 18px; letter-spacing: 0.02em; font-weight: 400;}
+
+.main5_status_item .main5_label {color: #bbb;}
+
+.main5_status_item .main5_value {color: #121212; font-variant-numeric: tabular-nums;}
+
+.main5_question {font-size: 18px; font-weight: 400; margin-bottom: 60px;}
+
+.main5_cta_group {margin-top: 50px; display: flex; justify-content: flex-end;}
+
+.main5_custom_check_btn {display: inline-flex; align-items: center; gap: 15px; cursor: pointer;}
+
+.main5_check_label {font-size: 18px; letter-spacing: 0.05em; font-weight: 700; order: 1;}
+
+.checkbox_wrapper {position: relative; width: 23px; height: 23px; order: 2;}
+
+.main5_custom_check_btn input {display: none;}
+
+.main5_check_box {width: 100%; height: 100%; border: 2px solid #121212; border-radius: 4px;
+                  transition: all 0.2s ease; display: flex; justify-content: center; align-items: center;}
+
+.check_img {width: 16px; opacity: 0; transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+
+.main5_custom_check_btn:hover .main5_check_box {background: #e8e8e8;}
+
+.main5_custom_check_btn:hover .main5_check_box::after {content: ''; position: absolute; top: 50%; left: 50%; 
+                                                       transform: translate(-50%, -50%); opacity: 0.2;}
+
+.main5_custom_check_btn input:checked + .main5_check_box {background: #1a1a1a;}
+
+.main5_custom_check_btn input:checked + .main5_check_box::after {content: ''; position: absolute; top: 50%; 
+                                                                 left: 50%; transform: translate(-50%, -50%);}
+
+.main5_custom_check_btn input:checked + .main5_check_box .check_img {opacity: 1; transform: scale(1); 
+                                                                     filter: invert(1);}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media screen and (max-width: 1024px) {
+
+    .main5_inner {gap: 60px; flex-direction: column; align-items: center;}
+
+    .main5_content_area {width: 100%; max-width: 500px; text-align: center;}
+
+    .main5_cta_group {justify-content: center;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media screen and (max-width: 768px) {
+
+    .classic_clock_outer {width: 340px; height: 380px;}
+
+    .classic_clock_inner {width: 180px; height: 180px;}
+
+    .dev {top: -40px;}
+
+    .prod {right: -65px;}
+
+    .post {bottom: -40px;}
+
+    .ready {left: -65px;}
+
+    .main5_status_item {font-size: 18px;}
+    
+}

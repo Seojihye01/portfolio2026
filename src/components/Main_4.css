@@ -1,0 +1,94 @@
+.genre_container {position: relative; width: 100%; height: 100vh; overflow: hidden; cursor: crosshair; 
+                  background: #121212; touch-action: none;}
+
+.hud_overlay {position: absolute; inset: 0; z-index: 100; pointer-events: none; color: #f9f9f9;
+              font-family: 'Courier New', Courier, monospace; padding: 40px; display: flex; 
+              flex-direction: column; justify-content: space-between;}
+
+.hud_item {position: absolute; letter-spacing: 3px; font-weight: 600; 
+           text-shadow: 0 0 10px rgba(249, 249, 249, 0.5);}
+
+.top_left {top: 40px; left: 40px; font-size: 1.1rem; margin-top: 50px;}
+
+.blink_icon {animation: blink 1s steps(2, start) infinite; margin-right: -10px;}
+
+.bottom_left {bottom: 40px; left: 40px; line-height: 1.8;}
+
+.loc_data {font-size: 1rem; margin-bottom: 5px;}
+
+.time_data {font-size: 0.85rem; opacity: 0.6; font-variant-numeric: tabular-nums;}
+
+.hud_title {font-size: 1.2rem; color: #f9f9f9; letter-spacing: 4px; margin-bottom: 4px;}
+
+.bottom_right {bottom: 40px; right: 40px; text-align: right; pointer-events: auto; cursor: pointer;}
+
+.hud_main_cta {font-size: 1.6rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
+
+.hud_main_cta:hover, .hud_main_cta:active {color: #000; cursor: url("/media/target_b.svg"), grabbing;
+                                           text-shadow: none;}
+
+@keyframes blink {
+    to { visibility: hidden; }
+}
+
+.bottom_left {font-variant-numeric: tabular-nums;}
+
+.base_white_bg {position: absolute; inset: 0; background-color: #f9f9f9; z-index: 1;}
+
+.text_layer_black, .focus_layer {position: absolute; inset: 0; z-index: 2; display: flex; align-items: center;
+                                 justify-content: center;}
+
+.genre_grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: 50px; padding: 100px; width: 100%; height: 100%;   
+             align-content: center; justify-items: center;}
+
+.genre_item {color: #121212; font-size: 1.2rem; letter-spacing: 0.15em; font-weight: 400; text-align: center;
+             text-transform: uppercase;}
+
+.mask_layer_black {position: absolute; inset: 0; background-color: #121212; z-index: 3; pointer-events: none;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+    .hud_overlay {padding: 30px;}
+    
+    .top_left {font-size: 0.9rem;}
+
+    .loc_data {font-size: 0.85rem;}
+
+    .time_data {font-size: 0.75rem;}
+
+    .hud_title {font-size: 1rem;}
+
+    .hud_main_cta {font-size: 1.5rem;}
+
+    .genre_grid {grid-template-columns: repeat(4, 1fr); gap: 60px 20px; padding: 10px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+    .hud_overlay {padding: 24px;}
+
+    .top_left {top: 40px; left: 20px; font-size: 0.75rem; letter-spacing: 1px;}
+
+    .bottom_left {bottom: 20px; left: 20px; letter-spacing: 1px; line-height: 1.8;}
+
+    .loc_data {font-size: 0.75rem;}
+
+    .time_data {font-size: 0.65rem;}
+
+    .hud_title {letter-spacing: 2px;}
+
+    .bottom_right {position: absolute; bottom: 24px; left: -80px; top: 300px; right: auto; width: max-content; 
+                   height: max-content; pointer-events: auto;}
+
+    .hud_main_cta {font-size: 1.1rem; transform: rotate(-90deg); width: max-content; display: inline-block;
+                   white-space: nowrap;}
+
+    .genre_grid {grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
+
+    .genre_item {font-size: 0.85rem;}    
+    
+}

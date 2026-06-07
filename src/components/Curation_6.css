@@ -1,0 +1,75 @@
+.curation_container {width: 100%; min-height: 100vh; background: #f9f9f9; padding-top: 100px; 
+                     display: flex; justify-content: center; align-items: center; margin-top: 150px;}
+
+.curation_inner {width: 1200px; position: relative; display: flex; flex-direction: column;}
+
+.cu6_identity {font-size: 13px; letter-spacing: 5%; font-weight: 400; color: rgba(18, 18, 18, 0.4);}
+
+.cu6_cont {margin-top: 120px; display: flex; flex-direction: column; align-items: center;}
+
+.cu6_main_row {display: flex; justify-content: flex-end; align-items: center; gap: 90px; width: 1200px;}
+
+.cu6_category {display: flex; flex-direction: column; gap: 20px; font-size: 18px; 
+               letter-spacing: 5%; font-weight: 400; width: 280px;}
+
+.cate {display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px;
+       color: rgba(18, 18, 18, 0.4); cursor: pointer; transition: all 0.3s ease;
+       border-bottom: 1px solid rgba(18, 18, 18, 0.1);}
+
+.cate.active {color: rgba(18, 18, 18, 1); border-bottom: 1px solid rgba(18, 18, 18, 1);}
+
+.cu6_movie_visual {width: 600px; height: 380px; overflow: hidden;}
+
+.cu6_movie_visual img {width: 100%; height: 100%; object-fit: cover;}
+
+.cu6_movie_cta_row {width: 100%; display: flex; justify-content: flex-end; margin-top: 30px;}
+
+.cu6_title_set {display: flex; justify-content: flex-end; align-items: center; gap: 30px;
+                cursor: pointer; transition: all 0.3s ease;}
+
+.cu6_m_title {font-size: 24px; font-weight: 300; letter-spacing: -0.01em;}
+
+.arrow_group {display: flex; gap: 4px;}
+
+.arrow_group img {width: 9.5px; height: auto;}
+
+.cu6_title_set:hover .cu6_m_title, .cu6_title_set:hover .arrow_group img {opacity: 0.6; transition: all 0.3s ease;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media screen and (max-width: 1024px) {
+
+  .curation_inner {width: 90%;}
+
+  .cu6_main_row {width: 100%; gap: 40px; justify-content: space-between;}
+
+  .cu6_category {width: 200px; font-size: 16px;}
+
+  .cu6_movie_visual {width: 100%; height: 300px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media screen and (max-width: 768px) {
+
+  .curation_container {padding-top: 60px; margin-top: 80px;}
+
+  .cu6_identity {font-size: 10px; line-height: 1.5; display: flex; justify-content: flex-start;}
+
+  .cu6_cont {margin: 50px 0;}
+
+  .cu6_main_row {flex-direction: column-reverse; gap: 30px;}
+
+  .cu6_category {width: 100%; gap: 15px;}
+
+  .cate {font-size: 14px; padding-bottom: 8px;}
+
+  .cu6_movie_visual {height: 220px;}
+
+  .cu6_movie_cta_row {justify-content: flex-end; margin: 40px 0;}
+
+  .cu6_m_title {font-size: 16px;}
+
+  .arrow_group img {width: 7px;}
+
+}

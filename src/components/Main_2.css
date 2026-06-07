@@ -1,0 +1,78 @@
+.main2_container {width: 100%; padding: 120px 0; background-size: cover; color: rgba(249, 249, 249, 0.95); height: 110vh;
+                  background-position: center; display: flex; justify-content: center; align-items: center;
+                  background: url("/media/panel.jpg") no-repeat center/cover; filter: brightness(0.8);}
+
+.main2_inner {width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center;}
+
+.main2_cont {display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; 
+             width: fit-content;}
+
+.main2_cta {display: flex; align-items: center; color: #f9f9f9; ; gap: 4px; text-decoration: none; 
+            margin-bottom: 20px; position: absolute; top: -45px; left: 0px; cursor: pointer;
+            text-shadow: 1px 1px 1px rgba(18, 18, 18, 0.05), -1px -1px 1px rgba(18, 18, 18, 0.5);
+            font-size: 16px; font-weight: 400; transition: opacity 0.3s;}
+
+.main2_cta img {transform: rotate(90deg); width: 23px; 
+                filter: drop-shadow(-0.5px -0.5px 0.5px rgba(18, 18, 18, 0.25)) 
+                        drop-shadow(1px 1px 1px rgba(18, 18, 18, 0.5));}
+
+.main2_cta:hover, .main2_cta:active {color: #fff; text-shadow: 0 0 8px rgba(249, 249, 249, 0.8),
+                                                                 0 0 15px rgba(249, 249, 249, 0.4);}
+
+.main2_cta:hover img, .main2_cta:active img {filter: drop-shadow(-0.5px -0.5px 0.5px rgba(249, 249, 249, 0.55)) 
+                                             drop-shadow(0.5px 0.5px 0.5px rgba(249, 249, 249, 0.55)); opacity: 1;}
+
+.main2_cta:active {transform: scale(0.98);}
+
+.main2_cont h1 {font-size: 40px; letter-spacing: 40%; font-weight: 800; margin-bottom: 50px;
+                position: relative; display: inline-block; margin-right: -12px;
+                text-shadow: 1px 1px 1px rgba(18, 18, 18, 0.05), -1px -2px 1px rgba(18, 18, 18, 0.35);}
+
+.main2_meta_grid {width: 98%; display: flex; flex-direction: column; gap: 10px; text-align: center;}
+
+.main2_row {display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; box-sizing: border-box;}
+
+.main2_label, .main2_value {font-size: 14px; letter-spacing: 10%; font-weight: 400; color: #f9f9f9;
+                            text-shadow: 1px 1px 1px rgba(18, 18, 18, 0.05), -1px -1px 1px rgba(18, 18, 18, 0.55);}
+
+.main2_label {text-align: left; color: rgba(249, 249, 249, 0.95);}
+
+.main2_value {text-align: right;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+  .main2_container {padding: 100px 40px;}
+
+  .main2_cont h1 {font-size: 32px; letter-spacing: 0.3em;}
+
+  .main2_inner {max-width: 600px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+  .main2_container {padding: 80px 24px; min-height: 80vh;}
+
+  .main2_cta {font-size: 12px;}
+
+  .main2_cta img {width: 18px;}
+
+  .main2_cont h1 {font-size: 26px; letter-spacing: 0.2em; margin-bottom: 40px; margin-right: 0;}
+
+  .main2_meta_grid {width: 100%; gap: 15px;}
+  
+  .main2_label, .main2_value {text-align: center; font-size: 11px;}
+
+}
+
+/* 3. 초소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+
+  .main2_cont h1 {font-size: 22px; letter-spacing: 0.15em;}
+
+  .main2_cta span {font-size: 13px;}
+  
+}

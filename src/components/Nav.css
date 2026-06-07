@@ -1,0 +1,45 @@
+.elevator_nav {position: fixed; right: 30px; top: 50%; transform: translateY(-50%); display: flex;
+               flex-direction: column; gap: 20px; z-index: 1000; padding: 10px; transition: color 0.3s ease;}
+
+.elevator_btn {background: none; border: none; display: flex; align-items: center; justify-content: flex-end;
+               cursor: pointer; padding: 0;}
+
+.dot {width: 8px; height: 8px; border-radius: 50%; transition: all 0.3s ease;}
+
+.label {font-size: 10px; letter-spacing: 0.1em; margin-right: 15px; opacity: 0; transform: translateX(5px);
+        transition: opacity 0.3s ease;}
+
+.theme_dark .dot {background-color: rgba(249, 249, 249, 0.3);}
+
+.theme_dark .label {color: #f9f9f9;}
+
+.theme_dark .elevator_btn:hover .dot {background-color: #f9f9f9;}
+
+.theme_light .dot {background-color: rgba(18, 18, 18, 0.3);}
+
+.theme_light .label {color: #121212;}
+
+.theme_light .elevator_btn:hover .dot {background-color: #121212;}
+
+.elevator_btn:hover .dot, .elevator_btn:active .dot {transform: scale(1.1);}
+
+.elevator_btn:hover .label, .elevator_btn:active .label {opacity: 1;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+    .elevator_nav {right: 15px; gap: 15px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+    .elevator_nav {right: 10px; gap: 12px;}
+
+    .dot {width: 6px; height: 6px;}
+
+    .elevator_nav {opacity: 0.7;}
+
+}

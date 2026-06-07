@@ -1,0 +1,71 @@
+.fex3_section {width: 100%; height: 100vh; background: #f9f9f9; position: relative; overflow: hidden;
+               display: flex; justify-content: center; align-items: center;}
+
+.fex3_viewport {width: 100%; height: 100%; display: flex; position: relative;}
+
+.fex3_synopsis_container {position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; 
+                          justify-content: center; align-items: center; z-index: 100; pointer-events: none;}
+
+.fex3_synopsis {font-size: 18px; font-weight: 400; line-height: 2; text-align: center; max-width: 700px;
+                word-break: keep-all;}
+
+.fex3_content_layout {display: flex; width: 100%; height: 100%;}
+
+.fex3_side_boundary {width: 35%; height: 100%; display: flex; align-items: center; padding-left: 10%; 
+                     z-index: 60; background: #f9f9f9;}
+
+.fex3_tag_wrapper {display: flex; flex-direction: column;}
+
+.fex3_tag_list {list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;}
+
+.fex3_tag_wrapper.center_mode {align-items: center; text-align: center;}
+
+.fex3_tag_wrapper.side_mode {align-items: flex-start;}
+
+.fex3_tag_wrapper.side_mode .fex3_tag_list li {font-size: 16px; border-bottom: 1px solid #d2d2d7; 
+                                               padding-bottom: 5px; min-width: 100px;}
+
+.fex3_slider_boundary {width: 65%; height: 100%; overflow: hidden; display: flex; align-items: center; position: relative;}
+
+.fex3_track {display: flex; gap: 40px; will-change: transform;}
+
+.fex3_card {min-width: 550px; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #eee;
+            box-shadow: 0 10px 30px rgba(18, 18, 18, 0.05);}
+
+.fex3_card img {width: 100%; height: 100%; object-fit: cover;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+  .fex3_section {height: auto; overflow: visible; padding: 80px 0;}
+
+  .fex3_viewport {flex-direction: column;}
+
+  .fex3_content_layout {flex-direction: column; height: auto;}
+
+  .fex3_synopsis_container {position: relative; height: auto; padding: 0 24px 60px; opacity: 1 !important;
+                            pointer-events: auto;}
+
+  .fex3_synopsis {font-size: 16px; text-align: center; max-width: 100%;}
+
+  .fex3_side_boundary {width: 100%; height: auto; padding: 0 20px 40px; display: flex; justify-content: center; align-items: center;
+                       background: transparent;}
+
+  .fex3_tag_wrapper {width: 100%; display: flex; justify-content: center; align-items: center;}
+
+  .fex3_tag_list {display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center;
+                  padding: 0; margin: 0; max-width: 90%;}
+
+  .fex3_tag_list li {font-size: 14px; padding: 6px 16px; border: 1px solid #d2d2d7; border-radius: 20px; min-width: auto;
+                     padding: 8px 16px; text-align: center; white-space: nowrap; box-shadow: 0 2px 5px rgba(18, 18, 18, 0.03);}
+
+  .fex3_slider_boundary {width: 100%; height: auto; padding: 0 20px; overflow: visible; display: block;}
+
+  .fex3_track {display: flex; flex-direction: column; gap: 20px; width: 100%; transform: none;}
+
+  .fex3_card {width: 100%; min-width: 100%; height: auto; aspect-ratio: 16 / 10; margin-bottom: 10px;}
+
+  .fex3_card img {width: 100%; height: 100%; object-fit: cover; display: block;}
+
+}

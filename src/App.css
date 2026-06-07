@@ -1,0 +1,107 @@
+/* 1. 전체 기본 여백 제거 + 박스 계산 통일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. HTML, BODY 기본 설정 */
+body {
+  font-family: "Montserrat";
+  font-size: 16px;
+  line-height: 1.2;
+  color: #121212;
+  background-color: #f9f9f9;
+  letter-spacing: 10%;
+}
+
+/* 3. 제목 태그 초기화 (h1 ~ h6 동일하게) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+/* 4. 리스트 스타일 제거 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+/* 5. 링크 기본 스타일 제거 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 6. 이미지, 비디오 하단 공백 제거 */
+img,
+video {
+  vertical-align: top;
+  -webkit-touch-callout: none; /* iOS 사파리 길게 누르기 금지 */
+  -webkit-user-select: none;   /* 사파리 선택 금지 */
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;           /* 텍스트/이미지 선택 방지 */
+  -webkit-user-drag: none;     /* 드래그 앤 드롭 금지 */
+}
+
+/* 7. 폼 요소 기본 스타일 정리 */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* 8. 테이블 태그 기본 설정 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* 가로 스크롤을 강제로 숨김 (방어 코드) */
+  overflow-x: hidden; 
+}
+
+#root {width: 100%; margin: 0; padding: 0;}
+
+html, body, #root {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  background: #f9f9f9;
+}
+
+:global(body), :global(html) {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.parent_container {height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
+                   scroll-behavior: smooth; -webkit-overflow-scrolling: touch;}
+
+.progress_container {width: 100%; height: 2px; background: rgba(18, 18, 18, 0.3); position: fixed; top: 0;
+                     left: 0; overflow: visible; z-index: 1000;}
+
+.progress_bar {height: 100%; width: 0%; background: #f9f9f9; position: relative; transition: width 0.2s ease-out;
+               box-shadow: 0 0 10px rgba(249, 249, 249, 0.6), 0 0 20px rgba(249, 249, 249, 0.6);}
+
+.progress_bar::after {content: ""; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 40px;
+                      height: 100%; background: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.8));
+                      filter: blur(2px);}

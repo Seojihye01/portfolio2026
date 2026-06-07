@@ -1,0 +1,41 @@
+.funding_timer_bar {background-color: #121212; padding: 25px 160px; display: flex; color: #f9f9f9;
+                    justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;}
+
+.timer_label {font-size: 40px; font-weight: 800; letter-spacing: 0.05em;}
+
+.timer_display {font-size: 40px; font-weight: 800; display: flex; align-items: center;
+                font-variant-numeric: tabular-nums;}
+
+.divider {margin: 0 4px;}
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+
+  .funding_timer_bar {padding: 20px 60px;}
+
+  .timer_label, .timer_display {font-size: 32px;}
+
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+  .funding_timer_bar {padding: 15px 20px;}
+
+  .timer_label {font-size: 20px;}
+
+  .timer_display {font-size: 20px;}
+
+  .divider {margin: 0 2px;}
+
+}
+
+/* 3. 소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+
+  .timer_label {font-size: 16px;}
+
+  .timer_display {font-size: 16px;}
+  
+}

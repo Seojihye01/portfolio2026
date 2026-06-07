@@ -1,0 +1,201 @@
+.explore_grid_container {width: 100%; height: 100vh; padding: 100px 60px; display: flex;
+                         justify-content: center; margin-top: 150px;}
+
+.explore_inner_flex {width: 1200px; display: flex; gap: 100px;}
+
+.side_nav_section {width: 340px; position: sticky; top: 120px;}
+
+.side_filter_container {padding: 45px 25px; border-radius: 12px; margin-bottom: 40px;
+                        background: 135deg, rgba(18, 18, 18, 0.15), rgba(18, 18, 18, 0.05); 
+                        position: relative; border: 1px solid rgba(249, 249, 249, 0.3); 
+                        box-shadow: inset 1px 4px 10px rgba(18,18,18, 0.1), inset -2px -2px 6px rgba(249, 249, 249, 0.8);}
+
+.filter_group {margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;}
+
+.filter_label {font-size: 11px; color: rgba(18, 18, 18, 0.4); letter-spacing: 1px; font-weight: 400;}
+
+.neu_input_box {width: 200px; height: 42px; background: #f8f8f8; border-radius: 8px; 
+                box-shadow: inset 3px 3px 6px rgba(18, 18, 18, 0.08), inset -3px -3px 6px #f9f9f9;
+                cursor: pointer; position: relative; display: flex; align-items: center; padding: 0 15px;
+                border: 0.5px solid rgba(18, 18, 18, 0.05);}
+
+.selected_value {font-size: 13px; color: #666;}
+
+.neu_dropdown_list {position: absolute; top: 45px; left: 0; width: 100%; background: rgba(249, 249, 249, 0.2);
+                    backdrop-filter: blur(10px); -ms-overflow-style: none; scrollbar-width: none;
+                    border-radius: 8px; box-shadow: 0 10px 30px rgba(18, 18, 18, 0.1); z-index: 50;
+                    list-style: none; max-height: 150px; overflow-y: auto;}
+
+.neu_dropdown_list::-webkit-scrollbar {display: none;}
+
+.neu_dropdown_list li {padding: 10px 15px; font-size: 12px; color: #888;}
+
+.neu_dropdown_list li:hover {background: rgba(18, 18, 18, 0.05);}
+
+/* 페이지네이션 */
+.ex4_pagination {display: flex; flex-direction: column; align-items: center; padding: 25px 30px;
+                 border-radius: 12px; position: relative; border: 1px solid rgba(249, 249, 249, 0.3); 
+                 background: 135deg, rgba(18, 18, 18, 0.15), rgba(18, 18, 18, 0.05);
+                 box-shadow: inset 1px 4px 10px rgba(18, 18, 18, 0.1), inset -2px -2px 6px rgba(249, 249, 249, 0.8);}
+
+.neu_pagination_bar {display: flex; align-items: center; justify-content: space-between;}
+
+.page_indicator_box {display: flex; align-items: center; gap: 20px;}
+
+.txt_page {font-size: 12px; color: rgba(18, 18, 18, 0.8); letter-spacing: 2px;}
+
+.page_direct_input {width: 40px; background: transparent; border: none; font-size: 12px;
+                    border-bottom: 1px solid rgba(18, 18, 18, 0.3); outline: none;
+                    color: rgba(18, 18, 18, 0.8); text-align: center; margin: 0;
+                    appearance: textfield; -webkit-appearance: none; -moz-appearance: textfield;}
+
+.page_direct_input::-webkit-outer-spin-button,
+.page_direct_input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
+                
+.txt_num {font-size: 12px; color: rgba(18, 18, 18, 0.8); font-weight: 400;}
+
+.arrow_btn {border: none; background: none; color: #ddd; cursor: pointer; font-size: 18px;
+            display: block; align-items: center; justify-content: center;}
+
+.ex4_left {width: 10px; transform: rotate(180deg); opacity: 0.2;}
+
+.ex4_right {width: 10px; opacity: 0.2;}
+
+.total_page {font-size: 10px; letter-spacing: 10%; font-weight: 300; color: rgba(18, 18, 18, 0.4);
+             padding-top: 5px;}
+
+/* 우측 그리드 & 호버 효과 */
+.movie_content_area {flex: 1; display: flex; justify-content: center; align-items: center;
+                     overflow: hidden; transform: translateY(0); opacity: 1; cursor: none;
+                     will-change: transform, opacity; backface-visibility: hidden;
+                     transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                                 transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);}
+
+.movie_content_area.switching {opacity: 0; transform: translateY(-20px);}
+
+.masonry_layout {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+                 grid-auto-rows: 170px;}
+
+.movie_item {position: relative; border-radius: 8px; overflow: hidden; background: #f0f0f0;
+             
+             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);}
+
+.movie_item.tall {grid-row: span 2;}
+
+.movie_item.wide {grid-column: span 2;}
+
+.movie_item img {width: 100%; height: 100%; object-fit: cover; transition: 0.4s;}
+
+.movie_hover_overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                      background: rgba(18, 18, 18, 0.6); display: flex; padding: 20px;
+                      justify-content: center; align-items: center; opacity: 0; 
+                      transition: 0.3s ease; text-align: center;}
+
+.movie_item:hover .movie_hover_overlay {opacity: 1;}
+
+.movie_item:hover img {transform: scale(1.05);}
+
+.movie_hover_title {font-size: 14px; font-weight: 400; letter-spacing: 0.5px; color: #f9f9f9;
+                    line-height: 1.6; letter-spacing: 5%;}
+
+.movie_content_area:not(.is_switching) .movie_item {animation: itemReveal 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;}
+
+@keyframes itemReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Custom Cursor */
+.custom_cursor {position: fixed; width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center;
+                justify-content: center; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%) scale(0);
+                transition: transform 0.2s ease-out; background: rgba(249, 249, 249, 0.3); background: rgba(249, 249, 249, 0.3);
+                box-shadow: inset 1px 2px 5px rgba(18, 18, 18, 0.2), inset -2px -2px 6px rgba(249, 249, 249, 0.5);}
+
+.custom_cursor.active {transform: translate(-50%, -50%) scale(1);}
+
+.custom_cursor img {width: 35%; opacity: 0.8;}
+
+.side_nav_section, .neu_input_box, .arrow_btn {cursor: pointer;}
+
+
+/* Responsive Design */
+/* 1. 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+    
+    .explore_grid_container {height: auto; padding: 60px 40px; margin-top: 50px; display: block; padding: 60px 40px;}
+
+    .custom_cursor {display: none !important;}
+
+    .explore_inner_flex {width: 100%; flex-direction: column; gap: 20px;}
+
+    .side_nav_section {width: 100%; position: relative; top: 0; display: flex; flex-direction: column; gap: 20px;}
+
+    .side_filter_container {display: grid; grid-template-columns: repeat(2, 1fr); padding: 40px; gap: 20px 40px;
+                            margin-bottom: 15px;}
+
+    .filter_group {margin-bottom: 0; display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+                   width: 100%; padding: 0 10px;}
+
+    .filter_label {font-size: 12px; letter-spacing: 0.1em; margin-right: 20px; white-space: nowrap;}
+
+    .neu_input_box {width: 100%; height: auto; padding: 10px 15px; display: flex; align-items: center;}
+
+    .ex4_pagination {flex-direction: row; justify-content: space-between; align-items: center; padding: 15px 25px;}
+
+    .total_page {padding-top: 0;}
+
+    .movie_content_area {overflow: visible; width: 100%;}
+
+    .masonry_layout {display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; gap: 20px; padding: 10px 0;
+                     scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;}
+                    
+    .masonry_layout::-webkit-scrollbar {height: 4px;}
+
+    .masonry_layout::-webkit-scrollbar-thumb {background: rgba(18, 18, 18, 0.1); border-radius: 10px;}
+
+    .movie_item {flex: 0 0 calc((100% - (20px * 3)) / 4); min-width: calc((100% - (20px * 3)) / 4); width: 180px;
+                 aspect-ratio: 2 / 3; grid-row: span 1; grid-column: span 1; border-radius: 8px; overflow: hidden;
+                 transition: transform 0.3s ease; scroll-snap-align: start;}
+
+    .movie_item:hover {transform: scale(1.05); z-index: 10;}
+
+    .movie_item img {width: 100%; height: 100%; object-fit: cover;}
+}
+
+/* 2. 모바일 (768px 이하) */
+@media (max-width: 768px) {
+
+    .explore_grid_container {padding: 40px 20px; margin-top: 100px; height: auto;}
+
+    .side_filter_container {grid-template-columns: 1fr; gap: 12px; padding-bottom: 10px;}
+
+    .neu_input_box {width: 180px;}
+
+    .masonry_layout {grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 12px;}
+
+    .custom_cursor {display: none !important;}
+    
+    .movie_content_area {cursor: default !important;}
+
+    .movie_hover_overlay {padding: 10px;}
+
+    .movie_hover_title {font-size: 12px;}
+
+    .movie_item {flex: 0 0 calc((100% - (12px * 2)) / 3); min-width: calc((100% - (12px * 2)) / 3); border-radius: 8px;}
+}
+
+/* 3. 소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+
+    .masonry_layout {gap: 8px; grid-auto-rows: 130px;}
+
+    .movie_item.wide {grid-column: span 2;}
+
+    .txt_page {font-size: 10px;}
+}
