@@ -28,15 +28,6 @@ const Explore_3 = ({ onMovieClick, isModalOpen }: ExploreProps) => { // 3. props
         }
     }, []);
 
-    const handleTitleClick = (movie: Movie) => {
-        if (selectedMovie?.id === movie.id) {
-            // 이미 선택된 영화를 다시 클릭하면 모달 오픈
-            onMovieClick(movie);
-        } else {
-            // 다른 영화를 클릭하면 선택 변경 (모바일에서 이미지/정보 업데이트용)
-            setSelectedMovie(movie);
-        }
-    };
     
     // 4. 클릭 핸들러 (모달 오픈용)
     const handleOpenModal = (e: React.MouseEvent) => {

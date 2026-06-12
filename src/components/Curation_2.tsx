@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Curation_2.css';
 
@@ -48,7 +48,6 @@ const Curation_2 = () => {
       if (!isInside || !sectionRef.current) return;
 
       const scrollingDown = e.deltaY > 0;
-      const scrollingUp = e.deltaY < 0;
 
       // 1. 커버 상태
       if (!isOpened) {

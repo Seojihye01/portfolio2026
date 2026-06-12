@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './Curation_6.css';
 import { allMovies, type Movie } from "./MovieData"; // 경로 확인
 

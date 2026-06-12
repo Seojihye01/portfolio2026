@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import './Signup_2.css';
 
 // 1. 타입 정의 (빨간 줄 방지용)
@@ -21,7 +20,6 @@ interface Signup2Props {
 }
 
 const Signup_2: React.FC<Signup2Props> = ({ onNext, onPrev }) => {
-    const navigate = useNavigate();
 
     // 2. 상태 관리 (타입 지정)
     const [activeSelect, setActiveSelect] = useState<string | null>(null);

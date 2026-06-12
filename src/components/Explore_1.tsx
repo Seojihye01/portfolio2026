@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import './Explore_1.css';
 
 const Explore_1 = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isMuted, setIsMuted] = useState(true);    
-    const [isHovered, setIsHovered] = useState(false);
 
     // 마우스 움직임 감지 함수 (데스크톱 전용)
 
@@ -19,8 +18,7 @@ const Explore_1 = () => {
         <div 
             className='hero_video_section' 
             data-theme="light"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+           
         >
             {/* 1. 비디오 영역 */}
             <div className="video_container" onClick={handleSoundToggle}>

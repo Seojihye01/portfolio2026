@@ -5,10 +5,9 @@ import Curation_4 from './Curation_4';
 import Curation_5 from './Curation_5';
 import Curation_6 from './Curation_6';
 import Curation_7 from './Curation_7';
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from 'react-router-dom';
 import { type Movie } from "./MovieData";
-import MovieModal from "./Moviemodal";
 
 
 interface CurationProps {

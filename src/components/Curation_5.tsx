@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { allMovies } from "./MovieData"; //
 import "./Curation_5.css";

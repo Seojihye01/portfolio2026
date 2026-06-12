@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { Link } from "react-router-dom";
 import './Main_3.css';
@@ -7,7 +7,7 @@ const Main_3 = () => {
   const [isMatched, setIsMatched] = useState(false);
   const constraintsRef = useRef<HTMLDivElement>(null);
 
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: any, info: any) => {
     const isMobile = window.innerWidth <= 1024; // 모바일 여부 확인(브라우저 너비 기준)
     // 모바일은 화면 중앙보다 아래로만 드래그해도 성공으로 간주
     const thresholdX = isMobile ? window.innerWidth * 0.3 : window.innerWidth * 0.7;

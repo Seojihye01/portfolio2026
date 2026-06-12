@@ -11,7 +11,7 @@ const Curation_7 = () => {
         setActivePage(activePage === num ? null : num);
     };
 
-    const handleToggleSave = (e: React.MouseEvent) => {
+    const handleToggleSave = () => {
         setIsSaved(!isSaved);
     };
 

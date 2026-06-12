@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { allMovies, type Movie } from "./MovieData";
 import './Explore_5.css';
 

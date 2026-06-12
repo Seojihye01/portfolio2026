@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import './Header.css';
 
@@ -13,8 +13,6 @@ const Header = ({ isLoggedIn, onLogout }: HeaderProps) => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // 모바일 메뉴 상태 추가
     const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
-    // 현재 경로가 '/'이면 true, 아니면 false
-    const isMain = location.pathname === '/'; 
     
     useEffect(() => {
         const observer = new IntersectionObserver(

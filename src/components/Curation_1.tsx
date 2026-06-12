@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { allMovies } from './MovieData';
 import './Curation_1.css';
 
 const Curation_1 = () => {
@@ -15,7 +14,6 @@ const Curation_1 = () => {
     
     // 2. 12x8 그리드에 맞게 [번호, 장르] 쌍으로 48쌍(96칸) 생성
     const gridItems = Array.from({ length: 48 }, (_, i: number) => {
-        const currentIdx: number = i + 1;
         const genreName = allGenres[i % allGenres.length];
         const genreNum = String(i + 1).padStart(2, '0');
         return [

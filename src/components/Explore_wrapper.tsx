@@ -3,7 +3,7 @@ import Explore_2 from './Explore_2';
 import Explore_3 from './Explore_3';
 import Explore_4 from './Explore_4';
 import Explore_5 from './Explore_5';
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from 'react-router-dom';
 import { type Movie } from "./MovieData";
 import MovieModal from "./Moviemodal";

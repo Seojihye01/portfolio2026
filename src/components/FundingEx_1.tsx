@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { fundingProjects, type FundingProject, type FundingTier } from "./FundingData";
 import { motion, AnimatePresence } from "framer-motion";

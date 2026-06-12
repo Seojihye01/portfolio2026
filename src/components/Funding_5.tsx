@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom"; // 상세 이동을 위한 훅
 import { motion, useInView } from "framer-motion";
 import { fundingProjects } from "./FundingData";

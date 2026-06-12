@@ -22,7 +22,7 @@ const Funding_1 = () => {
     const isMobile = window.innerWidth < 768;
     const isTablet = window.innerWidth < 1024;
 
-    return JOBS.map((job, idx) => {
+    return JOBS.map((_, idx) => {
     // 1. 글자들을 3그룹으로 나눔 (안쪽, 중간, 바깥쪽 레일)
     const layer = idx % 3; 
     let radiusX = [300, 500, 800][layer]; // 가로 반지름 (가로로 길게)

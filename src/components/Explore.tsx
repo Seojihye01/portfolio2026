@@ -1,5 +1,4 @@
 import Explore_wrapper from "./Explore_wrapper";
-import React from "react";
 import { type Movie } from "./MovieData";
 
 

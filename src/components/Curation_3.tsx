@@ -5,7 +5,7 @@ import { allMovies, type Movie } from "./MovieData";
 
 const Curation_3 = () => {
     // 1. 상태 관리
-    const [currentMovie, setCurrentMovie] = useState<Movie>(allMovies[0]);
+    const [currentMovie] = useState<Movie>(allMovies[0]);
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [isStarted, setIsStarted] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false); // 영상이 실제 시작되었는지 여부 (배경색 제어용)

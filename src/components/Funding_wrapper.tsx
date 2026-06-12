@@ -3,7 +3,7 @@ import Funding_2 from './Funding_2';
 import Funding_3 from './Funding_3';
 import Funding_4 from './Funding_4';
 import Funding_5 from './Funding_5';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 

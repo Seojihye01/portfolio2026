@@ -1,5 +1,4 @@
 import Curation_wrapper from "./Curation_wrapper";
-import React from "react";
 import { type Movie } from "./MovieData";
 
 interface CurationProps {
