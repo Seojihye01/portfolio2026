@@ -33,7 +33,7 @@ const Signup_2: React.FC<Signup2Props> = ({ onNext, onPrev }) => {
     // 3. 드롭다운 옵션 데이터 (타입 지정)
     const options: Options = {
         gender: ['Woman', 'Man'],
-        region: ['Asia', 'Europe', 'North America', 'South America', 'etc'],
+        region: ['Asia', 'Europe', 'America', 'Africa', 'etc'],
         role: ['Cinephile', 'Creator', 'Critic / Curator', 'etc'],
         favourite: ['Fantasy', 'Romance', 'Action', 'Thriller', 'Documentary', 'Arthouse', 'Noir', 'Classic', 'Independent', 'etc']
     };

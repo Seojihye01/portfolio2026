@@ -12,10 +12,14 @@
 .funding_3_section.step_5, .funding_3_section.step_6 {cursor: none;}
 
 .fu2_sound_wave_btn {position: absolute; bottom: 61px; right: 380px; z-index: 100; display: flex; align-items: center; 
-                     gap: 10px; cursor: pointer; padding: 10px 18px; opacity: 0; visibility: hidden; 
-                     transform: translateY(10px); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);}
+                     gap: 10px; cursor: pointer; padding: 8px 18px; opacity: 0; visibility: hidden; mix-blend-mode: difference; 
+                     transform: translateY(10px); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); border-radius: 30px;
+                     border: 2px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.03); 
+                     box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), inset 0 0 5px rgba(255, 255, 255, 0.2);}
 
 .fu2_sound_wave_btn.visible {opacity: 1; visibility: visible; transform: translateY(0);}
+
+.fu2_sound_wave_btn:hover, .fu2_sound_wave_btn:active {transform: scale(1.04);}
 
 .fu2_wave_btn_text {font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: #f9f9f9;}
 

@@ -16,6 +16,8 @@ const FundingEx_3 = () => {
   const isAnimating = useRef(false);
   const wheelWaitCount = useRef(0);
 
+  const MAX_DELAY_COUNT = 5;
+
   // 1. 데이터 로드
   useEffect(() => {
     const found = fundingProjects.find((p) => p.id === Number(id));
@@ -42,28 +44,33 @@ const FundingEx_3 = () => {
       const scrollingUp = e.deltaY < 0;
 
       if (stepRef.current === 6 && scrollingDown) {
-        if (wheelWaitCount.current < 2) { // 2번의 휠 입력 동안은 막음
-        e.preventDefault();
-        wheelWaitCount.current += 1;
+        if (wheelWaitCount.current < MAX_DELAY_COUNT) {
+          e.preventDefault();
+          sectionRef.current.scrollIntoView({ behavior: "auto", block: "center" });
+          wheelWaitCount.current += 1;
+          return; // 지정된 카운트만큼 휠을 굴려야 아래로 빠져나갈 수 있음
+        }
+        return; // 카운트가 다 차면 그때 브라우저 기본 스크롤(다음 섹션) 허용
+      }
+
+      if (stepRef.current === 0 && scrollingUp) {
+        wheelWaitCount.current = 0; // 초기화
         return;
       }
-      return; // 카운트가 다 차면 그때 섹션 이동 허용
-    }
-      if (stepRef.current === 0 && scrollingUp) {
-      wheelWaitCount.current = 0; // 초기화
-      return;
-    }
 
       // 스텝 이동 시 카운트 초기화
-      wheelWaitCount.current = 0;
       e.preventDefault();
       sectionRef.current.scrollIntoView({ behavior: "auto", block: "center" });
 
       if (isAnimating.current) return;
 
       if (scrollingDown && stepRef.current < 6) {
+        if (stepRef.current + 1 === 6) {
+        wheelWaitCount.current = 0; // 마지막 스텝 진입 시 카운터 깨끗하게 초기화
+        }
         updateStep(stepRef.current + 1);
       } else if (scrollingUp && stepRef.current > 0) {
+        wheelWaitCount.current = 0;
         updateStep(stepRef.current - 1);
       }
     };
@@ -78,7 +85,7 @@ const FundingEx_3 = () => {
     stepRef.current = next;
     setTimeout(() => {
       isAnimating.current = false;
-    }, 800);
+    }, 400);
   };
 
   if (!project) return null;
@@ -146,21 +153,21 @@ const FundingEx_3 = () => {
               transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
             >
               {project.images && project.images.length > 0 ? (
-      project.images.map((imgSrc, idx) => (
-        <div className="fex3_card" key={idx}>
-          <img 
-            src={imgSrc} 
-            alt={`frame-${idx}`} 
-            onError={(e) => {
-              // 이미지 로드 실패 시 엑박 대신 임시 빈 박스 처리 혹은 에러 로깅
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
-          />
-        </div>
-      ))
-    ) : (
-      <div className="fex3_no_image">등록된 이미지가 없습니다.</div>
-    )}
+                project.images.map((imgSrc, idx) => (
+                  <div className="fex3_card" key={idx}>
+                    <img 
+                      src={imgSrc} 
+                      alt={`frame-${idx}`} 
+                      onError={(e) => {
+                        // 이미지 로드 실패 시 엑박 대신 임시 빈 박스 처리 혹은 에러 로깅
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div className="fex3_no_image">등록된 이미지가 없습니다.</div>
+              )}
             </motion.div>
           </div>
         </div>

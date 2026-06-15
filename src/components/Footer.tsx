@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="footer_inner">
                 <a href="/" className="footer_top">
                     <img src="/media/logo_b.png" className="footer_logo"/>
-                    <p className="catchphrase">archive today, remember always.</p>
+                    <p className="catchphrase">Archive Today, Remember Always</p>
                 </a>
                 
                 <div className="footer_middle">
@@ -46,7 +46,7 @@ const Footer = () => {
 
                 <div className="footer_bottom">
                     <p className="copyright">© 2025 Directory.M</p>
-                    <p className="personal_work">This project is a personal portfolio work</p>
+                    <p className="personal_work">This project is a personal portfolio work by Seo Jihye</p>
                 </div>        
             </div>
         </section>

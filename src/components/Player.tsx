@@ -11,7 +11,7 @@ const Player = () => {
     const timerRef = useRef<any>(null);
 
     // 광고 및 상태 관리
-    const adVideos = ["/media/APPLE.mp4", "/media/Milano_Fashion_Week.mp4"];
+    const adVideos = ["/media/APPLE.mp4"];
     const [isAdPlaying, setIsAdPlaying] = useState(true);
     const [currentVideoSrc, setCurrentVideoSrc] = useState("");
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -58,7 +58,7 @@ const Player = () => {
             setTimeout(() => {
                 setIsAdPlaying(false);
                 setIsTransitioning(false);
-                setCurrentVideoSrc(movieData?.videoUrl || "/media/Dune.mp4");
+                setCurrentVideoSrc(movieData?.videoUrl || "/media/main_.mp4");
             }, 3000);
         }
     };
@@ -111,6 +111,25 @@ const Player = () => {
         const mins = Math.floor((time % 3600) / 60);
         const secs = Math.floor(time % 60);
         return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    };
+
+    // 프로그레스 바 클릭 시 시간 이동 함수
+    const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isAdPlaying) return;
+        if (!videoRef.current || duration === 0) return;
+
+        // 클릭된 요소(pl_progress_bar)의 크기와 위치 정보 가져오기
+        const rect = e.currentTarget.getBoundingClientRect();
+        // 전체 가로 길이 중 마우스가 클릭한 위치의 상대적 X 좌표 계산
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+    
+        // 비율 계산 (0 ~ 1 사이)
+        const percentage = Math.min(Math.max(clickX / width, 0), 1);
+    
+        // 영상의 현재 시간을 변경된 비율에 맞춰 세팅
+        videoRef.current.currentTime = percentage * duration;
+        setCurrentTime(percentage * duration);
     };
 
     if (!movieData) return null;
@@ -180,7 +199,7 @@ const Player = () => {
                 <div className="bottom_bar">
                     <div className="progress_area">
                         <div className="time_info">{formatTime(currentTime)}</div>
-                        <div className="pl_progress_bar">
+                        <div className={`pl_progress_bar ${isAdPlaying ? "is_ad" : ""}`} onClick={handleProgressClick}>
                             <div className="progress_current" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
                         </div>
                         <div className="time_total">{formatTime(duration)}</div>

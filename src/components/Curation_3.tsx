@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import './Curation_3.css';
 import './Curation_4.css';
 import { allMovies, type Movie } from "./MovieData";
+import MovieModal from "./Moviemodal"; 
 
 const Curation_3 = () => {
     // 1. 상태 관리
     const [currentMovie] = useState<Movie>(allMovies[0]);
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [isDetailOpen, setIsDetailOpen] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false); // 영상이 실제 시작되었는지 여부 (배경색 제어용)
     const [isEnded, setIsEnded] = useState(false);
@@ -101,6 +103,13 @@ const Curation_3 = () => {
     const openModal = (e: React.MouseEvent) => {
         e.stopPropagation();
         setSelectedMovie(currentMovie);
+        setIsDetailOpen(false);
+    };
+
+    const handleMoreClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDetailOpen(true);
     };
 
     const limitedData = allMovies.filter(movie => Number(movie.id) >= 1 && Number(movie.id) <= 10);
@@ -183,10 +192,12 @@ const Curation_3 = () => {
                     </div>
                 </div>
 
-                {/* 모달 레이어 생략 (기존 코드와 동일) */}
                 {selectedMovie && (
-                    <div className="movie_modal">
-                        {/* ... 기존 모달 내용 ... */}
+                    <div className="movie_modal" style={{ 
+                        zIndex: 1000, 
+                        opacity: isDetailOpen ? 0 : 1,
+                        pointerEvents: isDetailOpen ? 'none' : 'auto' 
+                    }}>
                         <div className="modal_bg" style={{ backgroundImage: `url(${selectedMovie.img})` }}></div>
                         <div className="modal_content">
                             <div className="modal_header_row">
@@ -213,11 +224,20 @@ const Curation_3 = () => {
                                         <img src="/media/arrow_b.svg" className="m_left" onClick={() => navigateMovie('prev')} alt="prev" />
                                         <img src="/media/arrow_b.svg" className="m_right" onClick={() => navigateMovie('next')} alt="next" />
                                     </div>
-                                    <button className="m_more_btn">PLAY</button>
-                                    <span className="m_cancel" onClick={() => setSelectedMovie(null)}>✕</span>
+                                    <button className="m_more_btn" onClick={handleMoreClick}>MORE</button>
+                                    <span className="m_cancel" onClick={() => { setSelectedMovie(null); setIsDetailOpen(false); }}>✕</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                )}
+                {isDetailOpen && selectedMovie && (
+                    <div className="detail_modal_wrapper">
+                        <MovieModal 
+                            movie={selectedMovie} 
+                            onClose={() => setIsDetailOpen(false)} 
+                            onMovieClick={(next) => setSelectedMovie(next)} 
+                        />
                     </div>
                 )}
             </div>

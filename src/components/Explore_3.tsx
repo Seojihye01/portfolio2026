@@ -37,7 +37,7 @@ const Explore_3 = ({ onMovieClick, isModalOpen }: ExploreProps) => { // 3. props
 
         const isModalActive = isModalOpen || document.body.style.overflow === 'hidden';
         if (isModalActive) {
-        // 모달이 켜지는 순간 모든 섹션의 '내가 화면 안이다'라는 판정을 꺼버림
+        // 모달이 켜지는 순간 모든 섹션의 판정을 꺼버림
             if (isInside) setIsInside(false); 
             return;
         }

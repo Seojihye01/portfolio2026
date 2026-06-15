@@ -25,6 +25,10 @@
 
 .elevator_btn:hover .label, .elevator_btn:active .label {opacity: 1;}
 
+.theme_dark .elevator_btn.active .dot {background-color: #f9f9f9; transform: scale(1.1);}
+
+.theme_light .elevator_btn.active .dot {background-color: #121212; transform: scale(1.1);}
+
 /* Responsive Design */
 /* 1. 태블릿 (1024px 이하) */
 @media (max-width: 1024px) {
@@ -39,7 +43,5 @@
     .elevator_nav {right: 10px; gap: 12px;}
 
     .dot {width: 6px; height: 6px;}
-
-    .elevator_nav {opacity: 0.7;}
 
 }

@@ -16,7 +16,7 @@ const Curation_2 = () => {
     stepRef.current = step;
   }, [step]);
 
-  // 💡 2. 클릭으로만 사라짐
+  // 2. 클릭으로만 사라짐
   const handleOpen = () => {
     setIsOpened(true);
     setTimeout(() => {
@@ -53,20 +53,45 @@ const Curation_2 = () => {
       if (!isOpened) {
         if (scrollingDown) {
           e.preventDefault(); // 아래로 못 내려가게 락
-          // 💡 위치가 어긋나지 않게 섹션 시작점에 고정
+          // 위치가 어긋나지 않게 섹션 시작점에 고정
           window.scrollTo({ top: sectionRef.current.offsetTop, behavior: 'auto' });
         }
         return; // 위로 가는 것은 허용
       }
 
-      // 2. 본문 상태 (마지막 단계 하행 제외하고 모두 강력 락)
-      const isLastStepDown = scrollingDown && stepRef.current === 3;
-      if (!isLastStepDown) {
-        e.preventDefault();
-        // 💡 이동 중에도 계속 섹션 위치를 고정시켜 "걸쳐지는" 현상 방지
-        window.scrollTo({ top: sectionRef.current.offsetTop, behavior: 'auto' });
-        moveStep(scrollingDown ? 'next' : 'prev');
+      if (scrollingDown && stepRef.current === 3) {
+        // 애니메이션 중이거나 이미 락이 걸려있다면 이벤트 차단
+        if (isAnimating.current && !sectionRef.current.classList.contains('delay_ended')) {
+          e.preventDefault();
+          window.scrollTo({ top: sectionRef.current.offsetTop, behavior: 'auto' });
+          return;
+        }
+
+        // 지연 완료 상태가 아니라면 첫 휠 동작 시 0.8초간 강력 락
+        if (!sectionRef.current.classList.contains('delay_ended')) {
+          e.preventDefault();
+          window.scrollTo({ top: sectionRef.current.offsetTop, behavior: 'auto' });
+          
+          isAnimating.current = true;
+          sectionRef.current.classList.add('delay_ended'); // 지연 시작됨을 표시
+
+          setTimeout(() => {
+            isAnimating.current = false; // 락 해제
+            // 클래스는 유지하여 다음 휠 동작 때 이 조건문을 통과하고 자연스럽게 내려가도록 함
+          }, 800); // 💡 지연 시간 (0.8초)
+
+          return;
+        }
+        
+        // delay_ended 클래스가 붙은 상태에서 들어온 휠은 락을 걸지 않고 자연스럽게 다음 섹션으로 보냄
+        return;
       }
+
+      // 3. 마지막 단계 하행을 제외한 나머지 모든 스텝 락 (이동할 때마다 delay_ended 초기화)
+      e.preventDefault();
+      sectionRef.current.classList.remove('delay_ended'); 
+      window.scrollTo({ top: sectionRef.current.offsetTop, behavior: 'auto' });
+      moveStep(scrollingDown ? 'next' : 'prev');
     };
 
     const handleTouchStart = (e: TouchEvent) => {
