@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { allMovies, type Movie } from "./MovieData";
 import './Explore_4.css';
 
@@ -7,7 +7,7 @@ interface ExploreProps {
     isModalOpen: boolean;
 }
 
-const Explore_4 = ({ onMovieClick, isModalOpen }: ExploreProps) => {
+const Explore_4 = ({ onMovieClick }: ExploreProps) => {
     const [selectedFilters, setSelectedFilters] = useState({
         GENRE: "All", YEAR: "2026", COUNTRY: "All", "SORT BY": "Latest"
     });
